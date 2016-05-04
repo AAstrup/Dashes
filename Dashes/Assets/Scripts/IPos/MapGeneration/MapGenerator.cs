@@ -31,7 +31,7 @@ public class MapGenerator {
     void CreateLevel()
     {
         //Vector2 StartPos = new Vector2(1, 1);
-        Vector2 StartPos = new Vector2(Mathf.FloorToInt(Random.Range(0f, _mapWidth)), Mathf.FloorToInt(Random.Range(0f, _mapHeight)));
+        Vector2 StartPos = new Vector2(Mathf.FloorToInt(Random.Range(1f, _mapWidth-1)), Mathf.FloorToInt(Random.Range(1f, _mapHeight-1)));
         new RoomScript(StartPos, this);
         while (activeRooms.Count > 0)
         {

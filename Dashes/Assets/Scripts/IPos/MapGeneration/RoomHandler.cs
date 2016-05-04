@@ -6,6 +6,7 @@ using System;
 public class RoomHandler {
 
     float timeLastDoorOpened = 0f;
+    float doorOpenCD = 0.25f;
     bool doorsUnlocked;
     RoomLayout currentLayout;
     RoomScript currentRoom;
@@ -50,7 +51,7 @@ public class RoomHandler {
     {
         if (!doorsUnlocked)
             return;
-        if (Time.time < timeLastDoorOpened + 2f)
+        if (Time.time < timeLastDoorOpened + doorOpenCD)
             return;
         float triggerVerDist = 0.5f + 1.5f;
         float triggerHorDist = 1f + 1.5f;

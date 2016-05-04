@@ -22,7 +22,7 @@ public class RoomScript {
 
     public RoomScript(Vector2 pos, MapGenerator generator)
     {
-        possibleDirs.Add(1);
+        possibleDirs.Add(Mathf.RoundToInt(UnityEngine.Random.Range(0,3)));
         _generator = generator;
         _pos = pos;
         roomLengthNr = 1;
