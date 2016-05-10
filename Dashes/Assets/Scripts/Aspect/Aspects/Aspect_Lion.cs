@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Aspect_Lion : Aspect {
 
-    public override void Activate()
+    public override void Activate(float triggervalue)
     {
         Player.Effects.Add(new Effect(Player,Effect.EffectTypes.Invulnerability,0,3f,ParticleEffectHandler.particleType.effect_halo, 0.2f,1));
         Active = true;

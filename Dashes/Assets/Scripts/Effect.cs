@@ -49,6 +49,9 @@ public class Effect
             case EffectTypes.DamageConstant:
                 unit.Damage(Time.deltaTime*Value/_lifeTtimeTotal);
                 break;
+            case EffectTypes.HealConstant:
+                unit.Heal(Time.deltaTime * Value / _lifeTtimeTotal);
+                break;
         }
 
         if (ParticleType != ParticleEffectHandler.particleType.effect_none)
@@ -84,6 +87,9 @@ public class Effect
             case EffectTypes.DamageDelay:
                 unit.Damage(Value);
                 break;
+            case EffectTypes.HealDelay:
+                unit.Heal(Value);
+                break;
             case EffectTypes.Invulnerability:
                 if (!unit.Effects.Exists(typ => typ.EffectType == EffectTypes.Invulnerability)) { unit.Invulnerable = false; }
                 break;
@@ -97,7 +103,9 @@ public class Effect
         Boost,
         DamageConstant,
         DamageDelay,
-        Invulnerability
+        Invulnerability,
+        HealConstant,
+        HealDelay
     }
 
     public Effect(IUnit unit,EffectTypes effectType,float value,float lifetime)

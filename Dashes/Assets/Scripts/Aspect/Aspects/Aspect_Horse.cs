@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Aspect_Horse : Aspect {
 
-	 public override void Activate()
+    public override void Activate(float triggervalue)
 	 {
 	     Player.MarkedUnitsCanAlsoReset = true;
 	 }
@@ -15,7 +15,7 @@ public class Aspect_Horse : Aspect {
 
     public override void Init()
     {
-        Activate();
+        Activate(0f);
     }
 
     public Aspect_Horse()

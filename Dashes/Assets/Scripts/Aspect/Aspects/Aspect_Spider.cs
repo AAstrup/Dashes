@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Aspect_Spider : Aspect {
 
-     public override void Activate()
+    public override void Activate(float triggervalue)
     {
         Player.Marked.ForEach(typ => typ.Effects.Add(new Effect(typ, Effect.EffectTypes.Slow, 0.80f, 3f,ParticleEffectHandler.particleType.effect_whiteglow, 0.25f,5)));
         Active = true;

@@ -3,25 +3,25 @@ using UnityEditor;
 using UnityEngine;
 using System.Collections;
 
-public class Aspect_Bull : Aspect {
+public class Aspect_Tunicate : Aspect
+{
 
     private float particleEmitDelay = 0f;
 
-    private const float f = 0.71f;
+    private const float f = 0.2f;
 
     //private List<float> floats = new List<float>(); 
 
     public override void Activate(float triggervalue)
     {
-        Player.FloatVars["DashingDurationFirstIncrease"].Add(f);
-	    Player.FloatVars["DashingSpeedIncrease"].Add(f); 
         Active = true;
+        Player.Effects.Add(new Effect(Player, Effect.EffectTypes.HealDelay, f*triggervalue, 3,
+            ParticleEffectHandler.particleType.effect_flower, 1, 1));
+        DeActivate();
     }
 
     public override void DeActivate()
     {
-        Player.FloatVars["DashingDurationFirstIncrease"].Remove(f);
-        Player.FloatVars["DashingSpeedIncrease"].Remove(f);
         Active = false;
     }
 
@@ -44,13 +44,13 @@ public class Aspect_Bull : Aspect {
         }
     }
 
-    public Aspect_Bull()
+    public Aspect_Tunicate()
     {
-        Trigger = new AspectTrigger(AspectTrigger.AspectTriggerType.StandTime,1);
+        Trigger = new AspectTrigger(AspectTrigger.AspectTriggerType.Damage, 1);
         Passive = false;
 
-        Title = "Bull aspect";
-        Description = "After standing still for 1 second the duration and speed of your next dash is increased by 75%.";
+        Title = "Tunicate aspect";
+        Description = "3 seconds after taking damage, you are healed for 20% of the damage recieved.";
     }
 
 }

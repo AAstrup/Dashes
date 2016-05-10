@@ -6,7 +6,7 @@ public class Aspect_Cheetah : Aspect
 
     private float particleEmitDelay = 0f;
 
-    public override void Activate()
+    public override void Activate(float triggervalue)
     {
         Player.FloatVars["MovementSpeedIncrease"].Add(0.46f);
         Debug.Log("ACTIVATED");

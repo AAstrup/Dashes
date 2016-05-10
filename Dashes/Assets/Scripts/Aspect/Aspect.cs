@@ -12,7 +12,7 @@ public abstract class Aspect
     public string Title;
     public string Description;
 
-    public abstract void Activate();
+    public abstract void Activate(float triggervalue);
     public abstract void DeActivate();
     public abstract void Init();
     public virtual void ActiveUpdate()

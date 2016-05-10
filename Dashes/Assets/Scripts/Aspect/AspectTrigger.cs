@@ -15,6 +15,7 @@ public class AspectTrigger
         Health,
         Damage,
         Finisher,
+        Heal,
         None
     }
 
