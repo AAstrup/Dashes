@@ -5,9 +5,12 @@ using System;
 
 public class RoomLayoutHandler {
 
+    RoomLayoutLoader loader;
+
     public void Init()
     {
-
+        loader = new RoomLayoutLoader();
+        loader.Init();
     }
 
     public RoomLayout LoadLoadout(RoomScript roomScript)
@@ -26,27 +29,21 @@ public class RoomLayoutHandler {
 
     private RoomLayout LoadStartLayout()
     {
-        List<EnemySpawnInfo> enemySpawnList = new List<EnemySpawnInfo>() { };
-        return new RoomLayout(enemySpawnList);
+        return loader.GetStartLoadOut();
     }
 
     private RoomLayout LoadGoalLayout()
     {
-        List<EnemySpawnInfo> enemySpawnList = new List<EnemySpawnInfo>() { };
-        return new RoomLayout(enemySpawnList);
+        return loader.GetGoalLoadOut();
     }
 
     private RoomLayout LoadRewardLayout()
     {
-        List<EnemySpawnInfo> enemySpawnList = new List<EnemySpawnInfo>() {};
-        return new RoomLayout(enemySpawnList);
+        return loader.GetRewardLoadOut();
     }
 
     public RoomLayout LoadEnemyLayout()
     {
-        var spawnI1 = new EnemySpawnInfo(3, 0, EnemyType.stupid, 0);
-        var spawnI2 = new EnemySpawnInfo(0, 3, EnemyType.stupid, 1);
-        List<EnemySpawnInfo> enemySpawnList = new List<EnemySpawnInfo>() { spawnI1, spawnI2 };
-        return new RoomLayout(enemySpawnList);
+        return loader.GetEnemyLoadOut();
     }
 }

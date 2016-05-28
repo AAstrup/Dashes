@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
 public class EnemySpawnInfo : SpawnInfo {
-    public EnemySpawnInfo(float x, float y, EnemyType type,int groupNr)
+    public EnemySpawnInfo(float x, float y, UnitSpawnType type,int groupNr)
     {
         SetSpawnInfo(x, y, groupNr);
         _type = type;
     }
-    public EnemyType Type() { return _type; }
-    EnemyType _type;
+    public UnitSpawnType Type() { return _type; }
+    UnitSpawnType _type;
 }

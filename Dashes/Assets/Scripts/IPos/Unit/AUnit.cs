@@ -27,7 +27,6 @@ public abstract class IUnit : Position {
         Effects.ForEach(typ => typ.Update(this));
         Pos = References.instance.colSystem.CollidesWithWall(this).GetFinalPos();
         GBref.transform.position = Pos;
-        GBref.transform.localScale = Scale;
         GBref.transform.rotation = Quaternion.Euler(0, 0, Rot);
     }
 

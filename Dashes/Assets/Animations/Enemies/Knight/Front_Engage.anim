@@ -1,0 +1,2398 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!74 &7400000
+AnimationClip:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Front_Engage
+  serializedVersion: 6
+  m_Legacy: 0
+  m_Compressed: 0
+  m_UseHighQualityCurve: 1
+  m_RotationCurves: []
+  m_CompressedRotationCurves: []
+  m_EulerCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 0, y: 0, z: 0.3403}
+        inSlope: {x: 0, y: 0, z: 65.27159}
+        outSlope: {x: 0, y: 0, z: 65.27159}
+        tangentMode: 0
+      - time: 0.083333336
+        value: {x: 0, y: 0, z: 5.7795997}
+        inSlope: {x: 0, y: 0, z: -0.07230377}
+        outSlope: {x: 0, y: 0, z: -0.07230377}
+        tangentMode: 0
+      - time: 0.25
+        value: {x: 0, y: 0, z: -5.1231}
+        inSlope: {x: 0, y: 0, z: -65.4162}
+        outSlope: {x: 0, y: 0, z: -65.4162}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Enemy_Front_Center/Top_Knight_Weapon
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 0, y: 0, z: 0.3403}
+        inSlope: {x: 0, y: 0, z: 65.27159}
+        outSlope: {x: 0, y: 0, z: 65.27159}
+        tangentMode: 0
+      - time: 0.083333336
+        value: {x: 0, y: 0, z: 5.7795997}
+        inSlope: {x: 0, y: 0, z: 16.317896}
+        outSlope: {x: 0, y: 0, z: 16.317896}
+        tangentMode: 0
+      - time: 0.25
+        value: {x: 0, y: 0, z: 0.3403}
+        inSlope: {x: 0, y: 0, z: -32.6358}
+        outSlope: {x: 0, y: 0, z: -32.6358}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Enemy_Front_Center/Top_Knight_Head
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 0, y: 0, z: 0.3403}
+        inSlope: {x: 0, y: 0, z: 65.27159}
+        outSlope: {x: 0, y: 0, z: 65.27159}
+        tangentMode: 0
+      - time: 0.083333336
+        value: {x: 0, y: 0, z: 5.7795997}
+        inSlope: {x: 0, y: 0, z: 16.317896}
+        outSlope: {x: 0, y: 0, z: 16.317896}
+        tangentMode: 0
+      - time: 0.25
+        value: {x: 0, y: 0, z: 0.3403}
+        inSlope: {x: 0, y: 0, z: -32.6358}
+        outSlope: {x: 0, y: 0, z: -32.6358}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Enemy_Front_Center/Top_Knight_Body
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 0, y: 0, z: 0.3403}
+        inSlope: {x: 0, y: 0, z: 65.27159}
+        outSlope: {x: 0, y: 0, z: 65.27159}
+        tangentMode: 0
+      - time: 0.083333336
+        value: {x: 0, y: 0, z: 5.7795997}
+        inSlope: {x: 0, y: 0, z: 16.317896}
+        outSlope: {x: 0, y: 0, z: 16.317896}
+        tangentMode: 0
+      - time: 0.25
+        value: {x: 0, y: 0, z: 0.3403}
+        inSlope: {x: 0, y: 0, z: -32.6358}
+        outSlope: {x: 0, y: 0, z: -32.6358}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Enemy_Front_Center/Top_Knight_LeftShould
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 0, y: 0, z: 180.3404}
+        inSlope: {x: 0, y: 0, z: 65.27051}
+        outSlope: {x: 0, y: 0, z: 65.27051}
+        tangentMode: 0
+      - time: 0.083333336
+        value: {x: 0, y: 0, z: 185.7796}
+        inSlope: {x: 0, y: 0, z: 16.317625}
+        outSlope: {x: 0, y: 0, z: 16.317625}
+        tangentMode: 0
+      - time: 0.25
+        value: {x: 0, y: 0, z: 180.3404}
+        inSlope: {x: 0, y: 0, z: -32.635258}
+        outSlope: {x: 0, y: 0, z: -32.635258}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Enemy_Front_Center/Top_Knight_RightShoulder
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 0, y: 0, z: -209.43309}
+        inSlope: {x: 0, y: 0, z: 65.27161}
+        outSlope: {x: 0, y: 0, z: 65.27161}
+        tangentMode: 0
+      - time: 0.083333336
+        value: {x: 0, y: 0, z: -203.99379}
+        inSlope: {x: 0, y: 0, z: 161.0118}
+        outSlope: {x: 0, y: 0, z: 161.0118}
+        tangentMode: 0
+      - time: 0.25
+        value: {x: 0, y: 0, z: -161.2018}
+        inSlope: {x: 0, y: 0, z: 256.75198}
+        outSlope: {x: 0, y: 0, z: 256.75198}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Enemy_Front_Center/Top_Knight_LeftArm
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 0, y: 0, z: -245.0277}
+        inSlope: {x: 0, y: 0, z: 65.27161}
+        outSlope: {x: 0, y: 0, z: 65.27161}
+        tangentMode: 0
+      - time: 0.083333336
+        value: {x: 0, y: 0, z: -239.5884}
+        inSlope: {x: 0, y: 0, z: 16.3179}
+        outSlope: {x: 0, y: 0, z: 16.3179}
+        tangentMode: 0
+      - time: 0.25
+        value: {x: 0, y: 0, z: -245.0277}
+        inSlope: {x: 0, y: 0, z: -32.635807}
+        outSlope: {x: 0, y: 0, z: -32.635807}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Enemy_Front_Center/Top_Knight_RightArm
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 0, y: 0, z: 118.9619}
+        inSlope: {x: 0, y: 0, z: 65.27161}
+        outSlope: {x: 0, y: 0, z: 65.27161}
+        tangentMode: 0
+      - time: 0.083333336
+        value: {x: 0, y: 0, z: 124.4012}
+        inSlope: {x: 0, y: 0, z: 16.3179}
+        outSlope: {x: 0, y: 0, z: 16.3179}
+        tangentMode: 0
+      - time: 0.25
+        value: {x: 0, y: 0, z: 118.9619}
+        inSlope: {x: 0, y: 0, z: -32.635807}
+        outSlope: {x: 0, y: 0, z: -32.635807}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Enemy_Front_Center/Top_Knight_RightHand
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 0, y: 0, z: 178.486}
+        inSlope: {x: 0, y: 0, z: 214.01843}
+        outSlope: {x: 0, y: 0, z: 214.01843}
+        tangentMode: 0
+      - time: 0.25
+        value: {x: 0, y: 0, z: 231.9906}
+        inSlope: {x: 0, y: 0, z: 214.01843}
+        outSlope: {x: 0, y: 0, z: 214.01843}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Enemy_Front_Center/Top_Knight_LeftHand
+  m_PositionCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 0.596, y: 0.046, z: 0}
+        inSlope: {x: 0.009215355, y: -0.40660074, z: 0}
+        outSlope: {x: 0.009215355, y: -0.40660074, z: 0}
+        tangentMode: 0
+      - time: 0.083333336
+        value: {x: 0.59676796, y: 0.012116604, z: 0}
+        inSlope: {x: 1.0163039, y: -2.7356505, z: 0}
+        outSlope: {x: 1.0163039, y: -2.7356505, z: 0}
+        tangentMode: 0
+      - time: 0.25
+        value: {x: 0.934, y: -0.832, z: 0}
+        inSlope: {x: 2.0233924, y: -5.0647, z: 0}
+        outSlope: {x: 2.0233924, y: -5.0647, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Enemy_Front_Center/Top_Knight_Weapon
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 0.92086434, y: 0.06, z: 0}
+        inSlope: {x: -0.027518034, y: -0.014880493, z: 0}
+        outSlope: {x: -0.027518034, y: -0.014880493, z: 0}
+        tangentMode: 0
+      - time: 0.083333336
+        value: {x: 0.9185712, y: 0.058759958, z: 0}
+        inSlope: {x: -0.006879508, y: -0.003720123, z: 0}
+        outSlope: {x: -0.006879508, y: -0.003720123, z: 0}
+        tangentMode: 0
+      - time: 0.25
+        value: {x: 0.92086434, y: 0.06, z: 0}
+        inSlope: {x: 0.013759018, y: 0.007440247, z: 0}
+        outSlope: {x: 0.013759018, y: 0.007440247, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Enemy_Front_Center/Top_Knight_Head
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 0.92086434, y: -0.172, z: 0}
+        inSlope: {x: 0.25283575, y: -0.0007277727, z: 0}
+        outSlope: {x: 0.25283575, y: -0.0007277727, z: 0}
+        tangentMode: 0
+      - time: 0.083333336
+        value: {x: 0.941934, y: -0.17206065, z: 0}
+        inSlope: {x: 0.06320893, y: -0.00018194316, z: 0}
+        outSlope: {x: 0.06320893, y: -0.00018194316, z: 0}
+        tangentMode: 0
+      - time: 0.25
+        value: {x: 0.92086434, y: -0.172, z: 0}
+        inSlope: {x: -0.12641789, y: 0.0003638864, z: 0}
+        outSlope: {x: -0.12641789, y: 0.0003638864, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Enemy_Front_Center/Top_Knight_Body
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 0.664, y: -0.107, z: 0}
+        inSlope: {x: 0.18995762, y: -0.3150942, z: 0}
+        outSlope: {x: 0.18995762, y: -0.3150942, z: 0}
+        tangentMode: 0
+      - time: 0.083333336
+        value: {x: 0.6798298, y: -0.13325785, z: 0}
+        inSlope: {x: 0.0474894, y: -0.07877354, z: 0}
+        outSlope: {x: 0.0474894, y: -0.07877354, z: 0}
+        tangentMode: 0
+      - time: 0.25
+        value: {x: 0.664, y: -0.107, z: 0}
+        inSlope: {x: -0.09497882, y: 0.15754712, z: 0}
+        outSlope: {x: -0.09497882, y: 0.15754712, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Enemy_Front_Center/Top_Knight_LeftShould
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 1.2, y: -0.107, z: 0}
+        inSlope: {x: 0.15726042, y: 0.33262154, z: 0}
+        outSlope: {x: 0.15726042, y: 0.33262154, z: 0}
+        tangentMode: 0
+      - time: 0.083333336
+        value: {x: 1.2131051, y: -0.07928154, z: 0}
+        inSlope: {x: 0.0393151, y: 0.08315538, z: 0}
+        outSlope: {x: 0.0393151, y: 0.08315538, z: 0}
+        tangentMode: 0
+      - time: 0.25
+        value: {x: 1.2, y: -0.107, z: 0}
+        inSlope: {x: -0.07863022, y: -0.16631079, z: 0}
+        outSlope: {x: -0.07863022, y: -0.16631079, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Enemy_Front_Center/Top_Knight_RightShoulder
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 0.603, y: -0.271, z: 0}
+        inSlope: {x: 0.39186, y: -0.3788041, z: 0}
+        outSlope: {x: 0.39186, y: -0.3788041, z: 0}
+        tangentMode: 0
+      - time: 0.083333336
+        value: {x: 0.635655, y: -0.302567, z: 0}
+        inSlope: {x: 0.49996504, y: -0.0017009974, z: 0}
+        outSlope: {x: 0.49996504, y: -0.0017009974, z: 0}
+        tangentMode: 0
+      - time: 0.25
+        value: {x: 0.737, y: -0.24, z: 0}
+        inSlope: {x: 0.6080701, y: 0.3754021, z: 0}
+        outSlope: {x: 0.6080701, y: 0.3754021, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Enemy_Front_Center/Top_Knight_LeftArm
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 1.197, y: -0.273, z: 0}
+        inSlope: {x: 0.3580413, y: 0.3391217, z: 0}
+        outSlope: {x: 0.3580413, y: 0.3391217, z: 0}
+        tangentMode: 0
+      - time: 0.083333336
+        value: {x: 1.2268368, y: -0.24473986, z: 0}
+        inSlope: {x: -0.06348969, y: -0.19721964, z: 0}
+        outSlope: {x: -0.06348969, y: -0.19721964, z: 0}
+        tangentMode: 0
+      - time: 0.25
+        value: {x: 1.146, y: -0.367, z: 0}
+        inSlope: {x: -0.48502067, y: -0.733561, z: 0}
+        outSlope: {x: -0.48502067, y: -0.733561, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Enemy_Front_Center/Top_Knight_RightArm
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 1.144, y: -0.364, z: 0}
+        inSlope: {x: 0.47124195, y: 0.28062594, z: 0}
+        outSlope: {x: 0.47124195, y: 0.28062594, z: 0}
+        tangentMode: 0
+      - time: 0.083333336
+        value: {x: 1.1832702, y: -0.3406145, z: 0}
+        inSlope: {x: -0.17318955, y: -0.43984354, z: 0}
+        outSlope: {x: -0.17318955, y: -0.43984354, z: 0}
+        tangentMode: 0
+      - time: 0.25
+        value: {x: 1.047, y: -0.534, z: 0}
+        inSlope: {x: -0.81762105, y: -1.160313, z: 0}
+        outSlope: {x: -0.81762105, y: -1.160313, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Enemy_Front_Center/Top_Knight_RightHand
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 0.57296, y: -0.3447125, z: 0}
+        inSlope: {x: 0.72047997, y: -0.41145015, z: 0}
+        outSlope: {x: 0.72047997, y: -0.41145015, z: 0}
+        tangentMode: 0
+      - time: 0.083333336
+        value: {x: 0.633, y: -0.379, z: 0}
+        inSlope: {x: 1.08924, y: -0.04972501, z: 0}
+        outSlope: {x: 1.08924, y: -0.04972501, z: 0}
+        tangentMode: 0
+      - time: 0.25
+        value: {x: 0.876, y: -0.327, z: 0}
+        inSlope: {x: 1.458, y: 0.31200013, z: 0}
+        outSlope: {x: 1.458, y: 0.31200013, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Enemy_Front_Center/Top_Knight_LeftHand
+  m_ScaleCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 0.8, y: -1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 0.083333336
+        value: {x: 0.8, y: -1, z: 1}
+        inSlope: {x: 0, y: 6.0000005, z: 0}
+        outSlope: {x: 0, y: 6.0000005, z: 0}
+        tangentMode: 0
+      - time: 0.25
+        value: {x: 0.8, y: 1, z: 1}
+        inSlope: {x: 0, y: 12.000001, z: 0}
+        outSlope: {x: 0, y: 12.000001, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: Enemy_Front_Center/Top_Knight_Weapon
+  m_FloatCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 0.25
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Enemy_Back_Center
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 0.25
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Enemy_Side_Center
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 0.25
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Enemy_Front_Center
+    classID: 1
+    script: {fileID: 0}
+  m_PPtrCurves: []
+  m_SampleRate: 60
+  m_WrapMode: 0
+  m_Bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_ClipBindingConstant:
+    genericBindings:
+    - path: 3765169868
+      attribute: 1
+      script: {fileID: 0}
+      classID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - path: 2072085958
+      attribute: 1
+      script: {fileID: 0}
+      classID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - path: 131758312
+      attribute: 1
+      script: {fileID: 0}
+      classID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - path: 4151609979
+      attribute: 1
+      script: {fileID: 0}
+      classID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - path: 2664451293
+      attribute: 1
+      script: {fileID: 0}
+      classID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - path: 4279018201
+      attribute: 1
+      script: {fileID: 0}
+      classID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - path: 4071500085
+      attribute: 1
+      script: {fileID: 0}
+      classID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - path: 2262376870
+      attribute: 1
+      script: {fileID: 0}
+      classID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - path: 795356542
+      attribute: 1
+      script: {fileID: 0}
+      classID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - path: 3765169868
+      attribute: 4
+      script: {fileID: 0}
+      classID: 4
+      customType: 14
+      isPPtrCurve: 0
+    - path: 2072085958
+      attribute: 4
+      script: {fileID: 0}
+      classID: 4
+      customType: 14
+      isPPtrCurve: 0
+    - path: 131758312
+      attribute: 4
+      script: {fileID: 0}
+      classID: 4
+      customType: 14
+      isPPtrCurve: 0
+    - path: 4151609979
+      attribute: 4
+      script: {fileID: 0}
+      classID: 4
+      customType: 14
+      isPPtrCurve: 0
+    - path: 2664451293
+      attribute: 4
+      script: {fileID: 0}
+      classID: 4
+      customType: 14
+      isPPtrCurve: 0
+    - path: 4279018201
+      attribute: 4
+      script: {fileID: 0}
+      classID: 4
+      customType: 14
+      isPPtrCurve: 0
+    - path: 4071500085
+      attribute: 4
+      script: {fileID: 0}
+      classID: 4
+      customType: 14
+      isPPtrCurve: 0
+    - path: 2262376870
+      attribute: 4
+      script: {fileID: 0}
+      classID: 4
+      customType: 14
+      isPPtrCurve: 0
+    - path: 795356542
+      attribute: 4
+      script: {fileID: 0}
+      classID: 4
+      customType: 14
+      isPPtrCurve: 0
+    - path: 3765169868
+      attribute: 3
+      script: {fileID: 0}
+      classID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - path: 1002024161
+      attribute: 2086281974
+      script: {fileID: 0}
+      classID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - path: 922585317
+      attribute: 2086281974
+      script: {fileID: 0}
+      classID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - path: 1510083841
+      attribute: 2086281974
+      script: {fileID: 0}
+      classID: 1
+      customType: 0
+      isPPtrCurve: 0
+    pptrCurveMapping: []
+  m_AnimationClipSettings:
+    serializedVersion: 2
+    m_AdditiveReferencePoseClip: {fileID: 0}
+    m_AdditiveReferencePoseTime: 0
+    m_StartTime: 0
+    m_StopTime: 0.25
+    m_OrientationOffsetY: 0
+    m_Level: 0
+    m_CycleOffset: 0
+    m_HasAdditiveReferencePose: 0
+    m_LoopTime: 1
+    m_LoopBlend: 0
+    m_LoopBlendOrientation: 0
+    m_LoopBlendPositionY: 0
+    m_LoopBlendPositionXZ: 0
+    m_KeepOriginalOrientation: 0
+    m_KeepOriginalPositionY: 1
+    m_KeepOriginalPositionXZ: 0
+    m_HeightFromFeet: 0
+    m_Mirror: 0
+  m_EditorCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 0.25
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Enemy_Back_Center
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 0.25
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Enemy_Side_Center
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      - time: 0.25
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 31
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Enemy_Front_Center
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0.8
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0.8
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.25
+        value: 0.8
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalScale.x
+    path: Enemy_Front_Center/Top_Knight_Weapon
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: -1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.083333336
+        value: -1
+        inSlope: 6.0000005
+        outSlope: 6.0000005
+        tangentMode: 10
+      - time: 0.25
+        value: 1
+        inSlope: 12.000001
+        outSlope: 12.000001
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalScale.y
+    path: Enemy_Front_Center/Top_Knight_Weapon
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.083333336
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.25
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalScale.z
+    path: Enemy_Front_Center/Top_Knight_Weapon
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0.596
+        inSlope: 0.009215355
+        outSlope: 0.009215355
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0.59676796
+        inSlope: 1.0163039
+        outSlope: 1.0163039
+        tangentMode: 10
+      - time: 0.25
+        value: 0.934
+        inSlope: 2.0233924
+        outSlope: 2.0233924
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.x
+    path: Enemy_Front_Center/Top_Knight_Weapon
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0.046
+        inSlope: -0.40660074
+        outSlope: -0.40660074
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0.012116604
+        inSlope: -2.7356505
+        outSlope: -2.7356505
+        tangentMode: 10
+      - time: 0.25
+        value: -0.832
+        inSlope: -5.0647
+        outSlope: -5.0647
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.y
+    path: Enemy_Front_Center/Top_Knight_Weapon
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.25
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.z
+    path: Enemy_Front_Center/Top_Knight_Weapon
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.25
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.x
+    path: Enemy_Front_Center/Top_Knight_Weapon
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.25
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.y
+    path: Enemy_Front_Center/Top_Knight_Weapon
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0.3403
+        inSlope: 65.27159
+        outSlope: 65.27159
+        tangentMode: 10
+      - time: 0.083333336
+        value: 5.7795997
+        inSlope: -0.07230377
+        outSlope: -0.07230377
+        tangentMode: 10
+      - time: 0.25
+        value: -5.1231
+        inSlope: -65.4162
+        outSlope: -65.4162
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.z
+    path: Enemy_Front_Center/Top_Knight_Weapon
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.25
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.x
+    path: Enemy_Front_Center/Top_Knight_Head
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.25
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.y
+    path: Enemy_Front_Center/Top_Knight_Head
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0.3403
+        inSlope: 65.27159
+        outSlope: 65.27159
+        tangentMode: 10
+      - time: 0.083333336
+        value: 5.7795997
+        inSlope: 16.317896
+        outSlope: 16.317896
+        tangentMode: 10
+      - time: 0.25
+        value: 0.3403
+        inSlope: -32.6358
+        outSlope: -32.6358
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.z
+    path: Enemy_Front_Center/Top_Knight_Head
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0.92086434
+        inSlope: -0.027518034
+        outSlope: -0.027518034
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0.9185712
+        inSlope: -0.006879508
+        outSlope: -0.006879508
+        tangentMode: 10
+      - time: 0.25
+        value: 0.92086434
+        inSlope: 0.013759018
+        outSlope: 0.013759018
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.x
+    path: Enemy_Front_Center/Top_Knight_Head
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0.06
+        inSlope: -0.014880493
+        outSlope: -0.014880493
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0.058759958
+        inSlope: -0.003720123
+        outSlope: -0.003720123
+        tangentMode: 10
+      - time: 0.25
+        value: 0.06
+        inSlope: 0.007440247
+        outSlope: 0.007440247
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.y
+    path: Enemy_Front_Center/Top_Knight_Head
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.25
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.z
+    path: Enemy_Front_Center/Top_Knight_Head
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.25
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.x
+    path: Enemy_Front_Center/Top_Knight_Body
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.25
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.y
+    path: Enemy_Front_Center/Top_Knight_Body
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0.3403
+        inSlope: 65.27159
+        outSlope: 65.27159
+        tangentMode: 10
+      - time: 0.083333336
+        value: 5.7795997
+        inSlope: 16.317896
+        outSlope: 16.317896
+        tangentMode: 10
+      - time: 0.25
+        value: 0.3403
+        inSlope: -32.6358
+        outSlope: -32.6358
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.z
+    path: Enemy_Front_Center/Top_Knight_Body
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0.92086434
+        inSlope: 0.25283575
+        outSlope: 0.25283575
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0.941934
+        inSlope: 0.06320893
+        outSlope: 0.06320893
+        tangentMode: 10
+      - time: 0.25
+        value: 0.92086434
+        inSlope: -0.12641789
+        outSlope: -0.12641789
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.x
+    path: Enemy_Front_Center/Top_Knight_Body
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: -0.172
+        inSlope: -0.0007277727
+        outSlope: -0.0007277727
+        tangentMode: 10
+      - time: 0.083333336
+        value: -0.17206065
+        inSlope: -0.00018194316
+        outSlope: -0.00018194316
+        tangentMode: 10
+      - time: 0.25
+        value: -0.172
+        inSlope: 0.0003638864
+        outSlope: 0.0003638864
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.y
+    path: Enemy_Front_Center/Top_Knight_Body
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.25
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.z
+    path: Enemy_Front_Center/Top_Knight_Body
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.25
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.x
+    path: Enemy_Front_Center/Top_Knight_LeftShould
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.25
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.y
+    path: Enemy_Front_Center/Top_Knight_LeftShould
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0.3403
+        inSlope: 65.27159
+        outSlope: 65.27159
+        tangentMode: 10
+      - time: 0.083333336
+        value: 5.7795997
+        inSlope: 16.317896
+        outSlope: 16.317896
+        tangentMode: 10
+      - time: 0.25
+        value: 0.3403
+        inSlope: -32.6358
+        outSlope: -32.6358
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.z
+    path: Enemy_Front_Center/Top_Knight_LeftShould
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0.664
+        inSlope: 0.18995762
+        outSlope: 0.18995762
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0.6798298
+        inSlope: 0.0474894
+        outSlope: 0.0474894
+        tangentMode: 10
+      - time: 0.25
+        value: 0.664
+        inSlope: -0.09497882
+        outSlope: -0.09497882
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.x
+    path: Enemy_Front_Center/Top_Knight_LeftShould
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: -0.107
+        inSlope: -0.3150942
+        outSlope: -0.3150942
+        tangentMode: 10
+      - time: 0.083333336
+        value: -0.13325785
+        inSlope: -0.07877354
+        outSlope: -0.07877354
+        tangentMode: 10
+      - time: 0.25
+        value: -0.107
+        inSlope: 0.15754712
+        outSlope: 0.15754712
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.y
+    path: Enemy_Front_Center/Top_Knight_LeftShould
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.25
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.z
+    path: Enemy_Front_Center/Top_Knight_LeftShould
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.25
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.x
+    path: Enemy_Front_Center/Top_Knight_RightShoulder
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.25
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.y
+    path: Enemy_Front_Center/Top_Knight_RightShoulder
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 180.3404
+        inSlope: 65.27051
+        outSlope: 65.27051
+        tangentMode: 10
+      - time: 0.083333336
+        value: 185.7796
+        inSlope: 16.317625
+        outSlope: 16.317625
+        tangentMode: 10
+      - time: 0.25
+        value: 180.3404
+        inSlope: -32.635258
+        outSlope: -32.635258
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.z
+    path: Enemy_Front_Center/Top_Knight_RightShoulder
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1.2
+        inSlope: 0.15726042
+        outSlope: 0.15726042
+        tangentMode: 10
+      - time: 0.083333336
+        value: 1.2131051
+        inSlope: 0.0393151
+        outSlope: 0.0393151
+        tangentMode: 10
+      - time: 0.25
+        value: 1.2
+        inSlope: -0.07863022
+        outSlope: -0.07863022
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.x
+    path: Enemy_Front_Center/Top_Knight_RightShoulder
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: -0.107
+        inSlope: 0.33262154
+        outSlope: 0.33262154
+        tangentMode: 10
+      - time: 0.083333336
+        value: -0.07928154
+        inSlope: 0.08315538
+        outSlope: 0.08315538
+        tangentMode: 10
+      - time: 0.25
+        value: -0.107
+        inSlope: -0.16631079
+        outSlope: -0.16631079
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.y
+    path: Enemy_Front_Center/Top_Knight_RightShoulder
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.25
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.z
+    path: Enemy_Front_Center/Top_Knight_RightShoulder
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.25
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.x
+    path: Enemy_Front_Center/Top_Knight_LeftArm
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.25
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.y
+    path: Enemy_Front_Center/Top_Knight_LeftArm
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: -209.43309
+        inSlope: 65.27161
+        outSlope: 65.27161
+        tangentMode: 10
+      - time: 0.083333336
+        value: -203.99379
+        inSlope: 161.0118
+        outSlope: 161.0118
+        tangentMode: 10
+      - time: 0.25
+        value: -161.2018
+        inSlope: 256.75198
+        outSlope: 256.75198
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.z
+    path: Enemy_Front_Center/Top_Knight_LeftArm
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0.603
+        inSlope: 0.39186
+        outSlope: 0.39186
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0.635655
+        inSlope: 0.49996504
+        outSlope: 0.49996504
+        tangentMode: 10
+      - time: 0.25
+        value: 0.737
+        inSlope: 0.6080701
+        outSlope: 0.6080701
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.x
+    path: Enemy_Front_Center/Top_Knight_LeftArm
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: -0.271
+        inSlope: -0.3788041
+        outSlope: -0.3788041
+        tangentMode: 10
+      - time: 0.083333336
+        value: -0.302567
+        inSlope: -0.0017009974
+        outSlope: -0.0017009974
+        tangentMode: 10
+      - time: 0.25
+        value: -0.24
+        inSlope: 0.3754021
+        outSlope: 0.3754021
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.y
+    path: Enemy_Front_Center/Top_Knight_LeftArm
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.25
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.z
+    path: Enemy_Front_Center/Top_Knight_LeftArm
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.25
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.x
+    path: Enemy_Front_Center/Top_Knight_RightArm
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.25
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.y
+    path: Enemy_Front_Center/Top_Knight_RightArm
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: -245.0277
+        inSlope: 65.27161
+        outSlope: 65.27161
+        tangentMode: 10
+      - time: 0.083333336
+        value: -239.5884
+        inSlope: 16.3179
+        outSlope: 16.3179
+        tangentMode: 10
+      - time: 0.25
+        value: -245.0277
+        inSlope: -32.635807
+        outSlope: -32.635807
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.z
+    path: Enemy_Front_Center/Top_Knight_RightArm
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1.197
+        inSlope: 0.3580413
+        outSlope: 0.3580413
+        tangentMode: 10
+      - time: 0.083333336
+        value: 1.2268368
+        inSlope: -0.06348969
+        outSlope: -0.06348969
+        tangentMode: 10
+      - time: 0.25
+        value: 1.146
+        inSlope: -0.48502067
+        outSlope: -0.48502067
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.x
+    path: Enemy_Front_Center/Top_Knight_RightArm
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: -0.273
+        inSlope: 0.3391217
+        outSlope: 0.3391217
+        tangentMode: 10
+      - time: 0.083333336
+        value: -0.24473986
+        inSlope: -0.19721964
+        outSlope: -0.19721964
+        tangentMode: 10
+      - time: 0.25
+        value: -0.367
+        inSlope: -0.733561
+        outSlope: -0.733561
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.y
+    path: Enemy_Front_Center/Top_Knight_RightArm
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.25
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.z
+    path: Enemy_Front_Center/Top_Knight_RightArm
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.25
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.x
+    path: Enemy_Front_Center/Top_Knight_RightHand
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.25
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.y
+    path: Enemy_Front_Center/Top_Knight_RightHand
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 118.9619
+        inSlope: 65.27161
+        outSlope: 65.27161
+        tangentMode: 10
+      - time: 0.083333336
+        value: 124.4012
+        inSlope: 16.3179
+        outSlope: 16.3179
+        tangentMode: 10
+      - time: 0.25
+        value: 118.9619
+        inSlope: -32.635807
+        outSlope: -32.635807
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.z
+    path: Enemy_Front_Center/Top_Knight_RightHand
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 1.144
+        inSlope: 0.47124195
+        outSlope: 0.47124195
+        tangentMode: 10
+      - time: 0.083333336
+        value: 1.1832702
+        inSlope: -0.17318955
+        outSlope: -0.17318955
+        tangentMode: 10
+      - time: 0.25
+        value: 1.047
+        inSlope: -0.81762105
+        outSlope: -0.81762105
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.x
+    path: Enemy_Front_Center/Top_Knight_RightHand
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: -0.364
+        inSlope: 0.28062594
+        outSlope: 0.28062594
+        tangentMode: 10
+      - time: 0.083333336
+        value: -0.3406145
+        inSlope: -0.43984354
+        outSlope: -0.43984354
+        tangentMode: 10
+      - time: 0.25
+        value: -0.534
+        inSlope: -1.160313
+        outSlope: -1.160313
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.y
+    path: Enemy_Front_Center/Top_Knight_RightHand
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.25
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.z
+    path: Enemy_Front_Center/Top_Knight_RightHand
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0.57296
+        inSlope: 0.72047997
+        outSlope: 0.72047997
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0.633
+        inSlope: 1.08924
+        outSlope: 1.08924
+        tangentMode: 10
+      - time: 0.25
+        value: 0.876
+        inSlope: 1.458
+        outSlope: 1.458
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.x
+    path: Enemy_Front_Center/Top_Knight_LeftHand
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: -0.3447125
+        inSlope: -0.41145015
+        outSlope: -0.41145015
+        tangentMode: 10
+      - time: 0.083333336
+        value: -0.379
+        inSlope: -0.04972501
+        outSlope: -0.04972501
+        tangentMode: 10
+      - time: 0.25
+        value: -0.327
+        inSlope: 0.31200013
+        outSlope: 0.31200013
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.y
+    path: Enemy_Front_Center/Top_Knight_LeftHand
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.25
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.z
+    path: Enemy_Front_Center/Top_Knight_LeftHand
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.25
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.x
+    path: Enemy_Front_Center/Top_Knight_LeftHand
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.25
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.y
+    path: Enemy_Front_Center/Top_Knight_LeftHand
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 178.486
+        inSlope: 214.01843
+        outSlope: 214.01843
+        tangentMode: 10
+      - time: 0.25
+        value: 231.9906
+        inSlope: 214.01843
+        outSlope: 214.01843
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: localEulerAnglesRaw.z
+    path: Enemy_Front_Center/Top_Knight_LeftHand
+    classID: 4
+    script: {fileID: 0}
+  m_EulerEditorCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.z
+    path: Enemy_Front_Center/Top_Knight_LeftHand
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: Enemy_Front_Center/Top_Knight_LeftHand
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: Enemy_Front_Center/Top_Knight_LeftHand
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.z
+    path: Enemy_Front_Center/Top_Knight_LeftArm
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: Enemy_Front_Center/Top_Knight_LeftArm
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: Enemy_Front_Center/Top_Knight_LeftArm
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.z
+    path: Enemy_Front_Center/Top_Knight_RightHand
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: Enemy_Front_Center/Top_Knight_RightHand
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: Enemy_Front_Center/Top_Knight_RightHand
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.z
+    path: Enemy_Front_Center/Top_Knight_Head
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: Enemy_Front_Center/Top_Knight_Head
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: Enemy_Front_Center/Top_Knight_Head
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.z
+    path: Enemy_Front_Center/Top_Knight_LeftShould
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: Enemy_Front_Center/Top_Knight_LeftShould
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: Enemy_Front_Center/Top_Knight_LeftShould
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.z
+    path: Enemy_Front_Center/Top_Knight_RightArm
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: Enemy_Front_Center/Top_Knight_RightArm
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: Enemy_Front_Center/Top_Knight_RightArm
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.z
+    path: Enemy_Front_Center/Top_Knight_RightShoulder
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: Enemy_Front_Center/Top_Knight_RightShoulder
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: Enemy_Front_Center/Top_Knight_RightShoulder
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.z
+    path: Enemy_Front_Center/Top_Knight_Body
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: Enemy_Front_Center/Top_Knight_Body
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: Enemy_Front_Center/Top_Knight_Body
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: Enemy_Front_Center/Top_Knight_Weapon
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.y
+    path: Enemy_Front_Center/Top_Knight_Weapon
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.z
+    path: Enemy_Front_Center/Top_Knight_Weapon
+    classID: 4
+    script: {fileID: 0}
+  m_HasGenericRootTransform: 0
+  m_HasMotionFloatCurves: 0
+  m_GenerateMotionCurves: 0
+  m_Events: []

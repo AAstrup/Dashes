@@ -60,7 +60,7 @@ public class References : MonoBehaviour
         AspectHandler.Init();
 
         SpawnHandler = new SpawnHandler();
-        SpawnHandler.Init(new List<IUnitType> { IUnitType.Enemy_Stupid }, new List<IUnitType> { IUnitType.Enemy_Charger }, new List<IUnitType> { IUnitType.Enemy_Archer }, new List<IUnitType> { });
+        SpawnHandler.Init(new List<UnitType> { UnitType.Enemy_Stupid }, new List<UnitType> { UnitType.Enemy_Charger }, new List<UnitType> { UnitType.Enemy_Archer }, new List<UnitType> { });
 
         RoomLayoutHandler = new RoomLayoutHandler();
         RoomLayoutHandler.Init();

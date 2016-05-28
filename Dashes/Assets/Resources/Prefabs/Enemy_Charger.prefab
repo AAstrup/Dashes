@@ -8,7 +8,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 427790}
-  - 212: {fileID: 21296830}
+  - 212: {fileID: 21246582}
   m_Layer: 0
   m_Name: Enemy_Charger
   m_TagString: Untagged
@@ -23,12 +23,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 132720}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.76689744, y: -1.0294497, z: 0}
+  m_LocalPosition: {x: -2.2199366, y: -2.7281308, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!212 &21296830
+--- !u!212 &21246582
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
