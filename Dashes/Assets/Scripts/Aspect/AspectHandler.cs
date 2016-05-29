@@ -17,7 +17,7 @@ public class AspectHandler {
     public void Init()
     {
         /*Til testing*/
-        AddAspect(new Aspect_Lion());
+        AddAspect(new Aspect_Bat());
     }
 
     public void Update()
@@ -31,7 +31,7 @@ public class AspectHandler {
         {
             if (value >= typ.Trigger.Value && !typ.Active)
             {
-                typ.Activate();
+                typ.Activate(value);
             }
             else if(value < typ.Trigger.Value && typ.Active)
             {

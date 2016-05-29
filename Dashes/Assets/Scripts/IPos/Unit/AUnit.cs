@@ -18,6 +18,8 @@ public abstract class IUnit : Position {
     public Vector2 Scale;
     public float Rot;
 
+    public bool Damaged = false;
+
     public GameObject GBref;
 
     public bool Invulnerable = false;
@@ -30,7 +32,7 @@ public abstract class IUnit : Position {
         GBref.transform.rotation = Quaternion.Euler(0, 0, Rot);
     }
 
-    public void Damage(float amount)
+    public virtual void Damage(float amount)
     {
         if (!Invulnerable)
         {
@@ -43,7 +45,7 @@ public abstract class IUnit : Position {
         }
     }
 
-    public void Heal(float amount)
+    public virtual void Heal(float amount)
     {
         HealthCurrent = Mathf.Min(HealthCurrent+amount,HealthMax);
     }

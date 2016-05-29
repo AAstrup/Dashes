@@ -21,7 +21,9 @@ public class PlayerController : IUnit
 
     public int Combo = 0;
     public List<IUnit> Marked = new List<IUnit>();
-    private const float _markDamage = 10f;
+
+    public float AttackDamage = 0f;
+    public float AttackDamageBase = 10f;
 
     private List<MarkedProjectile> _markedProjectiles;
     private const float _markedProjectileSpeed = 17.5f;
@@ -38,7 +40,10 @@ public class PlayerController : IUnit
         {"DashingDurationIncrease",new List<float>()},
         {"DashingDurationFirstIncrease",new List<float>()},
         {"DashingSpeedIncrease",new List<float>()},
-        {"MovementSpeedIncrease",new List<float>()}
+        {"MovementSpeedIncrease",new List<float>()},
+        {"HealingIncrease",new List<float>()},
+        {"DamageIncrease",new List<float>()},
+        {"MarkingDamage",new List<float>()}
     };
 
     public float ListVal(List<float> list)
@@ -117,6 +122,8 @@ public class PlayerController : IUnit
             _dashingCooldown = DashingCooldownDuration;
             _dashingSpeedCurrent = _dashingSpeedBase*(1+ListVal("DashingSpeedIncrease"));
 
+            AttackDamage = AttackDamageBase * (1 + ListVal("DamageIncrease"));
+
             /*Nedenstående skal flyttes over i collision klassen, eller måske ikke... :/ */
             References.instance.UnitHandler.Units.ForEach(typ =>
             {
@@ -129,6 +136,7 @@ public class PlayerController : IUnit
                     if(!Marked.Contains(typ))
                     {
                         Marked.Add(typ);
+                        typ.Damage(AttackDamage * ListVal("MarkingDamage"));
                         typ.Effects.Add(new Effect(typ, Effect.EffectTypes.Stun, 1, 0.75f*(1-typ.tenacity)));
                         UpdateCombo(Marked.Count);
                         /*Scaling nedenfor er kun til testing*/
@@ -150,7 +158,7 @@ public class PlayerController : IUnit
             References.instance.AspectHandler.UpdateTrigger(AspectTrigger.AspectTriggerType.Finisher, Marked.Count);
             Marked.ForEach(typ =>
             {
-                typ.Effects.Add(new Effect(typ, Effect.EffectTypes.DamageDelay, _markDamage,
+                typ.Effects.Add(new Effect(typ, Effect.EffectTypes.DamageDelay, AttackDamage,
                     Vector2.Distance(Pos, typ.Pos)/_markedProjectileSpeed));
                 _markedProjectiles.Add(new MarkedProjectile(Pos,(typ.Pos - Pos).normalized*_markedProjectileSpeed,GetAngle(typ.Pos), Vector2.Distance(Pos, typ.Pos) / _markedProjectileSpeed));
             }); 
@@ -253,4 +261,19 @@ public class PlayerController : IUnit
         }
     }
 
+    public override void Damage(float amount)
+    {
+        References.instance.AspectHandler.UpdateTrigger(AspectTrigger.AspectTriggerType.Damage, amount);
+        base.Damage(amount);
+
+        Debug.Log(HealthCurrent);
+    }
+
+    public override void Heal(float amount)
+    {
+        References.instance.AspectHandler.UpdateTrigger(AspectTrigger.AspectTriggerType.Heal, amount);
+        base.Heal(amount * (1 + ListVal("HealingIncrease")));
+
+        Debug.Log(HealthCurrent);
+    }
 }

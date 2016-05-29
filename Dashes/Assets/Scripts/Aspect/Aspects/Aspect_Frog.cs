@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Aspect_Frog : Aspect {
-    public override void Activate()
+    public override void Activate(float triggervalue)
     {
         Player.FloatVars["DashingDurationFirstIncrease"].Add(1.01f);
     }
@@ -14,7 +14,7 @@ public class Aspect_Frog : Aspect {
 
     public override void Init()
     {
-        Activate();
+        Activate(0f);
     }
 
     public Aspect_Frog()
