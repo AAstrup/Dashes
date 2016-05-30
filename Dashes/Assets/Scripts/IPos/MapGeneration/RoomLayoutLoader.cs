@@ -33,8 +33,9 @@ public class RoomLayoutLoader
     public RoomLayout GetEnemyLoadOut()
     {
         var spawnI1 = new EnemySpawnInfo(3, 0, UnitSpawnType.antiCamp, 0);
-        var spawnI2 = new EnemySpawnInfo(0, 3, UnitSpawnType.antiCamp, 1);
-        return new RoomLayout(new List<EnemySpawnInfo>() { spawnI1, spawnI2 }, new List<PickupSpawnInfo>());
+        var spawnI2 = new EnemySpawnInfo(0, 3, UnitSpawnType.antiCamp, 0);
+        var spawnI3 = new EnemySpawnInfo(0, 2, UnitSpawnType.antiCamp, 0);
+        return new RoomLayout(new List<EnemySpawnInfo>() { spawnI1, spawnI2, spawnI3 }, new List<PickupSpawnInfo>());
     }
 
 }
