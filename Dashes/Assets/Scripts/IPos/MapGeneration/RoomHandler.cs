@@ -9,7 +9,7 @@ public class RoomHandler {
     bool doorsUnlocked;
     RoomLayout currentLayout;
     RoomScript currentRoom;
-    List<IUnit> aliveEnemies;
+    public List<IUnit> aliveEnemies;
     RoomLayout[,] rooms;//used to get layout of rooms aleredy discovered. Not discovered rooms will be null and generated when needed.
 
     List<IFactory> factories;

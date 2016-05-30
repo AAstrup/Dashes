@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class AINavigation : IUnit {
     public float attackChannelingTime = 0.25f;
@@ -57,6 +58,8 @@ public class AINavigation : IUnit {
 
     // Update is called once per frame
     public bool CanFire (IUnit target) {
+        OverlappingFix();
+           
         if (Within(target))
         {
             Move(moveAttackSpeedPercentage * MovementSpeedCurrent);
@@ -67,6 +70,22 @@ public class AINavigation : IUnit {
             SetAngle(target.Pos);
             Move(MovementSpeedCurrent);
             return false;
+        }
+    }
+
+    private void OverlappingFix()
+    {
+        for (int i = 0; i < References.instance.RoomHandler.aliveEnemies.Count; i++)
+        {
+            if (References.instance.RoomHandler.aliveEnemies[i] == this)
+                continue;
+            if ((radius + References.instance.RoomHandler.aliveEnemies[i].radius) > Vector2.Distance(this.Pos, References.instance.RoomHandler.aliveEnemies[i].Pos))
+            {
+                var vector = (Pos - References.instance.RoomHandler.aliveEnemies[i].Pos);
+                Pos = Pos + vector/2;
+                References.instance.RoomHandler.aliveEnemies[i].Pos = References.instance.RoomHandler.aliveEnemies[i].Pos + vector/2;
+                return;
+            }
         }
     }
 
