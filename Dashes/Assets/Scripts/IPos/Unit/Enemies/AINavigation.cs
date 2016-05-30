@@ -82,8 +82,8 @@ public class AINavigation : IUnit {
             if ((radius + References.instance.RoomHandler.aliveEnemies[i].radius) > Vector2.Distance(this.Pos, References.instance.RoomHandler.aliveEnemies[i].Pos))
             {
                 var vector = (Pos - References.instance.RoomHandler.aliveEnemies[i].Pos);
-                Pos = Pos + vector/2;
-                References.instance.RoomHandler.aliveEnemies[i].Pos = References.instance.RoomHandler.aliveEnemies[i].Pos + vector/2;
+                Pos = Pos + vector/48;
+                References.instance.RoomHandler.aliveEnemies[i].Pos = References.instance.RoomHandler.aliveEnemies[i].Pos - vector/48;
                 return;
             }
         }

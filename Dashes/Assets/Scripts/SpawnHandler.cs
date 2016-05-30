@@ -26,12 +26,13 @@ public class SpawnHandler {
     private void CreateEnemy(UnitType enemyType, Vector2 pos)
     {
         IUnit enemy;
+        var player = References.instance.UnitHandler.playerController;
         if (enemyType == UnitType.Enemy_Stupid)
-            enemy = new Stupid(References.instance.UnitHandler.playerController);
+            enemy = new Stupid(player);
         else if (enemyType == UnitType.Enemy_Charger)
-            enemy = new Charger(References.instance.UnitHandler.playerController);
+            enemy = new Charger(player);
         else //if (enemyType == IUnitType.Enemy_Archer)
-            enemy = new Archer(References.instance.UnitHandler.playerController);
+            enemy = new Archer(player);
 
         enemy.Pos = pos + References.instance.RoomHandler.GetCurrentRoom().GetWorldPos();
         References.instance.RoomHandler.UnitSpawned(enemy);

@@ -21,18 +21,22 @@ public class RoomHandler {
         factories = new List<IFactory>();
         factories.Add(new EnemyFactory());
         aliveEnemies = new List<IUnit>();
-        EnterRoom(startRoom);
+        EnterRoom((int)startRoom._pos.x, (int)startRoom._pos.y);
     }
 
-    public void EnterRoom(RoomScript roomScript) {
+    public void EnterRoom(int layoutPosX, int layoutPosY) {
         timeLastDoorOpened = Time.time;
-        References.instance.colSystem.UpdateRoom(roomScript);
+        var roomScript = References.instance.mapGenerator.GetMap()[layoutPosX, layoutPosY];
         currentRoom = roomScript;
-        Debug.Log("Loading with x: " + Mathf.RoundToInt(roomScript._pos.x) + ", y: " + Mathf.RoundToInt(roomScript._pos.y));
-        if (rooms[Mathf.RoundToInt(roomScript._pos.x), Mathf.RoundToInt(roomScript._pos.y)] == null)
-            currentLayout = References.instance.RoomLayoutHandler.LoadLoadout(currentRoom);
+        References.instance.colSystem.UpdateRoom(roomScript);
+
+        if (rooms[layoutPosX, layoutPosY] == null)
+        {
+            currentLayout = References.instance.RoomLayoutHandler.LoadLoadout(roomScript);
+            currentLayout.hasSpawned = false;
+        }
         else
-            currentLayout = rooms[Mathf.RoundToInt(roomScript._pos.x), Mathf.RoundToInt(roomScript._pos.y)];
+            currentLayout = rooms[layoutPosX, layoutPosY];
 
         rooms[Mathf.RoundToInt(roomScript._pos.x), Mathf.RoundToInt(roomScript._pos.y)] = currentLayout;
 
@@ -58,13 +62,13 @@ public class RoomHandler {
         float triggerVerDist = 0.5f + 1.5f;
         float triggerHorDist = 1f + 1.5f;
         if (Vector2.Distance(References.instance.UnitHandler.playerIUnit.Pos, currentRoom.GetWorldPos() + new Vector2(0f, currentRoom.GetRoomHeight() / 2f)) < triggerVerDist)//Up
-            EnterRoom(References.instance.mapGenerator.GetMap()[Mathf.RoundToInt(currentRoom._pos.x), Mathf.RoundToInt(currentRoom._pos.y + 1)]);
+            EnterRoom(Mathf.RoundToInt(currentRoom._pos.x), Mathf.RoundToInt(currentRoom._pos.y + 1));
         else if (Vector2.Distance(References.instance.UnitHandler.playerIUnit.Pos, currentRoom.GetWorldPos() - new Vector2(0f, currentRoom.GetRoomHeight() / 2f)) < triggerVerDist)//down
-            EnterRoom(References.instance.mapGenerator.GetMap()[Mathf.RoundToInt(currentRoom._pos.x), Mathf.RoundToInt(currentRoom._pos.y - 1)]);
+            EnterRoom(Mathf.RoundToInt(currentRoom._pos.x), Mathf.RoundToInt(currentRoom._pos.y - 1));
         else if (Vector2.Distance(References.instance.UnitHandler.playerIUnit.Pos, currentRoom.GetWorldPos() - new Vector2(currentRoom.GetRoomWidth() / 2, 0f)) < triggerHorDist)//left
-            EnterRoom(References.instance.mapGenerator.GetMap()[Mathf.RoundToInt(currentRoom._pos.x - 1), Mathf.RoundToInt(currentRoom._pos.y)]);
+            EnterRoom(Mathf.RoundToInt(currentRoom._pos.x - 1), Mathf.RoundToInt(currentRoom._pos.y));
         else if (Vector2.Distance(References.instance.UnitHandler.playerIUnit.Pos, currentRoom.GetWorldPos() + new Vector2(currentRoom.GetRoomWidth() / 2, 0f)) < triggerHorDist)//right
-            EnterRoom(References.instance.mapGenerator.GetMap()[Mathf.RoundToInt(currentRoom._pos.x + 1), Mathf.RoundToInt(currentRoom._pos.y)]);
+            EnterRoom(Mathf.RoundToInt(currentRoom._pos.x + 1), Mathf.RoundToInt(currentRoom._pos.y));
 
     }
 

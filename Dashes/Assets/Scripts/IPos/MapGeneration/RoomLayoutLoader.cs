@@ -52,6 +52,7 @@ public class RoomLayoutLoader
     public RoomLayout GetDefaultEnemyRoom()
     {
         var list = new List<EnemySpawnInfo>();
+        
         list.Add(new EnemySpawnInfo(2, 1, UnitSpawnType.stupid, GroupType.groupHorde));
         list.Add(new EnemySpawnInfo(2, -1, UnitSpawnType.stupid, GroupType.groupHorde));
         list.Add(new EnemySpawnInfo(3, 1, UnitSpawnType.stupid, GroupType.groupHorde));
