@@ -5,8 +5,8 @@ using System.Collections;
 public class SpawnInfo {
     float _x;
     float _y;
-    int _groupNr;
-    public void SetSpawnInfo(float x, float y,int groupNr)
+    GroupType _groupNr;
+    public void SetSpawnInfo(float x, float y, GroupType groupNr)
     {
         _x = x;
         _y = y;
@@ -14,5 +14,6 @@ public class SpawnInfo {
     }
     public float x() { return _x; }
     public float y() { return _y; }
-    public int groupNr() { return _groupNr; }
+    public GroupType groupNr() { return _groupNr; }
 }
+public enum GroupType { groupObstacle,groupHorde,groupThreat,groupAntiCamp}

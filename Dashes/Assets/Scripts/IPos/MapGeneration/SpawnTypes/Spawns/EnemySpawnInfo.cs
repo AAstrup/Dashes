@@ -3,7 +3,7 @@ using System.Collections;
 
 [System.Serializable]
 public class EnemySpawnInfo : SpawnInfo {
-    public EnemySpawnInfo(float x, float y, UnitSpawnType type,int groupNr)
+    public EnemySpawnInfo(float x, float y, UnitSpawnType type, GroupType groupNr)
     {
         SetSpawnInfo(x, y, groupNr);
         _type = type;

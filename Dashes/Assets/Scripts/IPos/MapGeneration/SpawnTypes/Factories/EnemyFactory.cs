@@ -5,7 +5,7 @@ using System;
 
 public class EnemyFactory : IFactory
 {
-    public void Spawn(RoomLayout layout,List<int> groupNrs)
+    public void Spawn(RoomLayout layout,List<GroupType> groupNrs)
     {
         if (layout.hasSpawned)
             return;

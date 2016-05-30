@@ -4,7 +4,7 @@ using System.Collections;
 [System.Serializable]
 public class PickupSpawnInfo : SpawnInfo
 {
-    public PickupSpawnInfo(float x, float y, PickupSpawnType type, int groupNr)
+    public PickupSpawnInfo(float x, float y, PickupSpawnType type, GroupType groupNr)
     {
         SetSpawnInfo(x, y, groupNr);
         _type = type;

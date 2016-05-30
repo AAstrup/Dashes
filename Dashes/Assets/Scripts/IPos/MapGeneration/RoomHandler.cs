@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System;
 
 public class RoomHandler {
 
@@ -38,10 +37,13 @@ public class RoomHandler {
         rooms[Mathf.RoundToInt(roomScript._pos.x), Mathf.RoundToInt(roomScript._pos.y)] = currentLayout;
 
         References.instance.cameraScript.SetPos(currentRoom);
-        List<int> groupNrs = new List<int>() { 1 };
+        List<GroupType> groupType = new List<GroupType>() { GroupType.groupAntiCamp, GroupType.groupHorde, GroupType.groupObstacle, GroupType.groupThreat };
+        groupType.RemoveAt(Mathf.FloorToInt(Random.Range(0f, groupType.Count)));
+        groupType.RemoveAt(Mathf.FloorToInt(Random.Range(0f, groupType.Count)));
+
         for (int i = 0; i < factories.Count; i++)
         {
-            factories[i].Spawn(currentLayout, groupNrs);
+            factories[i].Spawn(currentLayout, groupType);
         }
         currentLayout.EnemiesSpawned();
         UpdateDoors();

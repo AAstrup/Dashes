@@ -15,6 +15,7 @@ public class RoomLayoutHandler {
 
     public RoomLayout LoadLoadout(RoomScript roomScript)
     {
+        Debug.Log("Entered " + roomScript.GetRoomType().ToString() + " type of room");
         if (roomScript.GetRoomType() == RoomScript.roomType.E)
             return LoadEnemyLayout();
         if (roomScript.GetRoomType() == RoomScript.roomType.R)
@@ -44,6 +45,6 @@ public class RoomLayoutHandler {
 
     public RoomLayout LoadEnemyLayout()
     {
-        return loader.GetEnemyLoadOut();
+        return loader.GetEnemyLoadout();
     }
 }
