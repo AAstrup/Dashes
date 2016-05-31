@@ -21,6 +21,7 @@ public class References : MonoBehaviour
     public RoomHandler RoomHandler;
     public RoomLayoutHandler RoomLayoutHandler;
     public SpawnHandler SpawnHandler;
+    public UIHandler UIHandler;
 
     void Awake()
     {
@@ -67,6 +68,10 @@ public class References : MonoBehaviour
 
         RoomHandler = new RoomHandler();//must be called after spawnhandler!
         RoomHandler.Init(mapGenerator.GetStartRoom());
+
+        UIHandler = new UIHandler();
+	    UIHandler.Init();
+
     }
 
     void Update () {
@@ -76,6 +81,8 @@ public class References : MonoBehaviour
         triggerHandler.Update();
         AspectHandler.Update();
         RoomHandler.Update();
+        UIHandler.Update();
+
     }
 
     public GameObject CreateGameObject(GameObject GB)
