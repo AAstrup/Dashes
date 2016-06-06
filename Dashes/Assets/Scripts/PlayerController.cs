@@ -149,6 +149,7 @@ public class PlayerController : IUnit
         if (_dashingCooldown > 0)
         {
             _dashingCooldown -= Time.deltaTime;
+            References.instance.UIHandler.UpdateBar("AgBar", 1-_dashingCooldown / DashingCooldownDuration);
         }
 
         /*ACTIVATE MARKS*/
@@ -172,7 +173,7 @@ public class PlayerController : IUnit
             _mousefacing = (References.instance.PlayerInput.GetMousePosition() - Pos).normalized;
             if (References.instance.PlayerInput.Dir.magnitude >= 1)
             {
-                Rot = GetAngle(Pos + References.instance.PlayerInput.Dir) - 90;
+                Rot = GetAngle(Pos + References.instance.PlayerInput.Dir);
                 _facedir = References.instance.PlayerInput.Dir;
             }
         }
@@ -266,6 +267,8 @@ public class PlayerController : IUnit
         References.instance.AspectHandler.UpdateTrigger(AspectTrigger.AspectTriggerType.Damage, amount);
         base.Damage(amount);
 
+        References.instance.UIHandler.UpdateBar("HealthBar",HealthCurrent/HealthMax);
+
         Debug.Log(HealthCurrent);
     }
 
@@ -273,5 +276,9 @@ public class PlayerController : IUnit
     {
         References.instance.AspectHandler.UpdateTrigger(AspectTrigger.AspectTriggerType.Heal, amount);
         base.Heal(amount * (1 + ListVal("HealingIncrease")));
+
+        References.instance.UIHandler.UpdateBar("HealthBar", HealthCurrent / HealthMax);
+
+        Debug.Log(HealthCurrent);
     }
 }
