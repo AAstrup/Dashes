@@ -273,7 +273,5 @@ public class PlayerController : IUnit
     {
         References.instance.AspectHandler.UpdateTrigger(AspectTrigger.AspectTriggerType.Heal, amount);
         base.Heal(amount * (1 + ListVal("HealingIncrease")));
-
-        Debug.Log(HealthCurrent);
     }
 }

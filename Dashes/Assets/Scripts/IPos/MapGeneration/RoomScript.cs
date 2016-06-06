@@ -123,5 +123,21 @@ public class RoomScript {
         return new Vector2(_pos.x* (GetRoomWidth() + betweenSpace), _pos.y* (GetRoomHeight() + betweenSpace));
     }
 
+    public bool hasLeftDoor()
+    {
+        return doors.Contains(0);
+    }
+    public bool hasTopDoor()
+    {
+        return doors.Contains(1);
+    }
+    public bool hasRightDoor()
+    {
+        return doors.Contains(2);
+    }
+    public bool hasBottomDoor()
+    {
+        return doors.Contains(3);
+    }
     public enum roomType { S, G, E, R };
 }
