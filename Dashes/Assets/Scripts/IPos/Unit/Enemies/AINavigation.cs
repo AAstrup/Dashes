@@ -4,11 +4,13 @@ using System;
 
 public class AINavigation : IUnit {
     public float attackChannelingTime = 0.25f;
-    private float attackChannelingTimeLeft = -1f;//Must be less than 0 if it     not fire on spawn
+    private float attackChannelingTimeLeft = -1f;//Must be less than 0 if it     not, fire on spawn
+    private float attackAppliedMinTime = 0.2f;//The min time that must pass to inOrder to damage the player again.
+    private float attackAppliedTimeLeft = -1f;//Time left in order to apply damage to player again when hitting
     public float radius = 0.5f;
     public float fireTime = 0f;//If higher than 0, it will continue attacking
     public float cd = 1f;//CD betweem
-    public float rotationSpeed = 1.75f;//Speed of rotation
+    public float rotationSpeed = 1.75f;//Speed of damage
     public float moveAttackSpeedPercentage = 0f; //Percent of Movespeed having while attacking, 0 -> 1 (100%)
     public float hitRange = 1f; //max range for attacking
     public float startAttackRange = 1f;//Max range for starting attack
@@ -117,6 +119,7 @@ public class AINavigation : IUnit {
     protected void Update(IUnit target)
     {
         base.Update();
+        attackAppliedTimeLeft -= Time.deltaTime;
         if (Stunned)
             return;
 
@@ -140,14 +143,23 @@ public class AINavigation : IUnit {
 
     public virtual void Fire(Vector2 pos) { }
 
-    void Update()
-    {
-        base.Update();
-    }
-
     public override void Die()
     {
         References.instance.RoomHandler.UnitDied(this);
         base.Die();
+    }
+
+    /// <summary>
+    /// Used to ensure that the player is not damaged every frame but within a margin.
+    /// </summary>
+    /// <param name="damage"></param>
+    /// <param name="target"></param>
+    public void DamagePlayer(float damage, IUnit target)
+    {
+        if (attackAppliedTimeLeft <= 0)
+        {
+            attackAppliedTimeLeft = attackAppliedMinTime;
+            target.Damage(damage);
+        }
     }
 }

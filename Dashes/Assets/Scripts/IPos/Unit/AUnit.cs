@@ -15,12 +15,16 @@ public abstract class IUnit : Position {
     public float Boost;
     public List<Effect> Effects; 
 
-    public Vector2 Scale;
+    public Vector2 startScale;
     public float Rot;
+    //Juice hitEffect
+    float juiceHitEffectAmount = 1.33f;
+    float juiceHitEffectTimeMultiplier = 2f;
 
     public bool Damaged = false;
 
     public GameObject GBref;
+    public SpriteRenderer GBSpriteRenderer;
 
     public bool Invulnerable = false;
 
@@ -30,6 +34,14 @@ public abstract class IUnit : Position {
         Pos = References.instance.colSystem.CollidesWithWall(this).GetFinalPos();
         GBref.transform.position = Pos;
         GBref.transform.rotation = Quaternion.Euler(0, 0, Rot);
+
+        if(GBref.transform.localScale.x > startScale.x)
+        {
+            var scale = GBref.transform.localScale.x - (juiceHitEffectTimeMultiplier * Time.deltaTime);
+            if (scale < startScale.x)
+                scale = startScale.x;
+            GBref.transform.localScale = new Vector3(scale, scale, 1f);            
+        }
     }
 
     public virtual void Damage(float amount)
@@ -42,7 +54,14 @@ public abstract class IUnit : Position {
             {
                 Die();
             }
+            else
+                JuiceEffect_Size();
         }
+    }
+
+    private void JuiceEffect_Size()
+    {
+        GBref.transform.localScale = new Vector3(startScale.x * juiceHitEffectAmount, startScale.y * juiceHitEffectAmount, 1f);
     }
 
     public virtual void Heal(float amount)
@@ -63,7 +82,8 @@ public abstract class IUnit : Position {
         Stunned = false;
         Slow = 0f;
         GBref = References.instance.CreateGameObject(prefab);
-        Scale = Vector2.one;
+        GBSpriteRenderer = GBref.GetComponent<SpriteRenderer>();
+        startScale = Vector2.one;
     }
 
     public void UpdateMovementSpeed()
@@ -71,4 +91,12 @@ public abstract class IUnit : Position {
         MovementSpeedCurrent = MovementSpeedBase*(1 - Slow)*(1 + Boost);
     }
 
+    public void VisualMarked()
+    {
+        GBSpriteRenderer.color = new Color(0.5f, 0.5f, 0.5f);
+    }
+    public void VisualUnMarked()
+    {
+        GBSpriteRenderer.color = new Color(1f,1f,1f);
+    }
 }

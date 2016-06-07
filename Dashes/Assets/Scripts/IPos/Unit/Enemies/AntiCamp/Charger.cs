@@ -19,4 +19,8 @@ public class Charger : EnemyMeleeStupid {
 
         GenericConstructor(References.instance.PrefabLibrary.Prefabs["Enemy_Charger"]);
     }
+    public override void Damage(float amount)
+    {
+        base.Damage(amount);
+    }
 }

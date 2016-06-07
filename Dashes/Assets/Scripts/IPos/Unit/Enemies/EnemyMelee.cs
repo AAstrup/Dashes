@@ -12,6 +12,7 @@ public class EnemyMeleeStupid : AINavigation {
 
     public override void Update()
     {
+        base.Update();
         Update(target);
     }
 
@@ -19,7 +20,7 @@ public class EnemyMeleeStupid : AINavigation {
     {
         if (Vector2.Distance(Pos+deltaPos, target.Pos) <= hitRange)
         {
-            target.Damage(damage);
+            DamagePlayer(damage, target);
         }
         CreateEffect(pos);
     }

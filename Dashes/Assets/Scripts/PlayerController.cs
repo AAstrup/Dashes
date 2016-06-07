@@ -104,6 +104,7 @@ public class PlayerController : IUnit
         /*DASHING*/
         if (_dashing)
         {
+            References.instance.particleHandler.Emit(ParticleEffectHandler.particleType.effect_dash, 5, GBref.transform.position);
             _speed = _mousefacing * _dashingSpeedCurrent;
             _dashingTime -= Time.deltaTime;
             if (_dashingTime <= 0)
@@ -129,18 +130,17 @@ public class PlayerController : IUnit
             {
                 var t = Vector3.Cross(_mousefacing, typ.Pos - Pos).magnitude;
 
-                if (t < typ.Scale.x / 2 + Scale.x / 2 - 0.5f && Vector2.Distance(typ.Pos, Pos) < _dashingSpeedCurrent * DashingDurationCurrent * (1 + ListVal("DashingDurationIncrease")) && typ != this && (!Marked.Contains(typ) || MarkedUnitsCanAlsoReset))
+                if (t < typ.startScale.x / 2 + startScale.x / 2 - 0.5f && Vector2.Distance(typ.Pos, Pos) < _dashingSpeedCurrent * DashingDurationCurrent * (1 + ListVal("DashingDurationIncrease")) && typ != this && (!Marked.Contains(typ) || MarkedUnitsCanAlsoReset))
                 {
                     _dashingCooldown = 0f;
 
                     if(!Marked.Contains(typ))
                     {
                         Marked.Add(typ);
+                        typ.VisualMarked();
                         typ.Damage(AttackDamage * ListVal("MarkingDamage"));
                         typ.Effects.Add(new Effect(typ, Effect.EffectTypes.Stun, 1, 0.75f*(1-typ.tenacity)));
                         UpdateCombo(Marked.Count);
-                        /*Scaling nedenfor er kun til testing*/
-                        typ.Scale *= 0.9f;
                     }
                 }
             });
@@ -159,6 +159,7 @@ public class PlayerController : IUnit
             References.instance.AspectHandler.UpdateTrigger(AspectTrigger.AspectTriggerType.Finisher, Marked.Count);
             Marked.ForEach(typ =>
             {
+                typ.VisualUnMarked();
                 typ.Effects.Add(new Effect(typ, Effect.EffectTypes.DamageDelay, AttackDamage,
                     Vector2.Distance(Pos, typ.Pos)/_markedProjectileSpeed));
                 _markedProjectiles.Add(new MarkedProjectile(Pos,(typ.Pos - Pos).normalized*_markedProjectileSpeed,GetAngle(typ.Pos), Vector2.Distance(Pos, typ.Pos) / _markedProjectileSpeed));
@@ -228,8 +229,8 @@ public class PlayerController : IUnit
 
     public PlayerController()
     {
-        HealthMax = 100;
-        HealthCurrent = 100;
+        HealthMax = 10;
+        HealthCurrent = 10;
         MovementSpeedBase = 3f;
 
         _markedProjectiles = new List<MarkedProjectile>();
@@ -278,7 +279,5 @@ public class PlayerController : IUnit
         base.Heal(amount * (1 + ListVal("HealingIncrease")));
 
         References.instance.UIHandler.UpdateBar("HealthBar", HealthCurrent / HealthMax);
-
-        Debug.Log(HealthCurrent);
     }
 }

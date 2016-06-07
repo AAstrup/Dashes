@@ -82,7 +82,6 @@ public class MapGenerator {
                     toPrint += "_";
                 toPrint += " ";
             }
-            Debug.Log(y + ":" + toPrint);
         }
     }
 

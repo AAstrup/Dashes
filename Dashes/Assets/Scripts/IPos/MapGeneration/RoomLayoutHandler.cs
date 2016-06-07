@@ -15,7 +15,6 @@ public class RoomLayoutHandler {
 
     public RoomLayout LoadLoadout(RoomScript roomScript)
     {
-        Debug.Log("Entered " + roomScript.GetRoomType().ToString() + " type of room");
         if (roomScript.GetRoomType() == RoomScript.roomType.E)
             return LoadEnemyLayout();
         if (roomScript.GetRoomType() == RoomScript.roomType.R)

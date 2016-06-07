@@ -25,5 +25,5 @@ public class ParticleEffectHandler
         particles[type].Emit(amount,pos);
     }
 
-    public enum particleType { effect_none, effect_hit, effect_explosion, effect_orangeglow, effect_redglow, effect_whiteglow, effect_flower,effect_halo }
+    public enum particleType { effect_none, effect_hit, effect_explosion, effect_orangeglow, effect_redglow, effect_whiteglow, effect_flower,effect_halo, effect_dash }
 }
