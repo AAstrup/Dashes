@@ -152,10 +152,11 @@ public class PlayerController : IUnit
             References.instance.UIHandler.UpdateBar("AgBar", 1-_dashingCooldown / DashingCooldownDuration);
         }
 
-        /*ACTIVATE MARKS*/
+        /*ACTIVATE MARKS, Release combo*/
         if (References.instance.PlayerInput.Buttons["Attack2"].Pressing &&
             !References.instance.PlayerInput.Buttons["Attack2"].Pressed && Marked.Count > 0)
         {
+            References.instance.cameraScript.ScreenShake();
             References.instance.AspectHandler.UpdateTrigger(AspectTrigger.AspectTriggerType.Finisher, Marked.Count);
             Marked.ForEach(typ =>
             {
@@ -269,8 +270,6 @@ public class PlayerController : IUnit
         base.Damage(amount);
 
         References.instance.UIHandler.UpdateBar("HealthBar",HealthCurrent/HealthMax);
-
-        Debug.Log(HealthCurrent);
     }
 
     public override void Heal(float amount)

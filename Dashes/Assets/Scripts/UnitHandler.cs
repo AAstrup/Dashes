@@ -4,7 +4,6 @@ using System.Collections;
 
 public class UnitHandler
 {
-
     public List<IUnit> Units;
     public IUnit playerIUnit;
     public PlayerController playerController;
@@ -26,9 +25,10 @@ public class UnitHandler
     }
 
     public void Update()
-    {   
+    {
         Units.ForEach(typ => typ.Update());
+        if (Time.timeScale == 0f)
+            if (Input.anyKeyDown)
+                Time.timeScale = 1f;//Unpause game. Is paused when a new room is loaded.
     }
-
-
 }
