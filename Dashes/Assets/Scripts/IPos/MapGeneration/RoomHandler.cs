@@ -51,6 +51,8 @@ public class RoomHandler {
         }
         currentLayout.EnemiesSpawned();
         UpdateDoors();
+
+        Time.timeScale = 0f;//Pauses the game when the room is loaded
     }
 
     public void Update()

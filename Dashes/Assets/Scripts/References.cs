@@ -36,7 +36,7 @@ public class References : MonoBehaviour
 
         mainCamera = GameObject.Find("Main Camera");
 
-            PrefabLibrary = new PrefabLibrary();//Should be loaded in game start
+        PrefabLibrary = new PrefabLibrary();//Should be loaded in game start
         PrefabLibrary.Init();
         
         colSystem = new CollisionSystem();
@@ -82,6 +82,7 @@ public class References : MonoBehaviour
         AspectHandler.Update();
         RoomHandler.Update();
         UIHandler.Update();
+        cameraScript.Update();
 
     }
 

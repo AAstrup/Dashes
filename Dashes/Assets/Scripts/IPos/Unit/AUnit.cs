@@ -49,14 +49,26 @@ public abstract class IUnit : Position {
         if (!Invulnerable)
         {
             HealthCurrent -= amount;
+            CreateBloodDetail(2.0f);
 
             if (HealthCurrent <= 0)
             {
+                CreateBloodDetail(4f);
                 Die();
             }
             else
                 JuiceEffect_Size();
         }
+    }
+
+    public void CreateBloodDetail(float multiplier)
+    {
+        string bloodIndex = Mathf.FloorToInt(Random.Range(1, 5)).ToString();
+        References.instance.particleHandler.Emit(ParticleEffectHandler.particleType.effect_bleed, Mathf.CeilToInt(multiplier * 5),Pos);
+        var gmj = References.instance.CreateGameObject(References.instance.PrefabLibrary.Prefabs["Detail_Blood"+ bloodIndex]);
+        gmj.transform.position = GBref.transform.position + new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(-0.3f, 0.3f),0);
+        gmj.transform.localScale = new Vector3(Random.Range(0.2f, 0.3f) * multiplier, Random.Range(0.2f, 0.3f) * multiplier, 1f);
+        gmj.transform.rotation = Quaternion.Euler(0,0, Random.Range(0, 360));
     }
 
     private void JuiceEffect_Size()
