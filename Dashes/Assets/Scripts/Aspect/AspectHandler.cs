@@ -17,7 +17,7 @@ public class AspectHandler {
     public void Init()
     {
         /*Til testing*/
-        AddAspect(new Aspect_Bat());
+        AddAspect(new Aspect_Cheetah());
     }
 
     public void Update()

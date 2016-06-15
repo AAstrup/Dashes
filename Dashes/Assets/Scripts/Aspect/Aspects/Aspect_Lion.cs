@@ -5,7 +5,7 @@ public class Aspect_Lion : Aspect {
 
     public override void Activate(float triggervalue)
     {
-        Player.Effects.Add(new Effect(Player,Effect.EffectTypes.Invulnerability,0,3f,ParticleEffectHandler.particleType.effect_halo, 0.2f,1));
+        Player.Effects.Add(new Effect(Player,Effect.EffectTypes.Invulnerability,0,1f,ParticleEffectHandler.particleType.effect_halo, 0.2f,1));
         Active = true;
         DeActivate();
     }
@@ -26,7 +26,7 @@ public class Aspect_Lion : Aspect {
         Passive = false;
 
         Title = "Lion aspect";
-        Description = "Finishing your combo with atleast 4 marked foes grants you invulnerability for 3 seconds.";
+        Description = "Finishing your combo with atleast 4 marked foes grants you invulnerability for 1 second.";
     }
 
 }

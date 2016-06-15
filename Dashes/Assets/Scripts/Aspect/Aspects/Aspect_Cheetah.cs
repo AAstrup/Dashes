@@ -8,14 +8,14 @@ public class Aspect_Cheetah : Aspect
 
     public override void Activate(float triggervalue)
     {
-        Player.FloatVars["MovementSpeedIncrease"].Add(0.46f);
+        Player.FloatVars["MovementSpeedIncrease"].Add(0.50f);
         Debug.Log("ACTIVATED");
         Active = true;
     }
 
     public override void DeActivate()
     {
-        Player.FloatVars["MovementSpeedIncrease"].Remove(0.46f);
+        Player.FloatVars["MovementSpeedIncrease"].Remove(0.50f);
         Active = false;
     }
 
@@ -44,6 +44,6 @@ public class Aspect_Cheetah : Aspect
         Passive = false;
 
         Title = "Cheetah aspect";
-        Description = "While having a combo of at least 3 your movement speed is increased by 45%.";
+        Description = "While having a combo of at least 3 your movement speed is increased by 50%.";
     }
 }
