@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class SpawnHandler {
     Dictionary<UnitSpawnType, List<UnitType>> possibleEnemies;
-    Dictionary<PickupSpawnType, List<PickupType>> possiblePickup;
+    Dictionary<SpawnInfoType, List<SpawnType>> possibleRegularSpawns;
     public void Init(List<UnitType> stupids,List<UnitType> antiCamp,List<UnitType> threats,List<UnitType> obstacles)
     {
         possibleEnemies = new Dictionary<UnitSpawnType, List<UnitType>>();
@@ -12,6 +12,10 @@ public class SpawnHandler {
         possibleEnemies.Add(UnitSpawnType.antiCamp, antiCamp);
         possibleEnemies.Add(UnitSpawnType.threat, threats);
         possibleEnemies.Add(UnitSpawnType.obstacle, obstacles);
+
+        possibleRegularSpawns = new Dictionary<SpawnInfoType, List<SpawnType>>();
+        possibleRegularSpawns.Add(SpawnInfoType.goal, new List<SpawnType>() { SpawnType.goal });
+        possibleRegularSpawns.Add(SpawnInfoType.potion, new List<SpawnType>() { SpawnType.W1HPPotion });
     }
 
     public void SpawnEnemy(UnitSpawnType spawnType,SpawnInfo spawn)
@@ -38,34 +42,30 @@ public class SpawnHandler {
         References.instance.RoomHandler.UnitSpawned(enemy);
     }
 
-    public void SpawnPickup(PickupSpawnType spawnType, SpawnInfo spawn)
+    public void SpawnPickup(SpawnInfoType spawnType, SpawnInfo spawn)
     {
         var type = spawnType;
-        if (possiblePickup[type].Count == 0)
-            type = PickupSpawnType.health;
+        if (possibleRegularSpawns[type].Count == 0)
+            type = SpawnInfoType.potion;
 
-        CreatePickup(possiblePickup[type][Mathf.FloorToInt(UnityEngine.Random.Range(0, possiblePickup[type].Count))], new Vector2(spawn.x(), spawn.y()));
+        CreateRegularSpawn(possibleRegularSpawns[type][Mathf.FloorToInt(UnityEngine.Random.Range(0, possibleRegularSpawns[type].Count))], new Vector2(spawn.x(), spawn.y()));
     }
 
-    private void CreatePickup(PickupType enemyType, Vector2 pos)
+    private void CreateRegularSpawn(SpawnType spawnType, Vector2 pos)//Spawns an item based on the enum, this is a 1 to 1
     {
-        throw new System.Exception("No pickup created to be spawned!");
-        //IUnit enemy;
-        //if (enemyType == PickupType.smalHPPotion)
-        //    enemy = new Stupid(References.instance.UnitHandler.playerController);
-        //else if (enemyType == UnitType.Enemy_Charger)
-        //    enemy = new Charger(References.instance.UnitHandler.playerController);
-        //else //if (enemyType == IUnitType.Enemy_Archer)
-        //    enemy = new Archer(References.instance.UnitHandler.playerController);
-
-        //enemy.Pos = pos + References.instance.RoomHandler.GetCurrentRoom().GetWorldPos();
-        //References.instance.RoomHandler.UnitSpawned(enemy);
+        Position item;
+        Vector2 finalPos = pos + References.instance.RoomHandler.GetCurrentRoom().GetWorldPos();
+        var player = References.instance.UnitHandler.playerController;
+        if (spawnType == SpawnType.W1HPPotion)
+            item = new W1HPPot(finalPos, player);
+        else if (spawnType == SpawnType.goal)
+            item = new GoalScript(finalPos, player);
     }
 
 }
 public enum UnitSpawnType { stupid, antiCamp, threat, obstacle }
 public enum UnitType { Enemy_Stupid, Enemy_Archer, Enemy_Charger}
 
-public enum PickupSpawnType { health, aspect}
-public enum PickupType { smalHPPotion, mediumHPPotion, bigHPPotion, Aspect }
+public enum SpawnInfoType { potion, aspect, goal}
+public enum SpawnType { W1HPPotion, goal}
 

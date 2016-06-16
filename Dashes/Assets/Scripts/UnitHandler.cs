@@ -31,4 +31,15 @@ public class UnitHandler
             if (Input.anyKeyDown)
                 Time.timeScale = 1f;//Unpause game. Is paused when a new room is loaded.
     }
+
+    public void Reset()
+    {
+        for (int i = 0; i < Units.Count; i++)
+        {
+            if (Units[i] == playerIUnit)
+                continue;
+            References.instance.DestroyGameObject(Units[i].GBref);
+        }
+        Units = new List<IUnit>() { playerIUnit };
+    }
 }

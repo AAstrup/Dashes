@@ -12,9 +12,9 @@ public class RoomLayoutLoader
     public void Init()
     {
         startLoadout.Add(GetDefaultRoom());
-        goalLoadout.Add(GetDefaultRoom());
-        rewardLoadout.Add(GetDefaultRoom());
-        enemyLoadout.Add(GetDefaultEnemyRoom());
+        goalLoadout.Add(GetGoalRoom01());
+        rewardLoadout.Add(GetRewardRoom01());
+        enemyLoadout.Add(GetDefaultEnemyRoom01());//GetDefaultEnemyRoom01());
     }
 
     //Should read from file and spawn upon that.
@@ -46,10 +46,10 @@ public class RoomLayoutLoader
 
     public RoomLayout GetDefaultRoom()
     {
-        return new RoomLayout(new List<EnemySpawnInfo>(), new List<PickupSpawnInfo>() { });
+        return new RoomLayout(new List<EnemySpawnInfo>(), new List<SpawnInfo>() { });
     }
 
-    public RoomLayout GetDefaultEnemyRoom()
+    public RoomLayout GetDefaultEnemyRoom01()
     {
         var list = new List<EnemySpawnInfo>();
         
@@ -68,6 +68,18 @@ public class RoomLayoutLoader
         list.Add(new EnemySpawnInfo(2, -3, UnitSpawnType.stupid, GroupType.groupObstacle));
         list.Add(new EnemySpawnInfo(2, 0, UnitSpawnType.stupid, GroupType.groupObstacle));
 
-        return new RoomLayout(list, new List<PickupSpawnInfo>() { });
+        return new RoomLayout(list, new List<SpawnInfo>() { });
+    }
+
+    public RoomLayout GetGoalRoom01()
+    {
+        var goal = new SpawnInfo(0, 0, SpawnInfoType.goal, GroupType.groupStatic);
+        return new RoomLayout(new List<EnemySpawnInfo>(), new List<SpawnInfo>() { goal });
+    }
+
+    public RoomLayout GetRewardRoom01()
+    {
+        var pot = new SpawnInfo(1, 1, SpawnInfoType.potion, GroupType.groupStatic);
+        return new RoomLayout(new List<EnemySpawnInfo>(), new List<SpawnInfo>() { pot });
     }
 }

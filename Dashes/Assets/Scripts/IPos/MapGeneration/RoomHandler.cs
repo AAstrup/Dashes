@@ -14,26 +14,27 @@ public class RoomHandler {
 
     List<IFactory> factories;
 
-    public void Init(RoomScript startRoom)
+    public void Init(RoomScript startRoom,MapGenerator mapGenerator, RoomLayoutHandler roomLayoutHandler)
     {
         currentRoom = startRoom;
-        rooms = new RoomLayout[References.instance.mapGenerator._mapWidth, References.instance.mapGenerator._mapHeight];
+        rooms = new RoomLayout[mapGenerator._mapWidth, mapGenerator._mapHeight];
         factories = new List<IFactory>();
         factories.Add(new EnemyFactory());
+        factories.Add(new RegularSpawnFactory());
         aliveEnemies = new List<IUnit>();
-        EnterRoom((int)startRoom._pos.x, (int)startRoom._pos.y);
+        EnterRoom((int)startRoom._pos.x, (int)startRoom._pos.y,mapGenerator,roomLayoutHandler);
     }
 
-    public void EnterRoom(int layoutPosX, int layoutPosY) {
+    public void EnterRoom(int layoutPosX, int layoutPosY, MapGenerator mapGenerator, RoomLayoutHandler roomLayoutHandler) {
         timeLastDoorOpened = Time.time;
-        var roomScript = References.instance.mapGenerator.GetMap()[layoutPosX, layoutPosY];
+        var roomScript = mapGenerator.GetMap()[layoutPosX, layoutPosY];
         currentRoom = roomScript;
         References.instance.colSystem.UpdateRoom(roomScript);
 
         if (rooms[layoutPosX, layoutPosY] == null)
         {
-            currentLayout = References.instance.RoomLayoutHandler.LoadLoadout(roomScript);
-            currentLayout.hasSpawned = false;
+            currentLayout = roomLayoutHandler.LoadLoadout(roomScript);
+            currentLayout.SetHasSpawned(false);
         }
         else
             currentLayout = rooms[layoutPosX, layoutPosY];
@@ -44,12 +45,13 @@ public class RoomHandler {
         List<GroupType> groupType = new List<GroupType>() { GroupType.groupAntiCamp, GroupType.groupHorde, GroupType.groupObstacle, GroupType.groupThreat };
         groupType.RemoveAt(Mathf.FloorToInt(Random.Range(0f, groupType.Count)));
         groupType.RemoveAt(Mathf.FloorToInt(Random.Range(0f, groupType.Count)));
+        groupType.Add(GroupType.groupStatic);
 
         for (int i = 0; i < factories.Count; i++)
         {
             factories[i].Spawn(currentLayout, groupType);
         }
-        currentLayout.EnemiesSpawned();
+        currentLayout.SetHasSpawned(true);
         UpdateDoors();
 
         Time.timeScale = 0f;//Pauses the game when the room is loaded
@@ -66,22 +68,22 @@ public class RoomHandler {
         if (Vector2.Distance(References.instance.UnitHandler.playerIUnit.Pos, currentRoom.GetWorldPos() + new Vector2(0f, currentRoom.GetRoomHeight() / 2f)) < triggerVerDist)
         {//Up
             if(currentRoom.hasTopDoor())
-                EnterRoom(Mathf.RoundToInt(currentRoom._pos.x), Mathf.RoundToInt(currentRoom._pos.y + 1));
+                EnterRoom(Mathf.RoundToInt(currentRoom._pos.x), Mathf.RoundToInt(currentRoom._pos.y + 1),References.instance.mapGenerator,References.instance.RoomLayoutHandler);
         }
         else if (Vector2.Distance(References.instance.UnitHandler.playerIUnit.Pos, currentRoom.GetWorldPos() - new Vector2(0f, currentRoom.GetRoomHeight() / 2f)) < triggerVerDist)
         {//down
             if (currentRoom.hasBottomDoor())
-                EnterRoom(Mathf.RoundToInt(currentRoom._pos.x), Mathf.RoundToInt(currentRoom._pos.y - 1));
+                EnterRoom(Mathf.RoundToInt(currentRoom._pos.x), Mathf.RoundToInt(currentRoom._pos.y - 1), References.instance.mapGenerator, References.instance.RoomLayoutHandler);
         }
         else if (Vector2.Distance(References.instance.UnitHandler.playerIUnit.Pos, currentRoom.GetWorldPos() - new Vector2(currentRoom.GetRoomWidth() / 2, 0f)) < triggerHorDist)
         {//left
             if (currentRoom.hasLeftDoor())
-                EnterRoom(Mathf.RoundToInt(currentRoom._pos.x - 1), Mathf.RoundToInt(currentRoom._pos.y));
+                EnterRoom(Mathf.RoundToInt(currentRoom._pos.x - 1), Mathf.RoundToInt(currentRoom._pos.y), References.instance.mapGenerator, References.instance.RoomLayoutHandler);
         }
         else if (Vector2.Distance(References.instance.UnitHandler.playerIUnit.Pos, currentRoom.GetWorldPos() + new Vector2(currentRoom.GetRoomWidth() / 2, 0f)) < triggerHorDist)
         {//right
             if (currentRoom.hasRightDoor())
-                EnterRoom(Mathf.RoundToInt(currentRoom._pos.x + 1), Mathf.RoundToInt(currentRoom._pos.y));
+                EnterRoom(Mathf.RoundToInt(currentRoom._pos.x + 1), Mathf.RoundToInt(currentRoom._pos.y), References.instance.mapGenerator, References.instance.RoomLayoutHandler);
         }
     }
 

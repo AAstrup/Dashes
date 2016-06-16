@@ -12,7 +12,7 @@ public class Arrow : ITrigger {
         dmg = 1;
         triggerRange = 0.2f;
         radius = triggerRange;
-        projectilePrefabName = "Arrow";
+        gmjPrefabName = "Arrow";
         movementSpeed = 5f;
         targets = new List<IUnit> (){ player};
         effectTrigger = ParticleEffectHandler.particleType.effect_hit;

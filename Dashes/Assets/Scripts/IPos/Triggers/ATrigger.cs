@@ -14,7 +14,7 @@ public abstract class ITrigger : Position {
     protected float lifeTimeSpan;
     private float spawnTime;
     protected float triggerRange;
-    protected string projectilePrefabName;
+    protected string gmjPrefabName;
     protected ParticleEffectHandler.particleType effectTrigger = ParticleEffectHandler.particleType.effect_none;
     protected int effectTriggerEmitAmount = 10;
     protected ParticleEffectHandler.particleType effectTimespan = ParticleEffectHandler.particleType.effect_none;
@@ -26,7 +26,7 @@ public abstract class ITrigger : Position {
     {
         spawnTime = Time.time;
         References.instance.triggerHandler.triggers.Add(this);
-        GBref = References.instance.CreatePrefabWithParameters(projectilePrefabName, new Vector3(Pos.x, Pos.y, 0), new Vector3(0, 0, Rot));
+        GBref = References.instance.CreatePrefabWithParameters(gmjPrefabName, new Vector3(Pos.x, Pos.y, 0), new Vector3(0, 0, Rot));
     }
 
     // Update is called once per frame
@@ -36,7 +36,7 @@ public abstract class ITrigger : Position {
             TimeLeft();
         else if(temp != null)
             Trigger(temp);
-        else
+        else if(movementSpeed != 0)
         {
             Move();
             GBref.transform.position = Pos;
@@ -59,14 +59,14 @@ public abstract class ITrigger : Position {
         References.instance.DestroyGameObject(GBref);
         if (effectTrigger != ParticleEffectHandler.particleType.effect_none)
             References.instance.particleHandler.Emit(effectTrigger, effectTriggerEmitAmount, Pos);
-        Delte();
+        Delete();
     }
     protected virtual void TimeLeft()
     {
         References.instance.DestroyGameObject(GBref);
         if (effectTimespan != ParticleEffectHandler.particleType.effect_none)
             References.instance.particleHandler.Emit(effectTimespan, effectTriggerEmitAmount, Pos);
-        Delte();
+        Delete();
     }
 
     protected virtual void TriggerWall()
@@ -74,10 +74,10 @@ public abstract class ITrigger : Position {
         References.instance.DestroyGameObject(GBref);
         if (effectTrigger != ParticleEffectHandler.particleType.effect_none)
             References.instance.particleHandler.Emit(effectTrigger, effectTriggerEmitAmount, Pos);
-        Delte();
+        Delete();
     }
 
-    protected virtual void Delte()
+    protected virtual void Delete()
     {
         References.instance.DestroyGameObject(GBref);
         References.instance.triggerHandler.triggers.Remove(this);

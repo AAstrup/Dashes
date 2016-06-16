@@ -54,6 +54,18 @@ public class MapGenerator {
         DrawMap();
     }
 
+    public void Reset()
+    {
+        for (int y = 0; y < rooms.GetLength(1); y++)
+        {
+            for (int x = 0; x < rooms.GetLength(0); x++)
+            {
+                if (rooms[x, y] != null)
+                    rooms[x, y].roomStaticGameObjects.Reset();
+            }
+        }
+    }
+
     private void DrawMap()
     {
         for (int y = 0; y < _mapHeight; y++)
