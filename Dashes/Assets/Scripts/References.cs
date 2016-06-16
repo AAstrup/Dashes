@@ -23,6 +23,7 @@ public class References : MonoBehaviour
     public RoomLayoutHandler RoomLayoutHandler;
     public SpawnHandler SpawnHandler;
     public UIHandler UIHandler;
+    public DetailHandler DetailHandler;
 
     void Awake()
     {
@@ -60,6 +61,9 @@ public class References : MonoBehaviour
 
         UIHandler = new UIHandler();
         UIHandler.Init();
+
+        DetailHandler = new DetailHandler();
+        DetailHandler.Init();
 
         progressionHandler = new ProgressionHandler();
         progressionHandler.Init();

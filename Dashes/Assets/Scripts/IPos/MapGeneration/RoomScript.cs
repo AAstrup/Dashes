@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System;
 
 public class RoomScript {
 
@@ -22,7 +21,14 @@ public class RoomScript {
 
     public RoomScript(Vector2 pos, MapGenerator generator)
     {
-        possibleDirs.Add(Mathf.RoundToInt(UnityEngine.Random.Range(0,3)));
+        if (pos.x >= 1)
+            possibleDirs.Add(0);
+        else if (pos.y < generator._mapHeight -1)//-1
+            possibleDirs.Add(1);
+        else if (pos.x < generator._mapWidth - 1)//-1
+            possibleDirs.Add(2);
+        else if (pos.y >= 1)
+            possibleDirs.Add(3);
         _generator = generator;
         _pos = pos;
         roomLengthNr = 1;

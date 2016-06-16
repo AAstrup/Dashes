@@ -6,8 +6,8 @@ public class ProgressionHandler {
 
     //Used to generate the a level, increase value to increase differculty
     int level = 1;
-    int startRoomsHor = 3;
-    int startRoomsVer = 3;
+    int startRoomsHor = 2;
+    int startRoomsVer = 2;
     int bossEveryLevelAmount = 3;//This is the last level as well
     int world = 1;//When completing and killing the boss this increases.
 
@@ -42,11 +42,22 @@ public class ProgressionHandler {
 
     public void MapComplete()
     {
-        startRoomsHor++;
-        startRoomsVer++;
+        RandomMapSizeIncrease();
         References.instance.UnitHandler.Reset();
+        References.instance.DetailHandler.Reset();
         References.instance.mapGenerator.Reset();
         NewLevel();
+    }
+
+    private void RandomMapSizeIncrease()
+    {
+        int random = Random.Range(0, 2);
+        if (random == 0)
+            startRoomsHor++;
+        else if (random == 1)
+            startRoomsVer++;
+        else
+            throw new System.Exception("Someone does Random.range wrong");
     }
 
     public int CalculateTotalRooms()

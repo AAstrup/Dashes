@@ -69,6 +69,7 @@ public abstract class IUnit : Position {
         gmj.transform.position = GBref.transform.position + new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(-0.3f, 0.3f),0);
         gmj.transform.localScale = new Vector3(Random.Range(0.2f, 0.3f) * multiplier, Random.Range(0.2f, 0.3f) * multiplier, 1f);
         gmj.transform.rotation = Quaternion.Euler(0,0, Random.Range(0, 360));
+        References.instance.DetailHandler.AddDetail(gmj);
     }
 
     private void JuiceEffect_Size()
