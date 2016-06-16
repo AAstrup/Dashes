@@ -18,16 +18,16 @@ public class SpawnHandler {
         possibleRegularSpawns.Add(SpawnInfoType.potion, new List<SpawnType>() { SpawnType.W1HPPotion });
     }
 
-    public void SpawnEnemy(UnitSpawnType spawnType,SpawnInfo spawn)
+    public void SpawnEnemy(UnitSpawnType spawnType,SpawnInfo spawn, RoomScript room)
     {
         var type = spawnType;
         if (possibleEnemies[type].Count == 0)
             type = UnitSpawnType.stupid;
 
-        CreateEnemy(possibleEnemies[type][Mathf.FloorToInt(Random.Range(0, possibleEnemies[type].Count))],new Vector2(spawn.x(), spawn.y()));
+        CreateEnemy(possibleEnemies[type][Mathf.FloorToInt(Random.Range(0, possibleEnemies[type].Count))],new Vector2(spawn.x(), spawn.y()), room);
     }
 
-    private void CreateEnemy(UnitType enemyType, Vector2 pos)
+    private void CreateEnemy(UnitType enemyType, Vector2 pos,RoomScript room)
     {
         IUnit enemy;
         var player = References.instance.UnitHandler.playerController;
@@ -38,6 +38,7 @@ public class SpawnHandler {
         else //if (enemyType == IUnitType.Enemy_Archer)
             enemy = new Archer(player);
 
+        References.instance.RoomChallengeHandler.ApplyChallenge(enemy, room.GetChallenge());
         enemy.Pos = pos + References.instance.RoomHandler.GetCurrentRoom().GetWorldPos();
         References.instance.RoomHandler.UnitSpawned(enemy);
     }

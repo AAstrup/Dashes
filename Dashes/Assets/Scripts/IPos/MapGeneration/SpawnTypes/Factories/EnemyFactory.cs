@@ -5,7 +5,7 @@ using System;
 
 public class EnemyFactory : IFactory
 {
-    public void Spawn(RoomLayout layout,List<GroupType> groupNrs)
+    public void Spawn(RoomLayout layout,List<GroupType> groupNrs,RoomScript room)
     {
         if (layout.GetHasSpawned())
             return;
@@ -13,12 +13,12 @@ public class EnemyFactory : IFactory
         for (int i = 0; i < layout.GetEnemies().Count; i++)
         {
             if(groupNrs.Contains(layout.GetEnemies()[i].GetGroupType()))
-                Spawn(layout.GetEnemies()[i]);
+                Spawn(layout.GetEnemies()[i], room);
         }
     }
 
-    private void Spawn(EnemySpawnInfo info)
+    private void Spawn(EnemySpawnInfo spawnInfo, RoomScript room)
     {
-        References.instance.SpawnHandler.SpawnEnemy(info.Type(), info);
+        References.instance.SpawnHandler.SpawnEnemy(spawnInfo.Type(), spawnInfo, room);
     }
 }

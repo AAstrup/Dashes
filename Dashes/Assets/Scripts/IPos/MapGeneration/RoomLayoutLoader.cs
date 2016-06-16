@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+/// <summary>
+/// Creates a list of enemyspaws, and regularspawns.
+/// </summary>
 public class RoomLayoutLoader
 {
     string path = "";
@@ -11,6 +14,7 @@ public class RoomLayoutLoader
 
     public void Init()
     {
+        //Possible room loadouts are loaded here. Atm we just add some hardcoded by default
         startLoadout.Add(GetDefaultRoom());
         goalLoadout.Add(GetGoalRoom01());
         rewardLoadout.Add(GetRewardRoom01());

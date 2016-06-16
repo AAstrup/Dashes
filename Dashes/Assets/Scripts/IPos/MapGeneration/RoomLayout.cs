@@ -8,6 +8,7 @@ public class RoomLayout  {
     bool hasSpawned = false;
     List<EnemySpawnInfo> _enemies;
     List<SpawnInfo> _regularSpawns;
+
     public RoomLayout(List<EnemySpawnInfo> enemies, List<SpawnInfo> pickups)
     {
         _enemies = enemies;

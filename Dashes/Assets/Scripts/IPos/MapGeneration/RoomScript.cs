@@ -18,6 +18,7 @@ public class RoomScript {
     //Used to read by when instantiating the room
     public List<int> doors = new List<int>();
     roomType type;
+    RoomChallenge challenge = RoomChallenge.None;
 
     public RoomScript(Vector2 pos, MapGenerator generator)
     {
@@ -45,8 +46,14 @@ public class RoomScript {
         doors.Add(OppositeDir(fromDir));
         _generator.AddActiveRoom(this);
         type = roomType.E;
+        challenge = References.instance.RoomChallengeHandler.GenerateChallenge();
+        Debug.Log("challenge is set to " + challenge.ToString());
     }
 
+    public RoomChallenge GetChallenge()
+    {
+        return challenge;
+    }
 
     int OppositeDir(int dir)
     {

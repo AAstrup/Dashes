@@ -49,7 +49,7 @@ public class RoomHandler {
 
         for (int i = 0; i < factories.Count; i++)
         {
-            factories[i].Spawn(currentLayout, groupType);
+            factories[i].Spawn(currentLayout, groupType, currentRoom);
         }
         currentLayout.SetHasSpawned(true);
         UpdateDoors();

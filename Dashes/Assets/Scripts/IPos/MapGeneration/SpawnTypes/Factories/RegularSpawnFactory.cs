@@ -5,7 +5,7 @@ using System;
 
 public class RegularSpawnFactory : IFactory
 {
-    public void Spawn(RoomLayout layout,List<GroupType> groupNrs)
+    public void Spawn(RoomLayout layout,List<GroupType> groupNrs,RoomScript room)
     {
         if (layout.GetHasSpawned())
             return;
