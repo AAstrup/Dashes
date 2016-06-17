@@ -12,6 +12,6 @@ public class EnemyRanged : AINavigation {
 
     public override void Fire(Vector2 pos)
     {
-        new Arrow (Rot, Pos,target);
+        new Arrow (damage, Rot, Pos,target);
     }
 }

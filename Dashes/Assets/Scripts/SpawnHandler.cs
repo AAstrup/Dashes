@@ -38,6 +38,7 @@ public class SpawnHandler {
         else //if (enemyType == IUnitType.Enemy_Archer)
             enemy = new Archer(player);
 
+        Debug.Log("room challenge " + room.GetChallenge().ToString());
         References.instance.RoomChallengeHandler.ApplyChallenge(enemy, room.GetChallenge());
         enemy.Pos = pos + References.instance.RoomHandler.GetCurrentRoom().GetWorldPos();
         References.instance.RoomHandler.UnitSpawned(enemy);
