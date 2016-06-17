@@ -28,8 +28,13 @@ public class UnitHandler
     {
         Units.ForEach(typ => typ.Update());
         if (Time.timeScale == 0f)
+        {
             if (Input.anyKeyDown)
+            {
                 Time.timeScale = 1f;//Unpause game. Is paused when a new room is loaded.
+                References.instance.UIHandler.DebugLogClear();
+            }
+        }
     }
 
     public void Reset()
