@@ -18,7 +18,7 @@ public class RoomLayoutLoader
         startLoadout.Add(GetDefaultRoom());
         goalLoadout.Add(GetGoalRoom01());
         rewardLoadout.Add(GetRewardRoom01());
-        enemyLoadout.Add(GetDefaultEnemyRoom01());//GetDefaultEnemyRoom01());
+        enemyLoadout.Add(GetGoalRoom01());//GetDefaultEnemyRoom01());
     }
 
     //Should read from file and spawn upon that.
@@ -77,9 +77,11 @@ public class RoomLayoutLoader
 
     public RoomLayout GetGoalRoom01()
     {
-        var goal = new SpawnInfo(0, 0, SpawnInfoType.goal, GroupType.groupStatic);
-        return new RoomLayout(new List<EnemySpawnInfo>(), new List<SpawnInfo>() { goal });
+        //var goal = new SpawnInfo(0, 0, SpawnInfoType.goal, GroupType.groupStatic);,
+        var boss = new EnemySpawnInfo(2, 3, UnitSpawnType.boss, GroupType.groupStatic);
+        return new RoomLayout(new List<EnemySpawnInfo>() { boss }, new List<SpawnInfo>() { });
     }
+
 
     public RoomLayout GetRewardRoom01()
     {

@@ -7,7 +7,6 @@ public class GoalScript : ITrigger {
 	public GoalScript(Vector2 startPos, IUnit player)
     {
         Pos = startPos;
-        lifeTimeSpan = 5;
         dmg = 1;
         triggerRange = 0.2f;
         radius = triggerRange;
@@ -21,4 +20,9 @@ public class GoalScript : ITrigger {
     {
         References.instance.progressionHandler.MapComplete();
     }
+
+    protected override void TimeLeft()
+    {
+    }
+    
 }

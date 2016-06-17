@@ -29,7 +29,7 @@ public class ProgressionHandler {
         RoomLayoutHandler.Init();
 
         SpawnHandler = new SpawnHandler();//Sets the units to spawn when given a unit type
-        SpawnHandler.Init(new List<UnitType> { UnitType.Enemy_Stupid }, new List<UnitType> { UnitType.Enemy_Charger }, new List<UnitType> { UnitType.Enemy_Archer }, new List<UnitType> { });
+        SpawnHandler.Init(new List<UnitType> { UnitType.Enemy_Stupid }, new List<UnitType> { UnitType.Enemy_Charger }, new List<UnitType> { UnitType.Enemy_Archer }, new List<UnitType> { }, new List<UnitType> { UnitType.Enemy_Boss});
 
         mapGenerator = new MapGenerator(); //Generates the rooms doors and room types
         mapGenerator.Init(startRoomsHor, startRoomsVer, CalculateTotalRooms());//width,height,maxrooms

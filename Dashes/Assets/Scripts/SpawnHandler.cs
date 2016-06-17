@@ -5,13 +5,14 @@ using System.Collections.Generic;
 public class SpawnHandler {
     Dictionary<UnitSpawnType, List<UnitType>> possibleEnemies;
     Dictionary<SpawnInfoType, List<SpawnType>> possibleRegularSpawns;
-    public void Init(List<UnitType> stupids,List<UnitType> antiCamp,List<UnitType> threats,List<UnitType> obstacles)
+    public void Init(List<UnitType> stupids,List<UnitType> antiCamp,List<UnitType> threats,List<UnitType> obstacles, List<UnitType> boss)
     {
         possibleEnemies = new Dictionary<UnitSpawnType, List<UnitType>>();
         possibleEnemies.Add(UnitSpawnType.stupid, stupids);
         possibleEnemies.Add(UnitSpawnType.antiCamp, antiCamp);
         possibleEnemies.Add(UnitSpawnType.threat, threats);
         possibleEnemies.Add(UnitSpawnType.obstacle, obstacles);
+        possibleEnemies.Add(UnitSpawnType.boss, boss);
 
         possibleRegularSpawns = new Dictionary<SpawnInfoType, List<SpawnType>>();
         possibleRegularSpawns.Add(SpawnInfoType.goal, new List<SpawnType>() { SpawnType.goal });
@@ -35,12 +36,20 @@ public class SpawnHandler {
             enemy = new Stupid(player);
         else if (enemyType == UnitType.Enemy_Charger)
             enemy = new Charger(player);
-        else //if (enemyType == IUnitType.Enemy_Archer)
+        else if (enemyType == UnitType.Enemy_Archer)
             enemy = new Archer(player);
+        else if (enemyType == UnitType.Enemy_Boss)
+            enemy = new Enemy_Boss();
+        else
+            throw new System.Exception("enemyType not supported");
 
-        References.instance.UIHandler.DebugLogClear();
-        References.instance.UIHandler.DebugLog(room.GetChallenge().ToString());
-        References.instance.RoomChallengeHandler.ApplyChallenge(enemy, room.GetChallenge());
+
+        if (enemyType != UnitType.Enemy_Boss)
+        {
+            References.instance.UIHandler.DebugLogClear();
+            References.instance.UIHandler.DebugLog(room.GetChallenge().ToString());
+            References.instance.RoomChallengeHandler.ApplyChallenge(enemy, room.GetChallenge());
+        }
         enemy.Pos = pos + References.instance.RoomHandler.GetCurrentRoom().GetWorldPos();
         References.instance.RoomHandler.UnitSpawned(enemy);
     }
@@ -66,8 +75,8 @@ public class SpawnHandler {
     }
 
 }
-public enum UnitSpawnType { stupid, antiCamp, threat, obstacle }
-public enum UnitType { Enemy_Stupid, Enemy_Archer, Enemy_Charger}
+public enum UnitSpawnType { stupid, antiCamp, threat, obstacle, boss }
+public enum UnitType { Enemy_Stupid, Enemy_Archer, Enemy_Charger, Enemy_Boss}
 
 public enum SpawnInfoType { potion, aspect, goal}
 public enum SpawnType { W1HPPotion, goal}

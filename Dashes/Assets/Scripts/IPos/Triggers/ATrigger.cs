@@ -31,12 +31,12 @@ public abstract class ITrigger : Position {
 
     // Update is called once per frame
     public void Update () {
-        var temp = targets.Find(typ => (triggerRange+typ.radius) > Vector2.Distance(Pos, typ.Pos));
-        if (Time.time > (spawnTime + lifeTimeSpan))
+        var target = targets.Find(typ => (triggerRange + typ.radius) > Vector2.Distance(Pos, typ.Pos));
+        if (target != null)
+            Trigger(target);
+        else if (Time.time > (spawnTime + lifeTimeSpan))
             TimeLeft();
-        else if(temp != null)
-            Trigger(temp);
-        else if(movementSpeed != 0)
+        if(movementSpeed != 0)
         {
             Move();
             GBref.transform.position = Pos;

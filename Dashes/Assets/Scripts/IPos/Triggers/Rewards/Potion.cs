@@ -23,4 +23,8 @@ public abstract class Potion : ITrigger {
         victim.Heal(_hpHealAmount);
         base.Trigger(victim);
     }
+
+    protected override void TimeLeft()
+    {
+    }
 }

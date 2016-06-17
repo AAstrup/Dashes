@@ -112,7 +112,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!114 &231755789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,69 +211,3 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!1001 &841532436
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 406418, guid: b1cc96a0462b9fb4d89e312a3d8187b4, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 3.0765638
-      objectReference: {fileID: 0}
-    - target: {fileID: 406418, guid: b1cc96a0462b9fb4d89e312a3d8187b4, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -4.680047
-      objectReference: {fileID: 0}
-    - target: {fileID: 406418, guid: b1cc96a0462b9fb4d89e312a3d8187b4, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 406418, guid: b1cc96a0462b9fb4d89e312a3d8187b4, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 406418, guid: b1cc96a0462b9fb4d89e312a3d8187b4, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 406418, guid: b1cc96a0462b9fb4d89e312a3d8187b4, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 406418, guid: b1cc96a0462b9fb4d89e312a3d8187b4, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.00000025331974
-      objectReference: {fileID: 0}
-    - target: {fileID: 406418, guid: b1cc96a0462b9fb4d89e312a3d8187b4, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 19809356, guid: b1cc96a0462b9fb4d89e312a3d8187b4, type: 2}
-      propertyPath: InitialModule.startLifetime.minCurve.m_Curve.Array.data[0].value
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 19809356, guid: b1cc96a0462b9fb4d89e312a3d8187b4, type: 2}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 19809356, guid: b1cc96a0462b9fb4d89e312a3d8187b4, type: 2}
-      propertyPath: InitialModule.startLifetime.maxCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19809356, guid: b1cc96a0462b9fb4d89e312a3d8187b4, type: 2}
-      propertyPath: InitialModule.startSize.scalar
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 19809356, guid: b1cc96a0462b9fb4d89e312a3d8187b4, type: 2}
-      propertyPath: InitialModule.startSize.maxCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19809356, guid: b1cc96a0462b9fb4d89e312a3d8187b4, type: 2}
-      propertyPath: InitialModule.startSize.minCurve.m_Curve.Array.data[0].value
-      value: 0.75
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b1cc96a0462b9fb4d89e312a3d8187b4, type: 2}
-  m_IsPrefabParent: 0
