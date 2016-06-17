@@ -248,7 +248,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 406418, guid: b1cc96a0462b9fb4d89e312a3d8187b4, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19809356, guid: b1cc96a0462b9fb4d89e312a3d8187b4, type: 2}
       propertyPath: InitialModule.startLifetime.minCurve.m_Curve.Array.data[0].value

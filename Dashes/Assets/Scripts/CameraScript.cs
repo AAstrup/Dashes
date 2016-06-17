@@ -48,9 +48,8 @@ public class CameraScript {
             return -1;
     }
 
-    public void ScreenShake()
+    public void ScreenShake(float amount)
     {
-        var amount = 0.25f;
         ScreenShakeAmount = new Vector2(amount, amount);
     }
 }

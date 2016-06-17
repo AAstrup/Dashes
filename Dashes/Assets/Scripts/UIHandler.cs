@@ -6,7 +6,8 @@ public class UIHandler
 {
 
     private Dictionary<string, RT> _rectTransforms;
-    private Dictionary<string, Image> _images; 
+    private Dictionary<string, Image> _images;
+    private Dictionary<string, Text> _texts; 
     private List<ImageColorChangeAction> ImageColorChangeActions; 
     
 
@@ -18,6 +19,7 @@ public class UIHandler
         ImageColorChangeActions = new List<ImageColorChangeAction>();
         _rectTransforms = new Dictionary<string, RT>();
         _images = new Dictionary<string, Image>();
+        _texts = new Dictionary<string, Text>();
 
         foreach (var r in GameObject.Find("MainCanvas").GetComponentsInChildren<RectTransform>())
         {
@@ -27,7 +29,12 @@ public class UIHandler
         {
             _images.Add(r.name, r);
         }
+        foreach (var t in GameObject.Find("MainCanvas").GetComponentsInChildren<Text>())
+        {
+            _texts.Add(t.name, t);
+        }
 
+        DisableCombo();
     }
 
     public void UpdateBar(string name,float v)
@@ -43,6 +50,44 @@ public class UIHandler
                 NewColor = new Color(1, 1, 1, 0.5f)
             });
         }
+    }
+
+    public void UpdateBloodDamage(float value)
+    {
+        _images["BloodBack"].color = new Color(1, 1, 1, (Mathf.Pow(10,1-value)/10)*0.4f);
+        _images["BloodFront"].color = new Color(1, 1, 1, 0.85f);
+        ImageColorChangeActions.Add(new ImageColorChangeAction()
+        {
+            ImageRef = _images["BloodFront"],
+            NewColor = new Color(1, 1, 1, 0.0f)
+        });
+    }
+    public void UpdateBloodHeal(float value)
+    {
+        _images["BloodBack"].color = new Color(1, 1, 1, value * 0.25f);
+    }
+
+    public void UpdateCombo(int size,float timeleft)
+    {
+        _images["ComboBack"].fillAmount = timeleft;
+        _texts["ComboText"].text = size.ToString();
+
+        _texts["ComboText"].fontSize = Mathf.Min(30 + size*2,60);
+        var s = Mathf.Min(1f, 0.6f + size*0.4f/15);
+        _images["ComboFront"].gameObject.transform.localScale = new Vector3(s,s, 1);
+    }
+
+    public void EnableCombo()
+    {
+        _images["ComboBack"].gameObject.SetActive(true);
+        _images["ComboFront"].gameObject.SetActive(true);
+        _texts["ComboText"].gameObject.SetActive(true);
+    }
+    public void DisableCombo()
+    {
+        _images["ComboBack"].gameObject.SetActive(false);
+        _images["ComboFront"].gameObject.SetActive(false);
+        _texts["ComboText"].gameObject.SetActive(false);
     }
 
     public void Update()

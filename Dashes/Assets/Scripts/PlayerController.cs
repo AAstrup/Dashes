@@ -25,6 +25,11 @@ public class PlayerController : IUnit
     public float AttackDamage = 0f;
     public float AttackDamageBase = 10f;
 
+    public float ComboMultiplication = 0.2f;
+    private int _comboSize = 0;
+    private float _comboTimeCurrent = 0f;
+    private float _comboTimeBase = 1.5f;
+
     private List<MarkedProjectile> _markedProjectiles;
     private const float _markedProjectileSpeed = 17.5f;
 
@@ -141,6 +146,14 @@ public class PlayerController : IUnit
                         typ.Damage(AttackDamage * ListVal("MarkingDamage"));
                         typ.Effects.Add(new Effect(typ, Effect.EffectTypes.Stun, 1, 0.75f*(1-typ.tenacity)));
                         UpdateCombo(Marked.Count);
+
+                        _comboSize += 1;
+                        _comboTimeCurrent = _comboTimeBase;
+
+                        if (_comboSize >= 2)
+                        {
+                            References.instance.UIHandler.EnableCombo();
+                        }
                     }
                 }
             });
@@ -152,19 +165,33 @@ public class PlayerController : IUnit
             References.instance.UIHandler.UpdateBar("AgBar", 1-_dashingCooldown / DashingCooldownDuration);
         }
 
+        /*COMBO*/
+        if (_comboSize > 0)
+        {
+            _comboTimeCurrent -= Time.deltaTime;
+            References.instance.UIHandler.UpdateCombo(_comboSize,_comboTimeCurrent/_comboTimeBase);
+            if (_comboTimeCurrent <= 0)
+            {
+                _comboSize = 0;
+                References.instance.UIHandler.DisableCombo();
+            }
+        }
+
         /*ACTIVATE MARKS, Release combo*/
         if (References.instance.PlayerInput.Buttons["Attack2"].Pressing &&
             !References.instance.PlayerInput.Buttons["Attack2"].Pressed && Marked.Count > 0)
         {
-            References.instance.cameraScript.ScreenShake();
+            References.instance.cameraScript.ScreenShake(  Mathf.Pow(_comboSize,0.4f)*0.125f+0.05f  ); //0.25f var tidligere default
             References.instance.AspectHandler.UpdateTrigger(AspectTrigger.AspectTriggerType.Finisher, Marked.Count);
             Marked.ForEach(typ =>
             {
                 typ.VisualUnMarked();
-                typ.Effects.Add(new Effect(typ, Effect.EffectTypes.DamageDelay, AttackDamage,
+                typ.Effects.Add(new Effect(typ, Effect.EffectTypes.DamageDelay, AttackDamage*(1+_comboSize*ComboMultiplication*BigEnough(_comboSize,2)),
                     Vector2.Distance(Pos, typ.Pos)/_markedProjectileSpeed));
                 _markedProjectiles.Add(new MarkedProjectile(Pos,(typ.Pos - Pos).normalized*_markedProjectileSpeed,GetAngle(typ.Pos), Vector2.Distance(Pos, typ.Pos) / _markedProjectileSpeed));
-            }); 
+            });
+            _comboSize = 0;
+            References.instance.UIHandler.DisableCombo();
             Marked = new List<IUnit>();
             ResetCombo();
         }
@@ -181,7 +208,7 @@ public class PlayerController : IUnit
         }
         else
         {
-            Rot = GetAngle(Pos + _mousefacing) - 90;
+            Rot = GetAngle(Pos + _mousefacing);
         }
 
         /*GENERIC MOVEMENT*/
@@ -216,6 +243,11 @@ public class PlayerController : IUnit
             _standmovetimetriggerdelay -= Time.deltaTime;
         }
 
+    }
+
+    float BigEnough(float value, float requirement)
+    {
+        return value >= requirement ? 1f : 0f;
     }
     
 
@@ -269,6 +301,8 @@ public class PlayerController : IUnit
         References.instance.AspectHandler.UpdateTrigger(AspectTrigger.AspectTriggerType.Damage, amount);
         base.Damage(amount);
 
+        References.instance.UIHandler.UpdateBloodDamage(HealthCurrent/HealthMax);
+
         References.instance.UIHandler.UpdateBar("HealthBar",HealthCurrent/HealthMax);
     }
 
@@ -276,6 +310,8 @@ public class PlayerController : IUnit
     {
         References.instance.AspectHandler.UpdateTrigger(AspectTrigger.AspectTriggerType.Heal, amount);
         base.Heal(amount * (1 + ListVal("HealingIncrease")));
+
+        References.instance.UIHandler.UpdateBloodHeal(HealthCurrent / HealthMax);
 
         References.instance.UIHandler.UpdateBar("HealthBar", HealthCurrent / HealthMax);
     }
