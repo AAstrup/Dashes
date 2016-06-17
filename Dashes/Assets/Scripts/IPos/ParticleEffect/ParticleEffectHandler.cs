@@ -18,10 +18,15 @@ public class ParticleEffectHandler
         }
     }
 
-    public void Emit(particleType type,int amount,Vector2 pos)
+    public void Emit(particleType type,int amount,Vector2 pos,float rot = 0)
     {
         if (type == particleType.effect_none)
             throw new Exception("Particle type is set to none but still spawned?");
+        if (particles[type]._pSystem.startRotation != rot)
+        {
+            particles[type]._pSystem.startRotation = rot;
+            Debug.Log("rot " + rot);
+        }
         particles[type].Emit(amount,pos);
     }
 

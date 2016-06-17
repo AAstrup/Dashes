@@ -104,9 +104,9 @@ public class PlayerController : IUnit
         /*DASHING*/
         if (_dashing)
         {
-            References.instance.particleHandler.Emit(ParticleEffectHandler.particleType.effect_dash, 5, GBref.transform.position);
             _speed = _mousefacing * _dashingSpeedCurrent;
             _dashingTime -= Time.deltaTime;
+            References.instance.particleHandler.Emit(ParticleEffectHandler.particleType.effect_dash, 5, GBref.transform.position,Vector3.Angle(_mousefacing,Vector3.right));
             if (_dashingTime <= 0)
             {
                 _dashing = false;
