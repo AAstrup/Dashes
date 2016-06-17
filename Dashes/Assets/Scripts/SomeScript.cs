@@ -4,6 +4,8 @@ using System.Collections;
 public class SomeScript {
 
 	// Use this for initialization
-	void SkrivNoget () {
+	void SkrivNoget ()
+	{
+	    Debug.Log(":0)");
 	}
 }
