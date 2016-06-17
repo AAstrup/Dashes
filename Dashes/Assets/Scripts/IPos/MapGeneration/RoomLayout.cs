@@ -1,29 +1,34 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class RoomLayout  {
 
-    public bool hasSpawned = false;
+    bool hasSpawned = false;
     List<EnemySpawnInfo> _enemies;
-    List<PickupSpawnInfo> _pickups;
-    public RoomLayout(List<EnemySpawnInfo> enemies, List<PickupSpawnInfo> pickups)
+    List<SpawnInfo> _regularSpawns;
+
+    public RoomLayout(List<EnemySpawnInfo> enemies, List<SpawnInfo> pickups)
     {
         _enemies = enemies;
-        _pickups = pickups;
+        _regularSpawns = pickups;
     }
-    public void EnemiesSpawned()
+    public bool GetHasSpawned()
     {
-        hasSpawned = true;
+        return hasSpawned;
     }
     public List<EnemySpawnInfo> GetEnemies()
     {
-        hasSpawned = true;
         return _enemies;
     }
-    public List<PickupSpawnInfo> GetPickups()
+    public List<SpawnInfo> GetRegularSpawns()
     {
-        hasSpawned = true;
-        return _pickups;
+        return _regularSpawns;
+    }
+
+    public void SetHasSpawned(bool value)
+    {
+        hasSpawned = value;
     }
 }

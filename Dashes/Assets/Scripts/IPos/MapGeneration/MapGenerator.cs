@@ -31,7 +31,8 @@ public class MapGenerator {
     void CreateLevel()
     {
         //Vector2 StartPos = new Vector2(1, 1);
-        Vector2 StartPos = new Vector2(Mathf.FloorToInt(Random.Range(1f, _mapWidth-1)), Mathf.FloorToInt(Random.Range(1f, _mapHeight-1)));
+        Vector2 StartPos = new Vector2(Mathf.FloorToInt(Random.Range(0f, _mapWidth)), Mathf.FloorToInt(Random.Range(0f, _mapHeight)));
+        Debug.Log("StartPos" + StartPos.ToString());
         new RoomScript(StartPos, this);
         while (activeRooms.Count > 0)
         {
@@ -52,6 +53,18 @@ public class MapGenerator {
         goal.SetGoal();
         printMap();
         DrawMap();
+    }
+
+    public void Reset()
+    {
+        for (int y = 0; y < rooms.GetLength(1); y++)
+        {
+            for (int x = 0; x < rooms.GetLength(0); x++)
+            {
+                if (rooms[x, y] != null)
+                    rooms[x, y].roomStaticGameObjects.Reset();
+            }
+        }
     }
 
     private void DrawMap()

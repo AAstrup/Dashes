@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System;
 
 public class RoomScript {
 
@@ -19,10 +18,18 @@ public class RoomScript {
     //Used to read by when instantiating the room
     public List<int> doors = new List<int>();
     roomType type;
+    RoomChallenge challenge = RoomChallenge.None;
 
     public RoomScript(Vector2 pos, MapGenerator generator)
     {
-        possibleDirs.Add(Mathf.RoundToInt(UnityEngine.Random.Range(0,3)));
+        if (pos.x >= 1)
+            possibleDirs.Add(0);
+        else if (pos.y < generator._mapHeight -1)//-1
+            possibleDirs.Add(1);
+        else if (pos.x < generator._mapWidth - 1)//-1
+            possibleDirs.Add(2);
+        else if (pos.y >= 1)
+            possibleDirs.Add(3);
         _generator = generator;
         _pos = pos;
         roomLengthNr = 1;
@@ -39,8 +46,14 @@ public class RoomScript {
         doors.Add(OppositeDir(fromDir));
         _generator.AddActiveRoom(this);
         type = roomType.E;
+        challenge = References.instance.RoomChallengeHandler.GenerateChallenge();
+        Debug.Log("challenge is set to " + challenge.ToString());
     }
 
+    public RoomChallenge GetChallenge()
+    {
+        return challenge;
+    }
 
     int OppositeDir(int dir)
     {

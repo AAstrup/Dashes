@@ -5,6 +5,7 @@ public class Archer : EnemyRanged {
 
     public Archer (IUnit player)
     {
+        cd = 2f;
         target = player;
         HealthMax = 20;
         HealthCurrent = 20;

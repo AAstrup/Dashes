@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ParticleEffect {
 
-    ParticleSystem _pSystem;
+    public ParticleSystem _pSystem;
 
     public ParticleEffect(ParticleSystem pSystem)
     {

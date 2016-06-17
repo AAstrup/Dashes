@@ -11,9 +11,9 @@ public class Charger : EnemyMeleeStupid {
         MovementSpeedBase = 2f;
         moveAttackSpeedPercentage = MovementSpeedBase;
         fireTime = 2f;
-        cd = 3f;
+        cd = 4f;
         hitParticleASecond = 100;
-        startAttackRange = 3f;
+        startAttackRange = 4f;
         attackChannelingTime = 0f;
         hitEffect = ParticleEffectHandler.particleType.effect_hit;
 

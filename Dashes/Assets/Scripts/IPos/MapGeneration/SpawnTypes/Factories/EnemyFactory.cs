@@ -5,31 +5,20 @@ using System;
 
 public class EnemyFactory : IFactory
 {
-    public void Spawn(RoomLayout layout,List<GroupType> groupNrs)
+    public void Spawn(RoomLayout layout,List<GroupType> groupNrs,RoomScript room)
     {
-        if (layout.hasSpawned)
+        if (layout.GetHasSpawned())
             return;
 
         for (int i = 0; i < layout.GetEnemies().Count; i++)
         {
-            if(groupNrs.Contains(layout.GetEnemies()[i].groupNr()))
-                Spawn(layout.GetEnemies()[i]);
-        }
-
-        for (int i = 0; i < layout.GetPickups().Count; i++)
-        {
-            if (groupNrs.Contains(layout.GetPickups()[i].groupNr()))
-                Spawn(layout.GetPickups()[i]);
+            if(groupNrs.Contains(layout.GetEnemies()[i].GetGroupType()))
+                Spawn(layout.GetEnemies()[i], room);
         }
     }
 
-    private void Spawn(EnemySpawnInfo info)
+    private void Spawn(EnemySpawnInfo spawnInfo, RoomScript room)
     {
-        References.instance.SpawnHandler.SpawnEnemy(info.Type(), info);
-    }
-
-    private void Spawn(PickupSpawnInfo info)
-    {
-        References.instance.SpawnHandler.SpawnPickup(info.Type(), info);
+        References.instance.SpawnHandler.SpawnEnemy(spawnInfo.Type(), spawnInfo, room);
     }
 }

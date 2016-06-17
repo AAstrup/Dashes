@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 
 public class RoomStaticGameObjects {
@@ -34,4 +33,13 @@ public class RoomStaticGameObjects {
         }
     }
 
+    public void Reset()
+    {
+        References.instance.DestroyGameObject(_room);
+        for (int d = 0; d < _doors.Length; d++)
+        {
+            if(_doors[d] != null)
+                References.instance.DestroyGameObject(_doors[d].gameObject);
+        }
+    }
 }
