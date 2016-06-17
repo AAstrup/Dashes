@@ -8,6 +8,7 @@ public class References : MonoBehaviour
 
     public static References instance;//Itself
 
+    public ProgressionHandler progressionHandler;
     public GameObject mainCamera;
     public CameraScript cameraScript;
     public MapGenerator mapGenerator;
@@ -22,6 +23,8 @@ public class References : MonoBehaviour
     public RoomLayoutHandler RoomLayoutHandler;
     public SpawnHandler SpawnHandler;
     public UIHandler UIHandler;
+    public DetailHandler DetailHandler;
+    public RoomChallengeHandler RoomChallengeHandler;
 
     private Archer boss;
 
@@ -56,28 +59,28 @@ public class References : MonoBehaviour
         PlayerInput = new PlayerInput();
         PlayerInput.Init();
 
-        mapGenerator = new MapGenerator();
-        mapGenerator.Init(4, 4, 3 * 2);//width,height,maxrooms
-
         AspectHandler = new AspectHandler();
         AspectHandler.Init();
-
-        SpawnHandler = new SpawnHandler();
-        SpawnHandler.Init(new List<UnitType> { UnitType.Enemy_Stupid }, new List<UnitType> { UnitType.Enemy_Charger }, new List<UnitType> { UnitType.Enemy_Archer }, new List<UnitType> { });
-
-        RoomLayoutHandler = new RoomLayoutHandler();
-        RoomLayoutHandler.Init();
-
-        RoomHandler = new RoomHandler();//must be called after spawnhandler!
-        RoomHandler.Init(mapGenerator.GetStartRoom());
 
         UIHandler = new UIHandler();
 	    UIHandler.Init();
 
-        /*TEMP*/
-        boss = new Archer(References.instance.UnitHandler.playerController);
-	    
+        DetailHandler = new DetailHandler();
+        DetailHandler.Init();
 
+        RoomChallengeHandler = new RoomChallengeHandler();
+        RoomChallengeHandler.Init();
+
+        progressionHandler = new ProgressionHandler();
+        progressionHandler.Init();
+    }
+
+    public void UpdateReferences()
+    {
+        RoomLayoutHandler = progressionHandler.GetRoomLayoutHandler();
+        SpawnHandler = progressionHandler.GetSpawnHandler();
+        mapGenerator = progressionHandler.GetMapGenerator();
+        RoomHandler = progressionHandler.GetRoomHandler();
     }
 
     void Update () {
