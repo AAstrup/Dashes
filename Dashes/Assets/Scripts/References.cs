@@ -23,6 +23,8 @@ public class References : MonoBehaviour
     public SpawnHandler SpawnHandler;
     public UIHandler UIHandler;
 
+    private Archer boss;
+
     void Awake()
     {
         instance = this;
@@ -72,6 +74,10 @@ public class References : MonoBehaviour
         UIHandler = new UIHandler();
 	    UIHandler.Init();
 
+        /*TEMP*/
+        boss = new Archer(References.instance.UnitHandler.playerController);
+	    
+
     }
 
     void Update () {
@@ -83,6 +89,9 @@ public class References : MonoBehaviour
         RoomHandler.Update();
         UIHandler.Update();
         cameraScript.Update();
+
+        //boss.Pos = UnitHandler.playerController.Pos + new Vector2(0, 10);
+        //boss.Update();
 
     }
 

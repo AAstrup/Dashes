@@ -15,6 +15,11 @@ public class UnitHandler
         /*Nedestående er kun til testing*/
         playerIUnit = CreatePlayer();
         Units.Add(playerIUnit);
+
+        /*TEMP*/
+        var enemy = new Archer(References.instance.UnitHandler.playerController);
+        //enemy.Pos = References.instance.RoomHandler.GetCurrentRoom().GetWorldPos();
+
     }
 
     public IUnit CreatePlayer()
