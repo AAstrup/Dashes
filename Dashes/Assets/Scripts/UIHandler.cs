@@ -123,4 +123,14 @@ public class UIHandler
         }
     }
 
+    public void DebugLog(string message)
+    {
+        _texts["DebugLog"].text += message + System.Environment.NewLine;
+    }
+
+    public void DebugLogClear()
+    {
+        _texts["DebugLog"].text = "";
+    }
+
 }

@@ -144,7 +144,7 @@ public class PlayerController : IUnit
                         Marked.Add(typ);
                         typ.VisualMarked();
                         typ.Damage(AttackDamage * ListVal("MarkingDamage"));
-                        typ.Effects.Add(new Effect(typ, Effect.EffectTypes.Stun, 1, 0.75f*(1-typ.tenacity)));
+                        typ.Effects.Add(new Effect(typ, Effect.EffectTypes.Stun, 1, 1.25f*(1-typ.tenacity)));
                         UpdateCombo(Marked.Count);
 
                         _comboSize += 1;
@@ -186,6 +186,7 @@ public class PlayerController : IUnit
             Marked.ForEach(typ =>
             {
                 typ.VisualUnMarked();
+                //typ.Effects.Add(new Effect(typ, Effect.EffectTypes.Stun, 1, 1.25f * (1 - typ.tenacity)));
                 typ.Effects.Add(new Effect(typ, Effect.EffectTypes.DamageDelay, AttackDamage*(1+_comboSize*ComboMultiplication*BigEnough(_comboSize,2)),
                     Vector2.Distance(Pos, typ.Pos)/_markedProjectileSpeed));
                 _markedProjectiles.Add(new MarkedProjectile(Pos,(typ.Pos - Pos).normalized*_markedProjectileSpeed,GetAngle(typ.Pos), Vector2.Distance(Pos, typ.Pos) / _markedProjectileSpeed));
