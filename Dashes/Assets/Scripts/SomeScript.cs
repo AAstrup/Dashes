@@ -5,5 +5,7 @@ public class SomeScript {
 
 	// Use this for initialization
 	void SkrivNoget () {
+
+        int doesNotMatter = 1 + 1;
 	}
 }
