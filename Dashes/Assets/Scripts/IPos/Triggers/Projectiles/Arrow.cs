@@ -20,4 +20,10 @@ public class Arrow : ITrigger {
 
         Init();
     }
+
+    protected override void Trigger(IUnit victim)
+    {
+        victim.Damage(dmg);
+        base.Trigger(victim);
+    }
 }
