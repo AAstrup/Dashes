@@ -47,7 +47,6 @@ public class RoomScript {
         _generator.AddActiveRoom(this);
         type = roomType.E;
         challenge = References.instance.RoomChallengeHandler.GenerateChallenge();
-        Debug.Log("challenge is set to " + challenge.ToString());
     }
 
     public RoomChallenge GetChallenge()

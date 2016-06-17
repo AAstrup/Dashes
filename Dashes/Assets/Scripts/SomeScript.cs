@@ -4,8 +4,8 @@ using System.Collections;
 public class SomeScript {
 
 	// Use this for initialization
-	void SkrivNoget ()
-	{
+	void SkrivNoget () {
+       	    int doesNotMatter = 1 + 1;
 	    Debug.Log(":0)");
 	}
 }

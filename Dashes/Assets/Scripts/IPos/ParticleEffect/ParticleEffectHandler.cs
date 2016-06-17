@@ -25,7 +25,6 @@ public class ParticleEffectHandler
         if (particles[type]._pSystem.startRotation != rot)
         {
             particles[type]._pSystem.startRotation = rot;
-            Debug.Log("rot " + rot);
         }
         particles[type].Emit(amount,pos);
     }
