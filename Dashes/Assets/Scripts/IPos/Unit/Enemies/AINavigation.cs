@@ -15,6 +15,7 @@ public class AINavigation : IUnit {
     public float hitRange = 1f; //max range for attacking
     public float startAttackRange = 1f;//Max range for starting attack
     public float fleeRange = 0f; //flee if within range
+    public float damage = 1f;
 
     protected bool fleeing = false;
     protected float lastTimeTimeCD;

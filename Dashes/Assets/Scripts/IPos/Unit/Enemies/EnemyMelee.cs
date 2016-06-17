@@ -7,8 +7,6 @@ public class EnemyMeleeStupid : AINavigation {
     protected ParticleEffectHandler.particleType hitEffect = ParticleEffectHandler.particleType.effect_none;
     protected int hitParticleASecond;//particles per second
     protected int hitParticleMin;//minimum particles emitted.
-    
-    public float damage = 1f;
 
     public override void Update()
     {

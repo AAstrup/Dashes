@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 public class Arrow : ITrigger {
 
-    public Arrow(float rotation,Vector2 startPos,IUnit player)
+    public Arrow(float _dmg,float rotation,Vector2 startPos,IUnit player)
     {
         Rot = rotation;
         Pos = startPos;
         lifeTimeSpan = 5;
-        dmg = 1;
+        dmg = _dmg;
         triggerRange = 0.2f;
         radius = triggerRange;
         gmjPrefabName = "Arrow";
