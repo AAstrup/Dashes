@@ -10,6 +10,7 @@ public class RoomChallengeHandler {
 
     public void ApplyChallenge(IUnit unit, RoomChallenge challenge)
     {
+
         Debug.Log("NOTHING HAPPENS WHEN APPLYING CHALLENGE!");
     }
 
