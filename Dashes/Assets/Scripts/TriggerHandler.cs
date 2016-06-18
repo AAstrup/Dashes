@@ -5,15 +5,17 @@ using System.Collections.Generic;
 public class TriggerHandler {
 
 
-    public List<ITrigger> triggers;
+    List<ITrigger> triggers;
 
-    public void AddTrigger(ITrigger gmj)
+    public void AddTrigger(ITrigger trigger)
     {
-        triggers.Add(gmj);
+        triggers.Add(trigger);
+        Debug.Log("ADDED TRIGGER AT " + Time.time + ", count is at " + triggers.Count);
     }
-    public void RemoveTrigger(ITrigger gmj)
+    public void RemoveTrigger(ITrigger trigger)
     {
-        triggers.Remove(gmj);
+        triggers.Remove(trigger);
+        Debug.Log("REMOVED TRIGGER AT " + Time.time + ", count is at " + triggers.Count);
     }
 
     public void Init()

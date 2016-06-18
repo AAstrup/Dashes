@@ -22,16 +22,19 @@ public abstract class ITrigger : Position {
 
     public GameObject GBref;
 
+    float debugID;
+
     public virtual void Init()
     {
+        debugID = UnityEngine.Random.Range(0,1000000f);
         spawnTime = Time.time;
-        References.instance.triggerHandler.triggers.Add(this);
         GBref = References.instance.CreatePrefabWithParameters(gmjPrefabName, new Vector3(Pos.x, Pos.y, 0), new Vector3(0, 0, Rot));
         References.instance.triggerHandler.AddTrigger(this);
     }
 
     // Update is called once per frame
     public void Update () {
+        //Debug.Log("UPDATED AT " + Time.time + ", id: " + debugID + " at pos " + Pos.ToString());
         var target = targets.Find(typ => (triggerRange + typ.radius) > Vector2.Distance(Pos, typ.Pos));
         if (target != null)
             Trigger(target);
@@ -91,6 +94,5 @@ public abstract class ITrigger : Position {
     {
         References.instance.triggerHandler.RemoveTrigger(this);
         References.instance.DestroyGameObject(GBref);
-        References.instance.triggerHandler.triggers.Remove(this);
     }
 }
