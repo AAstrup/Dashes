@@ -64,7 +64,7 @@ public class UIHandler
     }
     public void UpdateBloodHeal(float value)
     {
-        _images["BloodBack"].color = new Color(1, 1, 1, value * 0.25f);
+        _images["BloodBack"].color = new Color(1, 1, 1, (Mathf.Pow(10, 1 - value) / 10) * 0.4f);
     }
 
     public void UpdateCombo(int size,float timeleft)

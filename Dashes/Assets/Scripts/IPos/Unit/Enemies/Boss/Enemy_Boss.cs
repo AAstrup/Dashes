@@ -91,9 +91,9 @@ public class Enemy_Boss : IUnit
 
                         if (laserDelay <= 0)
                         { 
-                            Rot += 65 * Time.deltaTime * laserDir;
+                            Rot += (45+15*damaged33+15*damaged50) * Time.deltaTime * laserDir;
 
-                            laserDirChangeDelay -= Time.deltaTime;
+                            laserDirChangeDelay -= Time.deltaTime * damaged33;
                             if (laserDirChangeDelay <= 0)
                             {
                                 laserDir *= -1;
@@ -127,11 +127,25 @@ public class Enemy_Boss : IUnit
                         {
                             BounceRandomTeleport();
                             Rot = GetAngle(References.instance.UnitHandler.playerController.Pos);
-                            for(int i=0;i<2+damaged50;i++)
+                            var total = 1 + damaged50 + damaged33;
+                            for(int i=0;i<total;i++)
                             {
-                                laserBounces.Add(new LaserBounce(1f, Rot-45+45*i, Pos, References.instance.UnitHandler.playerController));
+                                float r = 0;
+                                if (total == 1)
+                                {
+                                    r = Rot;
+                                }
+                                else if (total == 2)
+                                {
+                                    r = Rot - 15 + 30 * i;
+                                }
+                                else if (total == 3)
+                                {
+                                    r = Rot - 30 + 30 * i;
+                                }
+                                laserBounces.Add(new LaserBounce(1f, r, Pos, References.instance.UnitHandler.playerController));
                             }
-                            laserSpawnTime = 2.5f;
+                            laserSpawnTime = 1.5f + damaged33 * 0.5f + damaged50 * 0.5f;
                         }
                         else
                         {
@@ -167,6 +181,8 @@ public class Enemy_Boss : IUnit
         {
             dice = Random.Range(0, 4);
         }
+
+        lastBounceTeleportRoll = dice;
 
         if (dice == 0)
         {
