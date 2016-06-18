@@ -157,7 +157,7 @@ public class Enemy_Boss : IUnit
                     {
                         laserBounces.ForEach(typ =>
                         {
-                            References.instance.particleHandler.Emit(ParticleEffectHandler.particleType.effect_explosion, 10, typ.Pos);
+                            References.instance.particleHandler.Emit(ParticleEffectHandler.particleType.effect_boss1_lasterBounce, 50, typ.Pos);
                             typ.Delete();
                         });
                         laserBounces = new List<LaserBounce>();
