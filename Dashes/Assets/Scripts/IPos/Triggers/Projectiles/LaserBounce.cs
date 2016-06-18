@@ -9,17 +9,19 @@ public class LaserBounce : ITrigger
     {
         Rot = rotation;
         Pos = startPos;
-        lifeTimeSpan = 5;
+        lifeTimeSpan = 40f; //Bliver deleted af Bossen
         dmg = _dmg;
         triggerRange = 0.2f;
         radius = triggerRange;
         gmjPrefabName = "Laser";
-        movementSpeed = 5f;
+        speed = new Vector2(Mathf.Cos(Rot * Mathf.Deg2Rad), Mathf.Sin(Rot * Mathf.Deg2Rad)) * 5f;
         targets = new List<IUnit>() { player };
         effectTrigger = ParticleEffectHandler.particleType.effect_hit;
         effectTimespan = ParticleEffectHandler.particleType.effect_hit;
 
         Init();
+
+        
     }
 
     protected override void Trigger(IUnit victim)
@@ -30,7 +32,19 @@ public class LaserBounce : ITrigger
 
     protected override void TriggerWall()
     {
-        
+        var info = References.instance.colSystem.CollidesWithWall(this);
+
+        speed = Vector2.Reflect(speed, info.GetCollisionNormal());
+
+        Pos = info.GetFinalPos();
+
+        UpdateRot();
+
+        Debug.Log(speed.magnitude);
+
+        //Pos += temp*Time.deltaTime*2;
+
     }
 
+    
 }

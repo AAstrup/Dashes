@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using System.Collections;
 
 public class Enemy_Boss : IUnit
@@ -6,19 +7,31 @@ public class Enemy_Boss : IUnit
 
     public float activeDelay = 0.25f;
 
-    public float laserSpawnTimeBase = 0.05f;
-    public float laserSpawnTimeCurrent = 0f;
+    public float laserDelay = 0f;
+    public float laserSpawnTime = 0f;
     public float laserDir = 1f;
     public float laserDirChangeDelay = 0f;
 
+    private AttackType currentAttackType = AttackType.laserArms;
+    private float AttackTime = 0f;
+    private float AttackCooldown = 0f;
+
+    private List<LaserBounce> laserBounces;
+    private int lastBounceTeleportRoll = -1;
+
+    private float damaged33 = 0f;
+    private float damaged50 = 0f;
+    private float damaged66 = 0f;
 
     public Enemy_Boss()
     {
-        HealthMax = 200;
-        HealthCurrent = 200;
+        HealthMax = 250;
+        HealthCurrent = 250;
         MovementSpeedBase = 1f;
 
         GenericConstructor(References.instance.PrefabLibrary.Prefabs["Enemy_Stupid"]);
+
+        laserBounces = new List<LaserBounce>();
     }
 
     public override void Update()
@@ -28,7 +41,6 @@ public class Enemy_Boss : IUnit
         //if (Stunned)
         //    return;
 
-        Pos = References.instance.RoomHandler.GetCurrentRoom().GetWorldPos();
 
         if (activeDelay > 0)
         {
@@ -37,29 +49,150 @@ public class Enemy_Boss : IUnit
         }
 
 
-        //Pos += new Vector2(10,0);
-
-        Rot += 65 * Time.deltaTime * laserDir;
-
-        laserDirChangeDelay -= Time.deltaTime;
-        if (laserDirChangeDelay <= 0)
+        if (AttackTime <= 0)
         {
-            laserDir *= -1;
-            laserDirChangeDelay = 3f;
-        }
-
-        if (laserSpawnTimeCurrent <= 0)
-        {
-            for(int i=0;i<4;i++)
+            if (AttackCooldown <= 0)
             {
-                new Laser(0.15f, Rot+90*i, Pos, References.instance.UnitHandler.playerController);
+                switch (currentAttackType)
+                {
+                    case AttackType.none:
+                        break;
+                    case AttackType.laserArms:
+                        currentAttackType = AttackType.bounce;
+                        AttackCooldown = 2.25f;
+                        laserDelay = 0.5f;
+                        break;
+                    case AttackType.bounce:
+                        currentAttackType = AttackType.laserArms;
+                        AttackCooldown = 2.25f;
+                        References.instance.particleHandler.Emit(ParticleEffectHandler.particleType.effect_explosion, 10, Pos);
+                        Pos = References.instance.RoomHandler.GetCurrentRoom().GetWorldPos();
+                        References.instance.particleHandler.Emit(ParticleEffectHandler.particleType.effect_explosion, 10, Pos);
+                        break;
+                }
+                AttackTime = 10f;
             }
-            laserSpawnTimeCurrent = laserSpawnTimeBase;
+            else
+            {
+                Rot = GetAngle(References.instance.UnitHandler.playerController.Pos);
+                Pos -= (References.instance.UnitHandler.playerController.Pos - Pos).normalized*0.25f*Time.deltaTime;
+                AttackCooldown -= Time.deltaTime;
+            }
         }
         else
         {
-            laserSpawnTimeCurrent -= Time.deltaTime;
+            AttackTime -= Time.deltaTime;
+
+            switch (currentAttackType)
+            {
+                case AttackType.none:
+                    break;
+                case AttackType.laserArms:
+
+                        if (laserDelay <= 0)
+                        { 
+                            Rot += 65 * Time.deltaTime * laserDir;
+
+                            laserDirChangeDelay -= Time.deltaTime;
+                            if (laserDirChangeDelay <= 0)
+                            {
+                                laserDir *= -1;
+                                laserDirChangeDelay = 3f;
+                            }
+
+                            if (laserSpawnTime <= 0)
+                            {
+                                for(int i=0;i<2+damaged33+damaged66;i++)
+                                {
+                                    new Laser(0.15f, Rot + (360 / (2 + damaged33 + damaged66))* i, Pos, References.instance.UnitHandler.playerController);
+                                }
+                                laserSpawnTime = 0.05f;
+                            }
+                            else
+                            {
+                                laserSpawnTime -= Time.deltaTime;
+                            }
+                        }
+                        else
+                        {
+                            laserDelay -= Time.deltaTime;
+                        }
+
+                    break;
+
+                case AttackType.bounce:
+
+
+                        if (laserSpawnTime <= 0)
+                        {
+                            BounceRandomTeleport();
+                            Rot = GetAngle(References.instance.UnitHandler.playerController.Pos);
+                            for(int i=0;i<2+damaged50;i++)
+                            {
+                                laserBounces.Add(new LaserBounce(1f, Rot-45+45*i, Pos, References.instance.UnitHandler.playerController));
+                            }
+                            laserSpawnTime = 2.5f;
+                        }
+                        else
+                        {
+                            Rot = GetAngle(References.instance.UnitHandler.playerController.Pos);
+                            laserSpawnTime -= Time.deltaTime;
+                        }
+
+                    if (AttackTime <= 0)
+                    {
+                        laserBounces.ForEach(typ =>
+                        {
+                            References.instance.particleHandler.Emit(ParticleEffectHandler.particleType.effect_explosion, 10, typ.Pos);
+                            typ.Delete();
+                        });
+                        laserBounces = new List<LaserBounce>();
+                    }
+
+                    break;
+            }
+
+            
         }
+        
+
+    }
+
+    public void BounceRandomTeleport()
+    {
+        References.instance.particleHandler.Emit(ParticleEffectHandler.particleType.effect_explosion, 10, Pos);
+        var dice = Random.Range(0, 4);
+
+        while (lastBounceTeleportRoll == dice)
+        {
+            dice = Random.Range(0, 4);
+        }
+
+        if (dice == 0)
+        {
+            Pos = References.instance.RoomHandler.GetCurrentRoom().GetWorldPos() +
+                  new Vector2(-References.instance.RoomHandler.GetCurrentRoom().GetRoomWidth() /3,
+                      -References.instance.RoomHandler.GetCurrentRoom().GetRoomHeight()/2);
+        }
+        if (dice == 1)
+        {
+            Pos = References.instance.RoomHandler.GetCurrentRoom().GetWorldPos() +
+                  new Vector2(References.instance.RoomHandler.GetCurrentRoom().GetRoomWidth()/3,
+                      -References.instance.RoomHandler.GetCurrentRoom().GetRoomHeight()/2);
+        }
+        if (dice == 2)
+        {
+            Pos = References.instance.RoomHandler.GetCurrentRoom().GetWorldPos() +
+                  new Vector2(-References.instance.RoomHandler.GetCurrentRoom().GetRoomWidth()/3,
+                      References.instance.RoomHandler.GetCurrentRoom().GetRoomHeight()/3);
+        }
+        if (dice == 3)
+        {
+            Pos = References.instance.RoomHandler.GetCurrentRoom().GetWorldPos() +
+                  new Vector2(References.instance.RoomHandler.GetCurrentRoom().GetRoomWidth()/3,
+                      References.instance.RoomHandler.GetCurrentRoom().GetRoomHeight()/3);
+        }
+        
     }
 
     public override void Die()
@@ -74,11 +207,33 @@ public class Enemy_Boss : IUnit
         Rot = targetRot;
     }
 
+    float GetAngle(Vector3 targetpos)
+    {
+        return Mathf.Atan2(targetpos.y - Pos.y, targetpos.x - Pos.x) * 180 / Mathf.PI;
+    }
+
+    public override void Damage(float amount)
+    {
+        base.Damage(amount);
+        if (HealthCurrent/HealthMax <= 0.66f)
+        {
+            damaged33 = 1f;
+        }
+        if (HealthCurrent / HealthMax <= 0.5f)
+        {
+            damaged50 = 1f;
+        }
+        if (HealthCurrent / HealthMax <= 0.33f)
+        {
+            damaged66 = 1f;
+        }
+    }
 
     enum AttackType
     {
-        LaserArms,
-
+        none,
+        laserArms,
+        bounce,
     }
 
 }

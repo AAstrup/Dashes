@@ -13,7 +13,7 @@ public class Arrow : ITrigger {
         triggerRange = 0.2f;
         radius = triggerRange;
         gmjPrefabName = "Arrow";
-        movementSpeed = 5f;
+        speed = new Vector2(Mathf.Cos(Rot*Mathf.Deg2Rad),Mathf.Sin(Rot*Mathf.Deg2Rad))*5f;
         targets = new List<IUnit> (){ player};
         effectTrigger = ParticleEffectHandler.particleType.effect_hit;
         effectTimespan = ParticleEffectHandler.particleType.effect_hit;

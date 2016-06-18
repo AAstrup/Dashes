@@ -7,7 +7,7 @@ using System;
 public abstract class ITrigger : Position {
 
     protected List<IUnit> targets;
-    protected float movementSpeed;
+    protected Vector2 speed;
     protected float Rot;
     protected float Scale = 1f;
     protected float dmg;
@@ -37,20 +37,29 @@ public abstract class ITrigger : Position {
             Trigger(target);
         else if (Time.time > (spawnTime + lifeTimeSpan))
             TimeLeft();
-        if(movementSpeed != 0)
+        if(speed.magnitude != 0)
         {
             Move();
             GBref.transform.position = Pos;
-            GBref.transform.localScale = new Vector3(Scale, Scale,1);
-            GBref.transform.rotation = Quaternion.Euler(0, 0, Rot);
+            //GBref.transform.localScale = new Vector3(Scale, Scale,1); //Kaldes i metoder for sig for at spare :0)
+            //GBref.transform.rotation = Quaternion.Euler(0, 0, Rot);
         }
+    }
+
+    public void UpdateRot()
+    {
+        Rot = GetAngle( speed);
+        GBref.transform.rotation = Quaternion.Euler(0, 0, Rot);
+    }
+
+    float GetAngle(Vector3 targetpos)
+    {
+        return Mathf.Atan2(targetpos.y - Pos.y, targetpos.x - Pos.x) * 180 / Mathf.PI;
     }
 
     protected virtual void Move()
     {
-        var currentRotRAD = Rot * Mathf.Deg2Rad;
-        var vector = new Vector2(Mathf.Cos(currentRotRAD), Mathf.Sin(currentRotRAD)) * movementSpeed;
-        Pos += vector * Time.deltaTime;
+        Pos += speed * Time.deltaTime;
         if (References.instance.colSystem.CollidesWithWall(this).Collided())
             TriggerWall();
     }
@@ -78,7 +87,7 @@ public abstract class ITrigger : Position {
         Delete();
     }
 
-    protected virtual void Delete()
+    public virtual void Delete()
     {
         References.instance.DetailHandler.RemoveTrigger(GBref);
         References.instance.DestroyGameObject(GBref);
