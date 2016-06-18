@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class ProgressionHandler {
 
     //Used to generate the a level, increase value to increase differculty
     int level = 1;
     int startRoomsHor = 2;
-    int startRoomsVer = 2;
+    int startRoomsVer = 1;
     int bossEveryLevelAmount = 3;//This is the last level as well
     int world = 1;//When completing and killing the boss this increases.
 
@@ -32,12 +33,18 @@ public class ProgressionHandler {
         SpawnHandler.Init(new List<UnitType> { UnitType.Enemy_Stupid }, new List<UnitType> { UnitType.Enemy_Charger }, new List<UnitType> { UnitType.Enemy_Archer }, new List<UnitType> { }, new List<UnitType> { UnitType.Enemy_Boss});
 
         mapGenerator = new MapGenerator(); //Generates the rooms doors and room types
-        mapGenerator.Init(startRoomsHor, startRoomsVer, CalculateTotalRooms());//width,height,maxrooms
+        mapGenerator.Init(startRoomsHor, startRoomsVer, CalculateTotalRooms(), IsBossLevel());//width,height,maxrooms
 
         RoomHandler = new RoomHandler();//Keeps track of content in rooms when entering.
         RoomHandler.Init(mapGenerator.GetStartRoom(), mapGenerator, RoomLayoutHandler);
 
         References.instance.UpdateReferences();
+    }
+
+    private bool IsBossLevel()
+    {
+        var debug = Mathf.Repeat(level, bossEveryLevelAmount) == 0;
+        return debug;
     }
 
     public void MapComplete()
@@ -46,12 +53,18 @@ public class ProgressionHandler {
         References.instance.UnitHandler.Reset();
         References.instance.DetailHandler.Reset();
         References.instance.mapGenerator.Reset();
+        if (IsBossLevel())
+        {
+            level = 1;
+            world++;
+        }
+
         NewLevel();
     }
 
     private void RandomMapSizeIncrease()
     {
-        int random = Random.Range(0, 2);
+        int random = UnityEngine.Random.Range(0, 2);
         if (random == 0)
             startRoomsHor++;
         else if (random == 1)

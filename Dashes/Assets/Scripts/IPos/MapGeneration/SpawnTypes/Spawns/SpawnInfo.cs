@@ -26,4 +26,4 @@ public class SpawnInfo {
     public GroupType GetGroupType() { return _groupType; }
 
 }
-public enum GroupType { groupObstacle,groupHorde,groupThreat,groupAntiCamp, groupStatic}//Group static always appears
+public enum GroupType { groupObstacle,groupHorde,groupThreat,groupAntiCamp, groupStatic}//Group static always appears others is randomized

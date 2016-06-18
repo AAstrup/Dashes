@@ -17,14 +17,21 @@ public class RoomLayoutHandler {
     {
         if (roomScript.GetRoomType() == RoomScript.roomType.E)
             return LoadEnemyLayout();
-        if (roomScript.GetRoomType() == RoomScript.roomType.R)
+        else if (roomScript.GetRoomType() == RoomScript.roomType.R)
             return LoadRewardLayout();
-        if (roomScript.GetRoomType() == RoomScript.roomType.G)
+        else if (roomScript.GetRoomType() == RoomScript.roomType.G)
             return LoadGoalLayout();
         else if (roomScript.GetRoomType() == RoomScript.roomType.S)
             return LoadStartLayout();
+        else if (roomScript.GetRoomType() == RoomScript.roomType.B)
+            return LoadBossLayout();
         else
             throw new Exception("BAD ROOM TYPE");
+    }
+
+    private RoomLayout LoadBossLayout()
+    {
+        return loader.GetBossLoadOut();
     }
 
     private RoomLayout LoadStartLayout()

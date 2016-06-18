@@ -104,9 +104,12 @@ public class RoomScript {
         type = roomType.R;
         _generator.AddDeadEnd(this);
     }
-    public void SetGoal()
+    public void SetGoal(bool isBossLevel)
     {
-        type = roomType.G;
+        if (isBossLevel)
+            type = roomType.B;
+        else if (!isBossLevel)
+            type = roomType.G;
     }
 
     public roomType GetRoomType()
@@ -151,5 +154,5 @@ public class RoomScript {
     {
         return doors.Contains(3);
     }
-    public enum roomType { S, G, E, R };
+    public enum roomType { S, G, E, R, B};
 }

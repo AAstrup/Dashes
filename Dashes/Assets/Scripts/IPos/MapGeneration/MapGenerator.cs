@@ -14,9 +14,11 @@ public class MapGenerator {
     public float spaceBetweenRooms = 1f;
     public float cellHeightRatio = 10f;//one cell in the array rooms(RoomScript[,]) has a height of heightRatio
     public float cellWidthRatio = 16f;//one cell in the array rooms(RoomScript[,]) has a width of widthRatio
+    bool _isBossLevel;
 
-    public void Init(int mapWidth,int mapHeight,int roomsLeft)
+    public void Init(int mapWidth,int mapHeight,int roomsLeft,bool isBossLevel)
     {
+        _isBossLevel = isBossLevel;
         _mapHeight = mapHeight;
         _mapWidth = mapWidth;
         _roomsLeft = roomsLeft;
@@ -50,7 +52,7 @@ public class MapGenerator {
                 goal = deadEnds[r];
             }
         }
-        goal.SetGoal();
+        goal.SetGoal(_isBossLevel);
         printMap();
         DrawMap();
     }
