@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Runtime.InteropServices;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -106,6 +107,7 @@ public class RoomScript {
     }
     public void SetGoal(bool isBossLevel)
     {
+        Debug.Log("Step 1: is boss level" + isBossLevel);
         if (isBossLevel)
             type = roomType.B;
         else if (!isBossLevel)

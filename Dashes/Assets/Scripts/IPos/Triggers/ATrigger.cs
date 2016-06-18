@@ -27,7 +27,7 @@ public abstract class ITrigger : Position {
         spawnTime = Time.time;
         References.instance.triggerHandler.triggers.Add(this);
         GBref = References.instance.CreatePrefabWithParameters(gmjPrefabName, new Vector3(Pos.x, Pos.y, 0), new Vector3(0, 0, Rot));
-        References.instance.DetailHandler.AddTrigger(GBref);
+        References.instance.triggerHandler.AddTrigger(this);
     }
 
     // Update is called once per frame
@@ -89,7 +89,7 @@ public abstract class ITrigger : Position {
 
     public virtual void Delete()
     {
-        References.instance.DetailHandler.RemoveTrigger(GBref);
+        References.instance.triggerHandler.RemoveTrigger(this);
         References.instance.DestroyGameObject(GBref);
         References.instance.triggerHandler.triggers.Remove(this);
     }

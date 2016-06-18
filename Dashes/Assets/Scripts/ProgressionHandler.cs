@@ -8,7 +8,7 @@ public class ProgressionHandler {
     //Used to generate the a level, increase value to increase differculty
     int level = 1;
     int startRoomsHor = 2;
-    int startRoomsVer = 2;
+    int startRoomsVer = 1;
     int bossEveryLevelAmount = 2;//Every this value of levels a boss will spawn instead the goal
     int world = 1;//When completing and killing the boss this increases.
 
@@ -43,22 +43,28 @@ public class ProgressionHandler {
 
     private bool IsBossLevel()
     {
-        var debug = Mathf.Repeat(level, bossEveryLevelAmount) == 0;
+        var debug = level == bossEveryLevelAmount;
         return debug;
     }
 
     public void MapComplete()
     {
-        Debug.Log("RandomMapSizeIncrease NOT CALLED ATM"); //RandomMapSizeIncrease();
+        Debug.Log("level is " + level + ", boss is " + bossEveryLevelAmount + " result is " + IsBossLevel());
         References.instance.UnitHandler.Reset();
         References.instance.DetailHandler.Reset();
+        References.instance.triggerHandler.Reset();
         References.instance.mapGenerator.Reset();
         if (IsBossLevel())
         {
             level = 1;
             world++;
         }
+        else
+        {
+            level++;
+        }
 
+        RandomMapSizeIncrease();
         NewLevel();
     }
 
