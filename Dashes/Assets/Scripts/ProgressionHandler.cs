@@ -49,6 +49,7 @@ public class ProgressionHandler {
 
     public void MapComplete()
     {
+        RandomMapSizeIncrease();
         Debug.Log("level is " + level + ", boss is " + bossEveryLevelAmount + " result is " + IsBossLevel());
         References.instance.UnitHandler.Reset();
         References.instance.DetailHandler.Reset();
@@ -64,7 +65,6 @@ public class ProgressionHandler {
             level++;
         }
 
-        RandomMapSizeIncrease();
         NewLevel();
     }
 
