@@ -9,10 +9,10 @@ public class RoomChallengeHandler {
     public void Init()
     {
         challengeToInfo = new Dictionary<RoomChallenge, RoomChallengeChallengeInfo>();
-        challengeToInfo.Add(RoomChallenge.HighHP, new RoomChallengeChallengeInfo(2f, 1f, 1f, 1f, "Iron Flesh"));
-        challengeToInfo.Add(RoomChallenge.FastMS, new RoomChallengeChallengeInfo(1f, 1.5f, 1f, 1f, "Runners"));
-        challengeToInfo.Add(RoomChallenge.FastAS, new RoomChallengeChallengeInfo(1f, 1f, 1.5f, 1f, "Fast"));
-        challengeToInfo.Add(RoomChallenge.HighDMG, new RoomChallengeChallengeInfo(1f, 1f, 1f, 1.5f, "Pumpers"));
+        challengeToInfo.Add(RoomChallenge.HighHP, new RoomChallengeChallengeInfo(1.5f, 1f, 1f, 1f, "Iron Flesh"));
+        challengeToInfo.Add(RoomChallenge.FastMS, new RoomChallengeChallengeInfo(1f, 1.25f, 1f, 1f, "Runners"));
+        challengeToInfo.Add(RoomChallenge.FastAS, new RoomChallengeChallengeInfo(1f, 1f, 1.25f, 1f, "Fast"));
+        challengeToInfo.Add(RoomChallenge.HighDMG, new RoomChallengeChallengeInfo(1f, 1f, 1f, 1.25f, "Pumpers"));
     }
 
     public void ApplyChallenge(IUnit _unit, RoomChallenge challenge)

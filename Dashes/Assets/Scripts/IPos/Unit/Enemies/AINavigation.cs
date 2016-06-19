@@ -125,18 +125,18 @@ public class AINavigation : IUnit {
         if (Stunned)
             return;
 
-        if(attackChannelingTimeLeft >= 0)
+        if(attackChannelingTimeLeft >= 0)//Finished preparation, start attacking
         {
             attackChannelingTimeLeft -= Time.deltaTime;
             if (attackChannelingTimeLeft < 0)
                 StartFire();
         }
-        else if (Time.time < fireEndTime)
+        else if (Time.time < fireEndTime)//Continue attacking
         {
             Move(moveAttackSpeedPercentage);
             Fire(Pos + deltaPos);
         }
-        else if (CanFire())
+        else if (CanFire())//Start attacking
         {
             if (CanFire(target))
                 PrepareFire(target.Pos);

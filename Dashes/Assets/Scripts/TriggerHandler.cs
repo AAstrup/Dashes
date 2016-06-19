@@ -10,12 +10,10 @@ public class TriggerHandler {
     public void AddTrigger(ITrigger trigger)
     {
         triggers.Add(trigger);
-        Debug.Log("ADDED TRIGGER AT " + Time.time + ", count is at " + triggers.Count);
     }
     public void RemoveTrigger(ITrigger trigger)
     {
         triggers.Remove(trigger);
-        Debug.Log("REMOVED TRIGGER AT " + Time.time + ", count is at " + triggers.Count);
     }
 
     public void Init()

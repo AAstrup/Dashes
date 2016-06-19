@@ -8,8 +8,8 @@ public class ProgressionHandler {
     //Used to generate the a level, increase value to increase differculty
     int level = 1;
     int startRoomsHor = 2;
-    int startRoomsVer = 1;
-    int bossEveryLevelAmount = 1;//Every this value of levels a boss will spawn instead the goal
+    int startRoomsVer = 2;
+    int bossEveryLevelAmount = 2;//Every this value of levels a boss will spawn instead the goal
     int world = 1;//When completing and killing the boss this increases.
 
     //Changed when generating new level

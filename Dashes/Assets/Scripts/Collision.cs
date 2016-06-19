@@ -17,7 +17,6 @@ public class Collision
         collided = true;
         newPosition = new Vector2(a, newPosition.y);
         normalVector = new Vector2(ConvertToDir(a), normalVector.y);
-        Debug.Log("Horizontal hit " + normalVector.ToString());
     }
     
     float ConvertToDir(float a)
@@ -33,7 +32,6 @@ public class Collision
         collided = true;
         newPosition = new Vector2(newPosition.x, a);
         normalVector = new Vector2(normalVector.x, ConvertToDir(a));
-        Debug.Log("Vertical hit " + normalVector.ToString());
     }
     public Vector2 GetFinalPos() { return newPosition; }//The updated position
     public bool Collided() { return collided; }
