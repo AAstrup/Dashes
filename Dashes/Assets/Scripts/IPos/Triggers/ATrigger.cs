@@ -54,6 +54,15 @@ public abstract class ITrigger : Position {
         Rot = GetAngle( speed);
         GBref.transform.rotation = Quaternion.Euler(0, 0, Rot);
     }
+    public void UpdateRot(float rot)
+    {
+        GBref.transform.rotation = Quaternion.Euler(0, 0, rot);
+    }
+
+    public void UpdateScale()
+    {
+        GBref.transform.localScale = new Vector3(Scale, Scale, 1);
+    }
 
     float GetAngle(Vector3 targetpos)
     {

@@ -14,7 +14,7 @@ public class Laser : ITrigger
         triggerRange = 0.2f;
         radius = triggerRange;
         gmjPrefabName = "Laser";
-        speed = new Vector2(Mathf.Cos(Rot*Mathf.Deg2Rad), Mathf.Sin(Rot*Mathf.Deg2Rad))*5f;
+        speed = new Vector2(Mathf.Cos(Rot*Mathf.Deg2Rad), Mathf.Sin(Rot*Mathf.Deg2Rad))*3f;
         targets = new List<IUnit>() { player };
         effectTrigger = ParticleEffectHandler.particleType.effect_boss1_laser;
         effectTimespan = ParticleEffectHandler.particleType.effect_boss1_laser;

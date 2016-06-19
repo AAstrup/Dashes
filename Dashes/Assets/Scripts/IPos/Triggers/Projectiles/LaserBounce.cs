@@ -14,7 +14,7 @@ public class LaserBounce : ITrigger
         triggerRange = 0.2f;
         radius = triggerRange;
         gmjPrefabName = "LaserBounce";
-        speed = new Vector2(Mathf.Cos(Rot * Mathf.Deg2Rad), Mathf.Sin(Rot * Mathf.Deg2Rad)) * 5f;
+        speed = new Vector2(Mathf.Cos(Rot * Mathf.Deg2Rad), Mathf.Sin(Rot * Mathf.Deg2Rad)) * 3f;
         targets = new List<IUnit>() { player };
         effectTrigger = ParticleEffectHandler.particleType.effect_boss1_lasterBounce;
         effectTimespan = ParticleEffectHandler.particleType.effect_boss1_lasterBounce;
@@ -43,6 +43,8 @@ public class LaserBounce : ITrigger
         Debug.Log(speed.magnitude);
 
         //Pos += temp*Time.deltaTime*2;
+
+        Debug.Log(speed.magnitude);
 
     }
 
