@@ -5,13 +5,14 @@ public class Archer : EnemyRanged {
 
     public Archer (IUnit player)
     {
-        cd = 2f;
+        attackChargeTime = 0.25f;
+        cd = 0.45f;
         target = player;
         HealthMax = 20;
         HealthCurrent = 20;
         MovementSpeedBase = 0.7f;
         hitRange = 6;
-        startAttackRange = hitRange;
+        engageRange = hitRange;
         fleeRange = 3;
         GenericConstructor(References.instance.PrefabLibrary.Prefabs["Enemy_Archer"]);
     }

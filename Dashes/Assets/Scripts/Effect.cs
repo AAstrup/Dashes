@@ -30,7 +30,7 @@ public class Effect
                 unit.UpdateMovementSpeed();
                 break;
             case EffectTypes.Stun:
-                unit.Stunned = true;
+                unit.SetStunned(true);
                 break;
             case EffectTypes.Invulnerability:
                 unit.Invulnerable = true;
@@ -82,7 +82,7 @@ public class Effect
                 if (!unit.Effects.Exists(typ => typ.EffectType == EffectTypes.Boost)) { unit.Boost = 0f; unit.UpdateMovementSpeed(); }
                 break;
             case EffectTypes.Stun:
-                if (!unit.Effects.Exists(typ => typ.EffectType == EffectTypes.Stun)) { unit.Stunned = false; }
+                if (!unit.Effects.Exists(typ => typ.EffectType == EffectTypes.Stun)) { unit.SetStunned(false); }
                 break;
             case EffectTypes.DamageDelay:
                 unit.Damage(Value);

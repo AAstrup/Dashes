@@ -10,7 +10,7 @@ public abstract class IUnit : Position {
     public float MovementSpeedCurrent;
 
     public float tenacity = 0f;//goes from 0 - 1
-    public bool Stunned;
+    private bool Stunned;
     public float Slow;
     public float Boost;
     public List<Effect> Effects; 
@@ -112,4 +112,8 @@ public abstract class IUnit : Position {
     {
         GBSpriteRenderer.color = new Color(1f,1f,1f);
     }
+
+    public virtual void SetStunned(bool v) { Stunned = v; }
+
+    public virtual bool GetStunned() { return Stunned; }
 }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Charger : EnemyMeleeStupid {
+public class Charger : EnemyMelee {
 
     public Charger(IUnit player)
     {
@@ -10,11 +10,11 @@ public class Charger : EnemyMeleeStupid {
         HealthCurrent = 20;
         MovementSpeedBase = 2f;
         moveAttackSpeedPercentage = MovementSpeedBase;
-        fireTime = 2f;
-        cd = 4f;
+        continueFireTimeSeconds = 2f;
+        cd = 0.5f;
         hitParticleASecond = 100;
-        startAttackRange = 4f;
-        attackChannelingTime = 0f;
+        engageRange = 4f;
+        attackChargeTime = 0f;
         hitEffect = ParticleEffectHandler.particleType.effect_hit;
 
         GenericConstructor(References.instance.PrefabLibrary.Prefabs["Enemy_Charger"]);
@@ -23,4 +23,6 @@ public class Charger : EnemyMeleeStupid {
     {
         base.Damage(amount);
     }
+
+    
 }

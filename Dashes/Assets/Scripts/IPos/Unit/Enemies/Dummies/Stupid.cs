@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Stupid : EnemyMeleeStupid {
+public class Stupid : EnemyMelee {
 
     public Stupid(IUnit player)
     {

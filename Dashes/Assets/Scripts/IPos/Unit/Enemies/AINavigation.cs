@@ -3,32 +3,36 @@ using System.Collections;
 using System;
 
 public class AINavigation : IUnit {
-    public float attackChannelingTime = 0.25f;
-    private float attackChannelingTimeLeft = -1f;//Must be less than 0 if it     not, fire on spawn
+    //Behavior
+    public float attackChargeTime = 0.25f;//Time from starting to attack to attacking
+    private float attackChargeTimeLeft = -1f;//Must be less than 0 if it     not, fire on spawn
+
     private float attackAppliedMinTime = 0.2f;//The min time that must pass to inOrder to damage the player again.
     private float attackAppliedTimeLeft = -1f;//Time left in order to apply damage to player again when hitting
-    public float radius = 0.5f;
-    public float fireTime = 0f;//If higher than 0, it will continue attacking
-    public float cd = 1f;//CD betweem
-    public float rotationSpeed = 1.75f;//Speed of damage
+
     public float moveAttackSpeedPercentage = 0f; //Percent of Movespeed having while attacking, 0 -> 1 (100%)
-    public float hitRange = 1f; //max range for attacking
-    public float startAttackRange = 1f;//Max range for starting attack
-    public float fleeRange = 0f; //flee if within range
-    public float damage = 1f;
+    public float cd = 0.5f;//CD between finishing an attack and starting the next
+    protected float cdTimeLeft;
+    float fireEndTime;
 
     protected bool fleeing = false;
-    protected float lastTimeTimeCD;
-    float fireEndTime;
     protected Vector2 deltaPos;
-    float maxRotationAmount = 100f;
     protected float currentRot;
+
+    enum AIState { Searching ,Preparing, Attacking, CoolingDown, Stunned }
+    AIState state = AIState.Searching;
+
+    //Attributes
+    public float radius = 0.5f;
+    public float continueFireTimeSeconds = 0f;//If higher than 0, it will continue attacking
+    public float hitRange = 1f; //max range for attacking
+    public float engageRange = 1f;//Max range for starting attack
+    public float fleeRange = 0f; //flee if within range
+    public float damage = 1f;
 
     void SetAngle (Vector3 otherpos) {
         //float currentRot = transform.eulerAngles.z;
         var targetRot = Mathf.Atan2(otherpos.y - Pos.y, otherpos.x - Pos.x) * 180 / Mathf.PI;
-        //float rotAmount = maxRotationAmount * rotationSpeed * Time.deltaTime;
-        //transform.rotation = Quaternion.RotateTowards(transform.rotation,Quaternion.Euler(0,0,targetRot), rotAmount);
         currentRot = targetRot;
         Rot = targetRot;
     }
@@ -44,7 +48,8 @@ public class AINavigation : IUnit {
         Pos += vector * Time.deltaTime;
     }
 
-    bool Within(IUnit target)
+    //Condition for starting preparation, by default measured by distance
+    protected virtual bool EngageCondition(IUnit target)
     {
         var dist = Vector2.Distance(Pos, target.Pos);
         if (dist < fleeRange)
@@ -53,27 +58,28 @@ public class AINavigation : IUnit {
             return false;
         }
         fleeing = false;
-        if (startAttackRange < dist)
+        if (engageRange < dist)
             return false;
         return true;
     }
 
 
     // Update is called once per frame
-    public bool CanFire (IUnit target) {
-        OverlappingFix();
-           
-        if (Within(target))
+    public virtual bool CanFire (IUnit target) {   
+        if (EngageCondition(target))
         {
-            Move(moveAttackSpeedPercentage * MovementSpeedCurrent);
             return true;
         }
         else
         {
-            SetAngle(target.Pos);
-            Move(MovementSpeedCurrent);
             return false;
         }
+    }
+
+    public virtual void Search(IUnit target)//  
+    {
+        SetAngle(target.Pos);
+        Move(MovementSpeedCurrent);
     }
 
     //Overlapping
@@ -93,28 +99,33 @@ public class AINavigation : IUnit {
         }
     }
 
-    protected bool CanFire()
-    {
-        if (Time.time > lastTimeTimeCD)
-            return true;
-        else
-            return false;
-    }
-
-    void PrepareFire(Vector2 targetpos)
+    void StartPreparation(Vector2 targetpos)
     {
         SetAngle(targetpos);
-        lastTimeTimeCD = Time.time + cd;
+        state = AIState.Preparing;
         deltaPos = targetpos - Pos;
         deltaPos = deltaPos.normalized * hitRange;
-        attackChannelingTimeLeft = attackChannelingTime;
+        attackChargeTimeLeft = attackChargeTime;
     }
 
     void StartFire()
     {
         Fire(deltaPos + Pos);
-        if (fireTime > 0)
-            fireEndTime = Time.time + fireTime + attackChannelingTime;
+        if (continueFireTimeSeconds > 0)
+        {
+            fireEndTime = Time.time + continueFireTimeSeconds;
+            state = AIState.Attacking;
+        }
+        else
+        {
+            StartCoolingDown();
+        }
+    }
+
+    public void StartCoolingDown()
+    {
+        state = AIState.CoolingDown;
+        cdTimeLeft = cd;
     }
 
     // Update is called once per frame
@@ -122,25 +133,48 @@ public class AINavigation : IUnit {
     {
         base.Update();
         attackAppliedTimeLeft -= Time.deltaTime;
-        if (Stunned)
-            return;
+        OverlappingFix();
 
-        if(attackChannelingTimeLeft >= 0)//Finished preparation, start attacking
+        if (state == AIState.Stunned)
         {
-            attackChannelingTimeLeft -= Time.deltaTime;
-            if (attackChannelingTimeLeft < 0)
+            //Handled in IUnit
+        }
+        else if(state == AIState.Preparing) //if(attackChargeTimeLeft >= 0)//Still preparating
+        {
+            attackChargeTimeLeft -= Time.deltaTime;
+            if (attackChargeTimeLeft < 0)//Finished preparation, start attacking
                 StartFire();
         }
-        else if (Time.time < fireEndTime)//Continue attacking
+        else if(state == AIState.Attacking) //Continue attacking
         {
             Move(moveAttackSpeedPercentage);
             Fire(Pos + deltaPos);
+            if (Time.time >= fireEndTime)//Done attacking
+                StartCoolingDown();
         }
-        else if (CanFire())//Start attacking
+        else if(state == AIState.CoolingDown)//if (CanFire())//Start attacking
+        {
+            cdTimeLeft -= Time.deltaTime;
+            if (cdTimeLeft < 0)
+                state = AIState.Searching;
+        }
+        else if(state == AIState.Searching)
         {
             if (CanFire(target))
-                PrepareFire(target.Pos);
+                StartPreparation(target.Pos);
+            else
+                Search(target);
         }
+    }
+
+
+    public override void SetStunned(bool v)
+    {
+        if (v)
+            state = AIState.Stunned;
+        else
+            state = AIState.Searching;
+        base.SetStunned(v);
     }
 
     public virtual void Fire(Vector2 pos) { }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyMeleeStupid : AINavigation {
+public class EnemyMelee : AINavigation {
     
     public IUnit target;
     protected ParticleEffectHandler.particleType hitEffect = ParticleEffectHandler.particleType.effect_none;

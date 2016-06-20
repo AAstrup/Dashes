@@ -74,7 +74,7 @@ public class PlayerController : IUnit
             }
         });
 
-        if (!Stunned)
+        if (!GetStunned())
         {
             Control();
         }
