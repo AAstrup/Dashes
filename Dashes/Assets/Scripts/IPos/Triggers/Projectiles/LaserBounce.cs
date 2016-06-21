@@ -44,8 +44,6 @@ public class LaserBounce : ITrigger
 
         //Pos += temp*Time.deltaTime*2;
 
-        Debug.Log(speed.magnitude);
-
     }
 
     

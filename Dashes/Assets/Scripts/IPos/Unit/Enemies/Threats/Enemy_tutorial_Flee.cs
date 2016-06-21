@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Archer : EnemyRanged {
-
-    public Archer (IUnit player)
+public class Enemy_tutorial_Flee : EnemyRanged
+{
+    public Enemy_tutorial_Flee(IUnit player)
     {
         attackChargeTime = 0.25f;
         cd = 0.45f;
@@ -14,11 +14,6 @@ public class Archer : EnemyRanged {
         hitRange = 6;
         engageRange = hitRange;
         fleeRange = 3;
-        GenericConstructor(References.instance.PrefabLibrary.Prefabs["Enemy_Archer"]);
-    }
-
-    public override void Fire(Vector2 pos)
-    {
-        new Arrow(damage, Rot, Pos, target);
+        GenericConstructor(References.instance.PrefabLibrary.Prefabs["Enemy_tutorial_Flee"]);
     }
 }

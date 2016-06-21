@@ -31,7 +31,8 @@ public abstract class IUnit : Position {
     public virtual void Update()
     {
         Effects.ForEach(typ => typ.Update(this));
-        Pos = References.instance.colSystem.CollidesWithWall(this).GetFinalPos();
+        var col = References.instance.colSystem.CollidesWithWall(this);
+        CollisionEvent(col);
         GBref.transform.position = Pos;
         GBref.transform.rotation = Quaternion.Euler(0, 0, Rot);
 
@@ -42,6 +43,11 @@ public abstract class IUnit : Position {
                 scale = startScale.x;
             GBref.transform.localScale = new Vector3(scale, scale, 1f);            
         }
+    }
+
+    protected virtual void CollisionEvent(Collision col)
+    {
+        Pos = col.GetFinalPos();
     }
 
     public virtual void Damage(float amount)

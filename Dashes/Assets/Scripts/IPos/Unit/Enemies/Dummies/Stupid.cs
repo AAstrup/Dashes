@@ -11,6 +11,7 @@ public class Stupid : EnemyMelee {
         MovementSpeedBase = 1f;
         hitEffect = ParticleEffectHandler.particleType.effect_hit;
         hitParticleMin = 20;
+        attackChargeTime = 0.5f;
 
         GenericConstructor(References.instance.PrefabLibrary.Prefabs["Enemy_Stupid"]);
     }
