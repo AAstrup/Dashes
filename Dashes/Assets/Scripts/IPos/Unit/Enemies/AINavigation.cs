@@ -126,6 +126,7 @@ public class AINavigation : IUnit {
     {
         state = AIState.CoolingDown;
         cdTimeLeft = cd;
+
     }
 
     // Update is called once per frame

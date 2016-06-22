@@ -29,6 +29,7 @@ public class TriggerHandler {
 
     public void Reset()
     {
+        Debug.Log("Step 2, triggers total " + triggers.Count);
         for (int g = 0; g < triggers.Count; g++)
         {
             References.instance.DestroyGameObject(triggers[g].GBref);

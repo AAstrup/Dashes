@@ -46,8 +46,6 @@ public class SpawnHandler {
             enemy = new Enemy_tutorial_Still(player);
         else if (enemyType == UnitType.Enemy_tutorial_Towards)
             enemy = new Enemy_tutorial_Towards(player);
-        else if (enemyType == UnitType.Enemy_tutorial_BossSpawner)
-            enemy = new Enemy_tutorial_BossSpawner(player);
         else
             throw new System.Exception("enemyType not supported");
 
