@@ -8,8 +8,8 @@ public class ProgressionHandler {
     WorldContainerLoader worldLoader;
     WorldContainer currentWorld;
     //Default/start values
-    int startWorld = 0;
-    int startLevel = 1;
+    int startWorld = 1;
+    int startLevel = 3;
 
     //Changed when generating new level
     RoomLayoutHandler RoomLayoutHandler;
