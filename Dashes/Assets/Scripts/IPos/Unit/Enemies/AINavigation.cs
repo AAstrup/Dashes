@@ -29,6 +29,7 @@ public class AINavigation : IUnit {
     public float engageRange = 1f;//Max range for starting attack
     public float fleeRange = 0f; //flee if within range
     public float damage = 1f;
+    IUnit lastTarget;
 
     void SetAngle (Vector3 otherpos) {
         //float currentRot = transform.eulerAngles.z;
@@ -80,6 +81,7 @@ public class AINavigation : IUnit {
     {
         SetAngle(target.Pos);
         Move(MovementSpeedCurrent);
+        SetVisualColors(new Color(1f,1f,0),"Search");
     }
 
     //Overlapping
@@ -99,18 +101,20 @@ public class AINavigation : IUnit {
         }
     }
 
-    void StartPreparation(Vector2 targetpos)
+    protected virtual void StartPreparation(Vector2 targetpos)
     {
         SetAngle(targetpos);
         state = AIState.Preparing;
         deltaPos = targetpos - Pos;
         deltaPos = deltaPos.normalized * hitRange;
         attackChargeTimeLeft = attackChargeTime;
+        SetVisualColors(new Color(1f, 0.5f, 0f),"Starting preparation");
     }
 
-    void StartFire()
+    protected void StartFire()
     {
         Fire(deltaPos + Pos);
+        SetVisualColors(new Color(1f, 0, 0), "Starting fire");
         if (continueFireTimeSeconds > 0)
         {
             fireEndTime = Time.time + continueFireTimeSeconds;
@@ -122,17 +126,18 @@ public class AINavigation : IUnit {
         }
     }
 
-    public void StartCoolingDown()
+    public virtual void StartCoolingDown()
     {
         state = AIState.CoolingDown;
         cdTimeLeft = cd;
-
+        SetVisualColors(new Color(1f, 1f, 1f),"Starting CD");
     }
 
     // Update is called once per frame
     protected void Update(IUnit target)
     {
         base.Update();
+        lastTarget = target;
         attackAppliedTimeLeft -= Time.deltaTime;
         OverlappingFix();
 
@@ -140,7 +145,7 @@ public class AINavigation : IUnit {
         {
             //Handled in IUnit
         }
-        else if(state == AIState.Preparing) //if(attackChargeTimeLeft >= 0)//Still preparating
+        else if(state == AIState.Preparing) //Still preparating
         {
             attackChargeTimeLeft -= Time.deltaTime;
             if (attackChargeTimeLeft < 0)//Finished preparation, start attacking
@@ -172,9 +177,14 @@ public class AINavigation : IUnit {
     public override void SetStunned(bool v)
     {
         if (v)
+        {
             state = AIState.Stunned;
+            SetVisualColors(new Color(1f, 1f, 1f), "Stunned");
+        }
         else
+        {
             state = AIState.Searching;
+        }
         base.SetStunned(v);
     }
 

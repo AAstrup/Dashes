@@ -24,8 +24,8 @@ public class WorldContainerLoader {
         //World 1
         var spawnListW1 = new List<SpawnTypeContainer>();
         spawnListW1.Add(new SpawnTypeContainer(new List<UnitType>() { UnitType.Enemy_Stupid }));
-        spawnListW1.Add(new SpawnTypeContainer(new List<UnitType>() { UnitType.Enemy_Stupid }, new List<UnitType>() { }, new List<UnitType>() { UnitType.Enemy_Archer }));
-        spawnListW1.Add(new SpawnTypeContainer(new List<UnitType>() { UnitType.Enemy_Stupid }, new List<UnitType>() { UnitType.Enemy_Charger }, new List<UnitType>() { UnitType.Enemy_Charger }, null, new List<UnitType>() { UnitType.Enemy_Boss }));
+        spawnListW1.Add(new SpawnTypeContainer(new List<UnitType>() { UnitType.Enemy_Stupid }, new List<UnitType>() { }, new List<UnitType>() { UnitType.Enemy_Archer }, new List<UnitType>() { UnitType.Enemy_Waller }));
+        spawnListW1.Add(new SpawnTypeContainer(new List<UnitType>() { UnitType.Enemy_Stupid }, new List<UnitType>() { UnitType.Enemy_Charger }, new List<UnitType>() { UnitType.Enemy_Charger }, new List<UnitType>() { UnitType.Enemy_Waller }, new List<UnitType>() { UnitType.Enemy_Boss }));
         var W1 = new WorldContainer(spawnListW1, "Room_GrassRoomPrefab", 2, 2,true, 1, 3);
         worldList.Add(W1);
     }

@@ -107,7 +107,6 @@ public class RoomScript {
     }
     public void SetGoal(bool isBossLevel)
     {
-        Debug.Log("Step 1: is boss level" + isBossLevel);
         if (isBossLevel)
             type = roomType.B;
         else if (!isBossLevel)

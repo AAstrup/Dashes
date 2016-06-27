@@ -16,7 +16,7 @@ public class EnemyMelee : AINavigation {
 
     public override void Fire(Vector2 pos)
     {
-        if (Vector2.Distance(Pos+deltaPos, target.Pos) <= hitRange)
+        if (Vector2.Distance(pos, target.Pos) <= hitRange)//Pos+deltaPos
         {
             DamagePlayer(damage, target);
         }
@@ -26,6 +26,6 @@ public class EnemyMelee : AINavigation {
     void CreateEffect(Vector2 pos)
     {
         if(hitEffect != ParticleEffectHandler.particleType.effect_none)
-            References.instance.particleHandler.Emit(hitEffect, Mathf.FloorToInt(hitParticleASecond * Time.deltaTime) + hitParticleMin, Pos + deltaPos);
+            References.instance.particleHandler.Emit(hitEffect, Mathf.FloorToInt(hitParticleASecond * Time.deltaTime) + hitParticleMin, pos);//
     }
 }
