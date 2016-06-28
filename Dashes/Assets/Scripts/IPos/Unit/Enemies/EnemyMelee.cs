@@ -26,6 +26,6 @@ public class EnemyMelee : AINavigation {
     void CreateEffect(Vector2 pos)
     {
         if(hitEffect != ParticleEffectHandler.particleType.effect_none)
-            References.instance.particleHandler.Emit(hitEffect, Mathf.FloorToInt(hitParticleASecond * Time.deltaTime) + hitParticleMin, pos);//
+            References.instance.particleHandler.Emit(hitEffect, Mathf.CeilToInt(hitParticleASecond * Time.deltaTime) + hitParticleMin, pos,GBref.transform.eulerAngles.z);//
     }
 }

@@ -16,16 +16,22 @@ public class ParticleEffectHandler
                 particles.Add((particleType)Enum.Parse(typeof(particleType), entry.Key), new ParticleEffect
                 (References.instance.CreatePrefabWithParameters(entry.Key, new Vector3(0, 0, 0), new Vector3(0, 0, 0)).GetComponent<ParticleSystem>()));
         }
+        Emit(particleType.effect_hit, 1, new Vector2(0, -10), 0);
+        Emit(particleType.effect_hit, 1, new Vector2(2, -10), 90);
+        Emit(particleType.effect_hit, 1, new Vector2(4, -10), 180);
+        Emit(particleType.effect_hit, 1, new Vector2(6, -10), 270);
     }
 
     public void Emit(particleType type,int amount,Vector2 pos,float rot = 0)
     {
         if (type == particleType.effect_none)
             throw new Exception("Particle type is set to none but still spawned?");
-        if (particles[type]._pSystem.startRotation != rot)
-        {
-            particles[type]._pSystem.startRotation = rot;
-        }
+        //if (particles[type]._pSystem.startRotation != rot)
+        //{
+            particles[type]._pSystem.startRotation = Mathf.Deg2Rad * rot;
+        Debug.Log("rot " + rot);
+        Debug.Log("Particles rot " + particles[type]._pSystem.startRotation);
+        //}
         particles[type].Emit(amount,pos);
     }
 
