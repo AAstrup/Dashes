@@ -5,8 +5,9 @@ public class EnemyMelee : AINavigation {
     
     public IUnit target;
     protected ParticleEffectHandler.particleType hitEffect = ParticleEffectHandler.particleType.effect_none;
-    protected int hitParticleASecond;//particles per second
+    protected float hitParticleASecond;//particles per second
     protected int hitParticleMin;//minimum particles emitted.
+    protected float particlesToCreateSum;// when reaching 1 or above creates a particle or more, otherwise add up the amount until reaching 1 or above;
 
     public override void Update()
     {
@@ -20,12 +21,28 @@ public class EnemyMelee : AINavigation {
         {
             DamagePlayer(damage, target);
         }
-        CreateEffect(pos);
+        CreateSingleEffect(pos);
     }
 
-    void CreateEffect(Vector2 pos)
+    protected void CreateSingleEffect(Vector2 pos)
     {
-        if(hitEffect != ParticleEffectHandler.particleType.effect_none)
-            References.instance.particleHandler.Emit(hitEffect, Mathf.CeilToInt(hitParticleASecond * Time.deltaTime) + hitParticleMin, pos,GBref.transform.eulerAngles.z);//
+        particlesToCreateSum += hitParticleASecond * Time.deltaTime;
+        CreateOnlyEffect(pos);
+        particlesToCreateSum -= Mathf.FloorToInt(particlesToCreateSum);
+    }
+
+    protected void CreateMultipleEffect(Vector2[] pos)
+    {
+        particlesToCreateSum += hitParticleASecond * Time.deltaTime;
+        foreach (var p in pos)
+        {
+            CreateOnlyEffect(p);
+        }
+        particlesToCreateSum -= Mathf.FloorToInt(particlesToCreateSum);
+    }
+
+    private void CreateOnlyEffect(Vector2 pos) {
+        if (hitEffect != ParticleEffectHandler.particleType.effect_none && Mathf.FloorToInt(particlesToCreateSum) != 0)
+            References.instance.particleHandler.Emit(hitEffect, Mathf.FloorToInt(particlesToCreateSum) + hitParticleMin, pos, GBref.transform.eulerAngles.z);//
     }
 }

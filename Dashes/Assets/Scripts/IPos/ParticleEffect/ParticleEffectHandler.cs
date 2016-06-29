@@ -26,12 +26,7 @@ public class ParticleEffectHandler
     {
         if (type == particleType.effect_none)
             throw new Exception("Particle type is set to none but still spawned?");
-        //if (particles[type]._pSystem.startRotation != rot)
-        //{
-            particles[type]._pSystem.startRotation = Mathf.Deg2Rad * rot;
-        Debug.Log("rot " + rot);
-        Debug.Log("Particles rot " + particles[type]._pSystem.startRotation);
-        //}
+        particles[type]._pSystem.startRotation = Mathf.Deg2Rad * (360 - rot);//Vi rotater mod uret, mens de gør med uret
         particles[type].Emit(amount,pos);
     }
 

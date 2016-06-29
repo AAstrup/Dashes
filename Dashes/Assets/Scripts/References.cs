@@ -23,7 +23,6 @@ public class References : MonoBehaviour
 
     public void Reset()
     {
-        Debug.Log("Step 1");
         if (UnitHandler != null)
             UnitHandler.Reset();
         if (DetailHandler != null)

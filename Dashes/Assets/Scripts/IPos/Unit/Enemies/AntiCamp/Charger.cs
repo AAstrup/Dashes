@@ -12,7 +12,7 @@ public class Charger : EnemyMelee {
         moveAttackSpeedPercentage = MovementSpeedBase;
         continueFireTimeSeconds = 2f;
         cd = 1.5f;
-        hitParticleASecond = 100;
+        hitParticleASecond = 5f;
         engageRange = 6f;
         attackChargeTime = 0.5f;
         hitEffect = ParticleEffectHandler.particleType.effect_hit;
