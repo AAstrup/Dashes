@@ -13,9 +13,10 @@ public class Charger : EnemyMelee {
         continueFireTimeSeconds = 2f;
         cd = 1.5f;
         hitParticleASecond = 5f;
+        hitParticleMin = 0;
         engageRange = 6f;
         attackChargeTime = 0.5f;
-        hitEffect = ParticleEffectHandler.particleType.effect_hit;
+        hitEffect = ParticleEffectHandler.particleType.effect_slashEffect;
 
         GenericConstructor(References.instance.PrefabLibrary.Prefabs["Enemy_Charger"]);
     }

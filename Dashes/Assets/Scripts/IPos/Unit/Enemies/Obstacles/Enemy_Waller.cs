@@ -15,7 +15,7 @@ public class Enemy_Waller : EnemyMelee {
         hitParticleASecond = 1.5f;
         engageRange = 6f;
         attackChargeTime = 0.5f;
-        hitEffect = ParticleEffectHandler.particleType.effect_hit;
+        hitEffect = ParticleEffectHandler.particleType.effect_slashEffect;
 
         GenericConstructor(References.instance.PrefabLibrary.Prefabs["Enemy_Waller"]);
     }

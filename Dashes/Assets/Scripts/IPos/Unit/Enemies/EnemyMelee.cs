@@ -42,7 +42,7 @@ public class EnemyMelee : AINavigation {
     }
 
     private void CreateOnlyEffect(Vector2 pos) {
-        if (hitEffect != ParticleEffectHandler.particleType.effect_none && Mathf.FloorToInt(particlesToCreateSum) != 0)
-            References.instance.particleHandler.Emit(hitEffect, Mathf.FloorToInt(particlesToCreateSum) + hitParticleMin, pos, GBref.transform.eulerAngles.z);//
+        if (hitEffect != ParticleEffectHandler.particleType.effect_none && Mathf.FloorToInt(Mathf.Max(particlesToCreateSum,hitParticleMin)) != 0)
+            References.instance.particleHandler.Emit(hitEffect, Mathf.FloorToInt(particlesToCreateSum) + hitParticleMin, pos, GBref.transform.eulerAngles.z);
     }
 }
