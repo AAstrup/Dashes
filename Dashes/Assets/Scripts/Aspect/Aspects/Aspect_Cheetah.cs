@@ -9,7 +9,6 @@ public class Aspect_Cheetah : Aspect
     public override void Activate(float triggervalue)
     {
         Player.FloatVars["MovementSpeedIncrease"].Add(0.50f);
-        Debug.Log("ACTIVATED");
         Active = true;
     }
 

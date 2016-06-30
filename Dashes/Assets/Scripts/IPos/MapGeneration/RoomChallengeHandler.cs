@@ -13,15 +13,16 @@ public class RoomChallengeHandler {
         challengeToInfo.Add(RoomChallenge.FastMS, new RoomChallengeChallengeInfo(1f, 1.25f, 1f, 1f, "Runners"));
         challengeToInfo.Add(RoomChallenge.FastAS, new RoomChallengeChallengeInfo(1f, 1f, 1.25f, 1f, "Fast"));
         challengeToInfo.Add(RoomChallenge.HighDMG, new RoomChallengeChallengeInfo(1f, 1f, 1f, 1.25f, "Pumpers"));
+        challengeToInfo.Add(RoomChallenge.None, new RoomChallengeChallengeInfo(1f, 1f, 1f, 1f, "DEBUG"));
     }
 
     public void ApplyChallenge(IUnit _unit, RoomChallenge challenge)
     {
-        if (challenge == RoomChallenge.None)
-            return;
+        //if (challenge == RoomChallenge.None)
+        //    return;
         var unit = (AINavigation) _unit;
         unit.damage = challengeToInfo[challenge].dmgMultiplier * unit.damage;
-        unit.cd = challengeToInfo[challenge].attackSpeedMultiplier / unit.cd;
+        unit.cd = (2f - challengeToInfo[challenge].attackSpeedMultiplier) * unit.cd;
         unit.MovementSpeedBase = challengeToInfo[challenge].moveSpeedMultiplier * unit.MovementSpeedBase;
         unit.HealthMax = challengeToInfo[challenge].hpMultiplier * unit.HealthMax;
         unit.HealthCurrent = unit.HealthMax;

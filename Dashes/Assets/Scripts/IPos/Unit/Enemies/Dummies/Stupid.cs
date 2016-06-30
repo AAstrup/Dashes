@@ -9,8 +9,8 @@ public class Stupid : EnemyMelee {
         HealthMax = 20;
         HealthCurrent = 20;
         MovementSpeedBase = 1f;
-        hitEffect = ParticleEffectHandler.particleType.effect_hit;
-        hitParticleMin = 20;
+        hitEffect = ParticleEffectHandler.particleType.effect_slashEffect;
+        hitParticleMin = 1;
         attackChargeTime = 0.5f;
 
         GenericConstructor(References.instance.PrefabLibrary.Prefabs["Enemy_Stupid"]);

@@ -8,6 +8,7 @@ public abstract class IUnit : Position {
     public float HealthCurrent;
     public float MovementSpeedBase;
     public float MovementSpeedCurrent;
+    protected bool marked = false;
 
     public float tenacity = 0f;//goes from 0 - 1
     private bool Stunned;
@@ -112,11 +113,21 @@ public abstract class IUnit : Position {
 
     public void VisualMarked()
     {
-        GBSpriteRenderer.color = new Color(0.5f, 0.5f, 0.5f);
+        marked = true;
+        GBSpriteRenderer.color = new Color(GBSpriteRenderer.color.r/2f, GBSpriteRenderer.color.g/2f, GBSpriteRenderer.color.b/2f);
     }
     public void VisualUnMarked()
     {
-        GBSpriteRenderer.color = new Color(1f,1f,1f);
+        marked = false;
+        GBSpriteRenderer.color = new Color(GBSpriteRenderer.color.r * 2f, GBSpriteRenderer.color.g * 2f, GBSpriteRenderer.color.b * 2f);
+    }
+
+    protected void SetVisualColors(Color c,string caller)
+    {
+        if (marked)
+            GBSpriteRenderer.color = new Color(c.r / 2f, c.g / 2f, c.b / 2f);
+        else
+            GBSpriteRenderer.color = c;
     }
 
     public virtual void SetStunned(bool v) { Stunned = v; }

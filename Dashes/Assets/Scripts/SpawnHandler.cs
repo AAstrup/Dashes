@@ -36,6 +36,8 @@ public class SpawnHandler {
             enemy = new Stupid(player);
         else if (enemyType == UnitType.Enemy_Charger)
             enemy = new Charger(player);
+        else if (enemyType == UnitType.Enemy_Waller)
+            enemy = new Enemy_Waller(player);
         else if (enemyType == UnitType.Enemy_Archer)
             enemy = new Archer(player);
         else if (enemyType == UnitType.Enemy_Boss)
@@ -46,8 +48,6 @@ public class SpawnHandler {
             enemy = new Enemy_tutorial_Still(player);
         else if (enemyType == UnitType.Enemy_tutorial_Towards)
             enemy = new Enemy_tutorial_Towards(player);
-        else if (enemyType == UnitType.Enemy_tutorial_BossSpawner)
-            enemy = new Enemy_tutorial_BossSpawner(player);
         else
             throw new System.Exception("enemyType not supported");
 
@@ -88,7 +88,7 @@ public enum UnitType {
     //Introduced at World 0
     Enemy_tutorial_Towards, Enemy_tutorial_Still, Enemy_tutorial_Flee, Enemy_tutorial_BossSpawner,
     //Introduced at world 1
-    Enemy_Stupid, Enemy_Archer, Enemy_Charger, Enemy_Boss             
+    Enemy_Stupid, Enemy_Archer, Enemy_Charger, Enemy_Waller, Enemy_Boss             
 }
 
 public enum SpawnInfoType { potion, aspect, goal}
