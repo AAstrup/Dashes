@@ -90,6 +90,11 @@ public class UIHandler
         _texts["ComboText"].gameObject.SetActive(false);
     }
 
+    public void UpdateLevel(int world,int level)
+    {
+        _texts["LevelText"].text = "Level: " + world.ToString() + "-" + level.ToString();
+    }
+
     public void Update()
     {
         ImageColorChangeActions.ForEach(typ =>

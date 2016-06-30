@@ -8,10 +8,10 @@ public class ProgressionHandler {
     SpawnTypeContainerLoader loader;
     //Used to generate the a level, increase value to increase differculty
     int level = 1;
-    int startRoomsHor = 1;
+    int startRoomsHor = 2;
     int startRoomsVer = 2;
-    int bossEveryLevelAmount = 1;//Every this value of levels a boss will spawn instead the goal
-    int world = 0;//When completing and killing the boss this increases.
+    int bossEveryLevelAmount = 2;//Every this value of levels a boss will spawn instead the goal
+    int world = 1;//When completing and killing the boss this increases.
 
     //Changed when generating new level
     RoomLayoutHandler RoomLayoutHandler;
@@ -43,6 +43,8 @@ public class ProgressionHandler {
         RoomHandler.Init(mapGenerator.GetStartRoom(), mapGenerator, RoomLayoutHandler);
 
         References.instance.UpdateReferences();
+
+        References.instance.UIHandler.UpdateLevel(world,level);
     }
 
     private bool IsBossLevel()

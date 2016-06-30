@@ -53,6 +53,8 @@ public class MapGenerator {
         goal.SetGoal(_isBossLevel);
         printMap();
         DrawMap();
+
+        
     }
 
     public void Reset()
