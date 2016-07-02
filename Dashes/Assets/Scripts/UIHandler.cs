@@ -124,7 +124,7 @@ public class UIHandler
 
     public void MapCreateRoom(int w,int h)
     {
-        GameObject temp = References.instance.CreateGameObject(References.instance.PrefabLibrary.Prefabs["MapRoom"]);
+        GameObject temp = References.instance.CreateGameObject(References.instance.PrefabLibrary.Prefabs["Map_Room"]);
         temp.transform.SetParent(_rectTransforms["Map"].RectTransform.transform,false);
         _mapRooms.Add(new MapRoom(temp,temp.GetComponent<RectTransform>(),w,h));
     }
@@ -144,7 +144,7 @@ public class UIHandler
 
     public void MapCreateDoor(float w, float h)
     {
-        GameObject temp = References.instance.CreateGameObject(References.instance.PrefabLibrary.Prefabs["MapDoor"]);
+        GameObject temp = References.instance.CreateGameObject(References.instance.PrefabLibrary.Prefabs["Map_Door"]);
         temp.transform.SetParent(_rectTransforms["Map"].RectTransform.transform, false);
         _mapDoors.Add(new MapDoor(temp, temp.GetComponent<RectTransform>(), w, h));
     }
@@ -290,7 +290,7 @@ public class UIHandler
                 }
             }
         }
-        var temp = References.instance.CreateGameObject(References.instance.PrefabLibrary.Prefabs["MapPlayer"]);
+        var temp = References.instance.CreateGameObject(References.instance.PrefabLibrary.Prefabs["Map_Player"]);
         temp.transform.SetParent(_rectTransforms["Map"].RectTransform.transform, false);
         _mapPlayer = temp.GetComponent<RectTransform>();
         _mapPlayer.anchoredPosition = Vector2.zero;
