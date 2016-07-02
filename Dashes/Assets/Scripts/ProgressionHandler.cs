@@ -45,6 +45,7 @@ public class ProgressionHandler
         RoomHandler.Init(mapGenerator.GetStartRoom(), mapGenerator, RoomLayoutHandler);
 
         References.instance.UpdateReferences();
+        References.instance.UIHandler.UpdateLevel(currentWorld.GetWorldNumber(),currentWorld.GetCurrentLevel());
     }
 
     public void MapComplete()

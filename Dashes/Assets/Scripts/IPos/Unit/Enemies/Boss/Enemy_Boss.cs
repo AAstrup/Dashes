@@ -25,13 +25,15 @@ public class Enemy_Boss : IUnit
 
     public Enemy_Boss()
     {
-        HealthMax = 250;
-        HealthCurrent = 250;
+        HealthMax = 300;
+        HealthCurrent = 300;
         MovementSpeedBase = 1f;
 
         GenericConstructor(References.instance.PrefabLibrary.Prefabs["Enemy_Boss"]);
 
         laserBounces = new List<LaserBounce>();
+
+        References.instance.UIHandler.EnableBoss();
     }
 
     public override void Update()
@@ -91,13 +93,13 @@ public class Enemy_Boss : IUnit
 
                         if (laserDelay <= 0)
                         { 
-                            Rot += (45+15*damaged33+15*damaged50) * Time.deltaTime * laserDir;
+                            Rot += (40+15*damaged33) * Time.deltaTime * laserDir;
 
                             laserDirChangeDelay -= Time.deltaTime * damaged33;
                             if (laserDirChangeDelay <= 0)
                             {
                                 laserDir *= -1;
-                                laserDirChangeDelay = 3f;
+                                laserDirChangeDelay = Random.Range(2f,3.5f);
                             }
 
                             if (laserSpawnTime <= 0)
@@ -214,6 +216,7 @@ public class Enemy_Boss : IUnit
     public override void Die()
     {
         new GoalScript(Pos, References.instance.UnitHandler.playerIUnit);
+        References.instance.UIHandler.DisableBoss();
         base.Die();
     }
 
@@ -243,6 +246,7 @@ public class Enemy_Boss : IUnit
         {
             damaged66 = 1f;
         }
+        References.instance.UIHandler.UpdateBar("BossBar",HealthCurrent/HealthMax,true);
     }
 
     enum AttackType

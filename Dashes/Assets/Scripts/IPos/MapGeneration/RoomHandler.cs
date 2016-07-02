@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.ComponentModel;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -28,6 +29,13 @@ public class RoomHandler {
     public void EnterRoom(int layoutPosX, int layoutPosY, MapGenerator mapGenerator, RoomLayoutHandler roomLayoutHandler) {
         timeLastDoorOpened = Time.time;
         var roomScript = mapGenerator.GetMap()[layoutPosX, layoutPosY];
+
+        if (References.instance.MapUnknown)
+        {
+            References.instance.UIHandler.MapEnableRoom(layoutPosX, layoutPosY);
+        }
+        References.instance.UIHandler.MapUpdate(layoutPosX,layoutPosY);
+
         currentRoom = roomScript;
         References.instance.colSystem.UpdateRoom(roomScript);
 
@@ -55,6 +63,7 @@ public class RoomHandler {
         UpdateDoors();
 
         Time.timeScale = 0f;//Pauses the game when the room is loaded
+
     }
 
     public void Update()

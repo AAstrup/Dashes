@@ -21,6 +21,8 @@ public class References : MonoBehaviour
     public AspectHandler AspectHandler;
     public RoomHandler RoomHandler;
 
+    public bool MapUnknown;
+
     public void Reset()
     {
         if (UnitHandler != null)
@@ -45,8 +47,10 @@ public class References : MonoBehaviour
     {
         instance = this;
     }
-	void Start () 
-    {
+	void Start ()
+	{
+	    MapUnknown = true;
+
         cameraScript = new CameraScript();
         cameraScript.Init(GameObject.Find("Main Camera"));
         RenderSettings.ambientLight = Color.white;

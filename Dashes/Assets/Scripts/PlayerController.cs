@@ -162,7 +162,7 @@ public class PlayerController : IUnit
         if (_dashingCooldown > 0)
         {
             _dashingCooldown -= Time.deltaTime;
-            References.instance.UIHandler.UpdateBar("AgBar", 1-_dashingCooldown / DashingCooldownDuration);
+            References.instance.UIHandler.UpdateBar("AgBar", 1-_dashingCooldown / DashingCooldownDuration,false);
         }
 
         /*COMBO*/
@@ -304,7 +304,7 @@ public class PlayerController : IUnit
 
         References.instance.UIHandler.UpdateBloodDamage(HealthCurrent/HealthMax);
 
-        References.instance.UIHandler.UpdateBar("HealthBar",HealthCurrent/HealthMax);
+        References.instance.UIHandler.UpdateBar("HealthBar",HealthCurrent/HealthMax,true);
     }
 
     public override void Heal(float amount)
@@ -314,6 +314,6 @@ public class PlayerController : IUnit
 
         References.instance.UIHandler.UpdateBloodHeal(HealthCurrent / HealthMax);
 
-        References.instance.UIHandler.UpdateBar("HealthBar", HealthCurrent / HealthMax);
+        References.instance.UIHandler.UpdateBar("HealthBar", HealthCurrent / HealthMax,true);
     }
 }

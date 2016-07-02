@@ -28,6 +28,7 @@ public class MapGenerator {
         var StartPos = startRoom.GetWorldPos();
         References.instance.UnitHandler.playerIUnit.Pos = StartPos;
         References.instance.cameraScript.SetPos(startRoom);
+        References.instance.UIHandler.MapCreate(rooms,mapWidth,mapHeight);
     }
 
     void CreateLevel()

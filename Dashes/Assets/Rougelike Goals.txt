@@ -5,3 +5,10 @@ class consistency to some extend (know atleast what kit we start with)
 
 Checked:
 combat orientated
+
+
+
+Bokor - The Voodoo Cannibal (Boss)
+1: Snapping mouth charge (+ follow)
+2: Self-healing via zombies that slowly walks towards him and is eaten by him upon contact (+ invulnability during this period)
+3: DoT projectiles curving towards the player (while slowly moving away from the player)

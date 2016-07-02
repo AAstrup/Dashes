@@ -15,6 +15,7 @@ public class WorldContainerLoader {
 
     private void LoadWorlds()
     {
+
         //World 0 -> Tutorial
         var spawnListW0 = new List<SpawnTypeContainer>();
         spawnListW0.Add(new SpawnTypeContainer(new List<UnitType>() { UnitType.Enemy_tutorial_Still }, new List<UnitType>() { UnitType.Enemy_tutorial_Towards }, new List<UnitType>() { UnitType.Enemy_tutorial_Flee }));
@@ -28,6 +29,12 @@ public class WorldContainerLoader {
         spawnListW1.Add(new SpawnTypeContainer(new List<UnitType>() { UnitType.Enemy_Stupid }, new List<UnitType>() { UnitType.Enemy_Charger }, new List<UnitType>() { UnitType.Enemy_Charger }, new List<UnitType>() { UnitType.Enemy_Waller }, new List<UnitType>() { UnitType.Enemy_Boss }));
         var W1 = new WorldContainer(spawnListW1, "Room_GrassRoomPrefab", 2, 2,true, 1, 3);
         worldList.Add(W1);
+
+        //World 2 -> Boss Test (temp)
+        var spawnListWm = new List<SpawnTypeContainer>();
+        spawnListWm.Add(new SpawnTypeContainer(new List<UnitType>() { UnitType.Enemy_Boss }));
+        var Wm = new WorldContainer(spawnListWm, "Room_GrassRoomPrefab",1, 2, true, 2, 1);
+        worldList.Add(Wm);
     }
 
     public WorldContainer GetWorld(int startWorld,int startLevel = 1)

@@ -156,4 +156,9 @@ public class RoomScript {
         return doors.Contains(3);
     }
     public enum roomType { S, G, E, R, B};
+    //START ROOM
+    //GOAL ROOM
+    //ENEMY ROOM
+    //REWARD ROOM
+    //BOSS ROOM
 }
