@@ -6,8 +6,8 @@ public class Stupid : EnemyMelee {
     public Stupid(IUnit player)
     {
         target = player;
-        HealthMax = 20;
-        HealthCurrent = 20;
+        HealthMax = 14;
+        HealthCurrent = 14;
         MovementSpeedBase = 1f;
         hitEffect = ParticleEffectHandler.particleType.effect_slashEffect;
         hitParticleMin = 1;

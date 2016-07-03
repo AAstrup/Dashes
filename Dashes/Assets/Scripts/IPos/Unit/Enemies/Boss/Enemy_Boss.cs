@@ -25,8 +25,8 @@ public class Enemy_Boss : IUnit
 
     public Enemy_Boss()
     {
-        HealthMax = 300;
-        HealthCurrent = 300;
+        HealthMax = 120;
+        HealthCurrent = 120;
         MovementSpeedBase = 1f;
 
         GenericConstructor(References.instance.PrefabLibrary.Prefabs["Enemy_Boss"]);
@@ -34,6 +34,7 @@ public class Enemy_Boss : IUnit
         laserBounces = new List<LaserBounce>();
 
         References.instance.UIHandler.EnableBoss();
+        References.instance.UIHandler.UpdateBar("BossBar", HealthCurrent / HealthMax, true);
     }
 
     public override void Update()

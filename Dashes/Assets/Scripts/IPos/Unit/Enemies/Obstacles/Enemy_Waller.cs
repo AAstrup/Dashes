@@ -7,8 +7,8 @@ public class Enemy_Waller : EnemyMelee {
 	public Enemy_Waller(IUnit player)
     {
         target = player;
-        HealthMax = 20;
-        HealthCurrent = 20;
+        HealthMax = 13;
+        HealthCurrent = 13;
         MovementSpeedBase = 1.5f;
         continueFireTimeSeconds = 2f;
         cd = 1.5f;

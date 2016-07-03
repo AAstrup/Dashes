@@ -14,6 +14,7 @@ public class References : MonoBehaviour
     public MapGenerator mapGenerator;
     public CollisionSystem colSystem;
     public PrefabLibrary PrefabLibrary;//prefabs used ingame
+    public SpriteLibrary SpriteLibrary;
     public UnitHandler UnitHandler;//Class responsible for actions regarding units
     public TriggerHandler triggerHandler;//Responsible for everything which triggers depending on distance
     public ParticleEffectHandler particleHandler;
@@ -60,6 +61,9 @@ public class References : MonoBehaviour
 
         PrefabLibrary = new PrefabLibrary();//Should be loaded in game start
         PrefabLibrary.Init();
+
+        SpriteLibrary = new SpriteLibrary();
+        SpriteLibrary.Init();
         
         colSystem = new CollisionSystem();
         colSystem.Init();

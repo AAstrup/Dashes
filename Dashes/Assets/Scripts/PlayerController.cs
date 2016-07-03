@@ -23,12 +23,14 @@ public class PlayerController : IUnit
     public List<IUnit> Marked = new List<IUnit>();
 
     public float AttackDamage = 0f;
-    public float AttackDamageBase = 10f;
+    public float AttackDamageBase = 4f;
 
-    public float ComboMultiplication = 0.2f;
+    public float ComboMultiplication = 1f;
     private int _comboSize = 0;
     private float _comboTimeCurrent = 0f;
     private float _comboTimeBase = 1.5f;
+
+    public int ComboMaxSize = 4;
 
     private List<MarkedProjectile> _markedProjectiles;
     private const float _markedProjectileSpeed = 17.5f;
@@ -39,6 +41,7 @@ public class PlayerController : IUnit
     private float _standmovetimetriggerdelay = 0f;
 
     public bool MarkedUnitsCanAlsoReset = false;
+
 
     public Dictionary<string, List<float>> FloatVars = new Dictionary<string, List<float>>()
     {
@@ -100,11 +103,6 @@ public class PlayerController : IUnit
 
     public void Control()
     {
-        /*TEMP*/
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            Effects.Add(new Effect(this,Effect.EffectTypes.Boost,0.5f,2f));
-        }
 
         /*DASHING*/
         if (_dashing)
@@ -147,12 +145,13 @@ public class PlayerController : IUnit
                         typ.Effects.Add(new Effect(typ, Effect.EffectTypes.Stun, 1, 1.25f*(1-typ.tenacity)));
                         UpdateCombo(Marked.Count);
 
-                        _comboSize += 1;
+                        _comboSize = Mathf.Min(_comboSize+1,ComboMaxSize);
                         _comboTimeCurrent = _comboTimeBase;
 
                         if (_comboSize >= 2)
                         {
                             References.instance.UIHandler.EnableCombo();
+                            References.instance.UIHandler.UpdateComboFill((float)(_comboSize-1) / (ComboMaxSize-1));
                         }
                     }
                 }
@@ -169,7 +168,7 @@ public class PlayerController : IUnit
         if (_comboSize > 0)
         {
             _comboTimeCurrent -= Time.deltaTime;
-            References.instance.UIHandler.UpdateCombo(_comboSize,_comboTimeCurrent/_comboTimeBase);
+            References.instance.UIHandler.UpdateCombo(_comboSize,_comboTimeCurrent/_comboTimeBase,(float)_comboSize/ComboMaxSize);
             if (_comboTimeCurrent <= 0)
             {
                 _comboSize = 0;
@@ -270,6 +269,8 @@ public class PlayerController : IUnit
         _markedProjectiles = new List<MarkedProjectile>();
 
         GenericConstructor(References.instance.PrefabLibrary.Prefabs["Player"]);
+
+        //References.instance.UIHandler.ArrangeHearts((int)HealthMax); Kaldes i UIHandleren i stedet
     }
 
     float GetAngle(Vector3 targetpos)
@@ -304,7 +305,8 @@ public class PlayerController : IUnit
 
         References.instance.UIHandler.UpdateBloodDamage(HealthCurrent/HealthMax);
 
-        References.instance.UIHandler.UpdateBar("HealthBar",HealthCurrent/HealthMax,true);
+        References.instance.UIHandler.UpdateHearts(HealthCurrent);
+        //References.instance.UIHandler.UpdateBar("HealthBar",HealthCurrent/HealthMax,true);
     }
 
     public override void Heal(float amount)
@@ -314,6 +316,7 @@ public class PlayerController : IUnit
 
         References.instance.UIHandler.UpdateBloodHeal(HealthCurrent / HealthMax);
 
-        References.instance.UIHandler.UpdateBar("HealthBar", HealthCurrent / HealthMax,true);
+        References.instance.UIHandler.UpdateHearts(HealthCurrent);
+        //References.instance.UIHandler.UpdateBar("HealthBar", HealthCurrent / HealthMax,true);
     }
 }

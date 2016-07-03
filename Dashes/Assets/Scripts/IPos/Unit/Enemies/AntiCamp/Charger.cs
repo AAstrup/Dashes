@@ -6,8 +6,8 @@ public class Charger : EnemyMelee {
     public Charger(IUnit player)
     {
         target = player;
-        HealthMax = 10;
-        HealthCurrent = 10;
+        HealthMax = 6;
+        HealthCurrent = 6;
         MovementSpeedBase = 2f;
         moveAttackSpeedPercentage = MovementSpeedBase;
         continueFireTimeSeconds = 2f;

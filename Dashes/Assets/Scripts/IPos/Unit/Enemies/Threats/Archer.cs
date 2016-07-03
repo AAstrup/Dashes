@@ -8,8 +8,8 @@ public class Archer : EnemyRanged {
         attackChargeTime = 0.5f;
         cd = 0.5f;
         target = player;
-        HealthMax = 20;
-        HealthCurrent = 20;
+        HealthMax = 10;
+        HealthCurrent = 10;
         MovementSpeedBase = 0.7f;
         hitRange = 6;
         engageRange = hitRange;

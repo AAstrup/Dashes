@@ -6,8 +6,8 @@ public class Enemy_tutorial_Towards : EnemyMelee {
     public Enemy_tutorial_Towards(IUnit player)
     {
         target = player;
-        HealthMax = 20;
-        HealthCurrent = 20;
+        HealthMax = 10;
+        HealthCurrent = 10;
         MovementSpeedBase = 1f;
         hitParticleMin = 20;
         attackChargeTime = 0.5f;

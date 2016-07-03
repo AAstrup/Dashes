@@ -16,6 +16,8 @@ public class UIHandler
 
     private RectTransform _mapPlayer;
 
+    private List<Image> Hearts; 
+
     public void Init()
     {
         References.instance.CreateGameObject(References.instance.PrefabLibrary.Prefabs["UIholder"]);
@@ -47,6 +49,11 @@ public class UIHandler
 
         _mapRooms = new List<MapRoom>();
         _mapDoors = new List<MapDoor>();
+
+        Hearts = new List<Image>();
+
+        ArrangeHearts((int)References.instance.UnitHandler.playerController.HealthMax/2);
+        UpdateHearts(References.instance.UnitHandler.playerController.HealthCurrent);
     }
 
     public void AdjustScaleFactor()
@@ -84,19 +91,20 @@ public class UIHandler
         _images["BloodBack"].color = new Color(1, 1, 1, (Mathf.Pow(10, 1 - value) / 10) * 0.4f);
     }
 
-    public void UpdateCombo(int size,float timeleft)
+    public void UpdateCombo(int size,float timeleft,float fillamount)
     {
         _images["ComboBack"].fillAmount = timeleft;
         _texts["ComboText"].text = size.ToString();
-
-        _texts["ComboText"].fontSize = Mathf.Min(30 + size*2,60);
-        var s = Mathf.Min(1f, 0.6f + size*0.4f/15);
+        
+        _texts["ComboText"].fontSize = (int)(35+10*fillamount);
+        var s = 0.6f + 0.25f*fillamount;
         _images["ComboFront"].gameObject.transform.localScale = new Vector3(s,s, 1);
     }
 
     public void EnableCombo()
     {
         _images["ComboBack"].gameObject.SetActive(true);
+        _images["ComboFrontFill"].gameObject.SetActive(true);
         _images["ComboFront"].gameObject.SetActive(true);
         _texts["ComboText"].gameObject.SetActive(true);
     }
@@ -104,6 +112,7 @@ public class UIHandler
     {
         _images["ComboBack"].gameObject.SetActive(false);
         _images["ComboFront"].gameObject.SetActive(false);
+        _images["ComboFrontFill"].gameObject.SetActive(false);
         _texts["ComboText"].gameObject.SetActive(false);
     }
 
@@ -119,7 +128,55 @@ public class UIHandler
 
     public void UpdateLevel(int world,int level)
     {
-        _texts["LevelText"].text = "Level: " + world.ToString() + "-" + level.ToString();
+        _texts["LevelText"].text = world.ToString() + "-" + level.ToString();
+    }
+
+    public void UpdateComboFill(float amount)
+    {
+        _images["ComboFrontFill"].fillAmount = amount;
+    }
+
+    public void ArrangeHearts(int no)
+    {
+        Hearts.ForEach(typ => References.instance.DestroyGameObject(typ.transform.gameObject));
+        Hearts = new List<Image>();
+        float w = _rectTransforms["HealthPanel"].RectTransform.sizeDelta.x;
+        float w2 = w / no - 8;
+        float w3 = w / no;
+        if (no <= 8)
+        {
+            //Healthpanel's width er kassen længde
+            for (int i = 0; i < no; i++)
+            {
+                var temp = References.instance.CreateGameObject(References.instance.PrefabLibrary.Prefabs["Heart"]);
+                temp.transform.SetParent(_rectTransforms["HealthPanel"].RectTransform.transform,false);
+                var temp2 = temp.GetComponent<Image>();
+                Hearts.Add(temp2);
+                Debug.Log(Hearts.Count);
+                temp2.rectTransform.anchoredPosition = new Vector2((i+0.5f)*w3-w/2,0);
+                temp2.rectTransform.sizeDelta = new Vector2(w2,w2);
+            }
+        }
+    }
+
+    public void UpdateHearts(float healthamount)
+    {
+        UpdateHearts(Mathf.CeilToInt(healthamount));
+    }
+    public void UpdateHearts(int no)
+    {
+        for (int i = 0; i < Mathf.Floor(no/2f); i++)
+        {
+            Hearts[i].sprite = References.instance.SpriteLibrary.Sprites["HeartFilled"];
+        }
+        if (no%2 != 0)
+        {
+            Hearts[(int)(Mathf.Floor(no / 2f))].sprite = References.instance.SpriteLibrary.Sprites["HeartHalf"];
+        }
+        for (int i = (int)(Mathf.Floor(no / 2f)) + no % 2; i < References.instance.UnitHandler.playerController.HealthMax/2; i++)
+        {
+            Hearts[i].sprite = References.instance.SpriteLibrary.Sprites["HeartEmpty"];
+        }
     }
 
     public void MapCreateRoom(int w,int h)

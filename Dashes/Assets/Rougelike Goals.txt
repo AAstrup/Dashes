@@ -1,11 +1,10 @@
 To do:
 Make a key to the boss room
 Make the walls higher, so that there is no black frames around the room! :)
-Make a max on amount of combo points. This allows for the feeling of being fully charged and seeing the bar is fully filled.
-- Additionally it allows for upgrading the total amount of combo points.
 
 Done:
 Make a boss UI pop up when entering boss room
+Make a max on amount of combo points. This allows for the feeling of being fully charged and seeing the bar is fully filled.
 
 Goals:
 Large enemy varirity
