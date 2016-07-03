@@ -1,0 +1,9 @@
+How to's:
+
+How to create new enemy:
+In [SpawnHandler] at the bottom there is an enum "UnitType" representing each enemy type. Add your minion here.
+In [SpawnHandler] again, at the method "CreateEnemy", add a case for your UnitType, which creates the enemy you desired.
+- Addtionally you proberly want to create a prefab gmj for your enemy to use.
+
+How to control which enemies that gets spawned:
+Go to [WorldContainerLoader] into the method LoadWorlds, and in the given IUnit lists, add it.

@@ -62,6 +62,15 @@ public class SpawnHandler {
         References.instance.RoomHandler.UnitSpawned(enemy);
     }
 
+    private void CreateEnemyFast(UnitType enemyType, Vector2 pos, RoomScript room)
+    {//Func<object> func = delegate { return a; };
+        var player = References.instance.UnitHandler.playerController;
+        Dictionary<UnitType, System.Func<IUnit, IUnit>> typeToCreator = new Dictionary<UnitType, System.Func<IUnit, IUnit>>();
+        System.Func<IUnit, IUnit> func = p => new Stupid(p); //delegate { return new Stupid(player); };
+
+
+    }
+
     public void SpawnPickup(SpawnInfoType spawnType, SpawnInfo spawn)
     {
         var type = spawnType;
