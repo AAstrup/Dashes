@@ -92,7 +92,13 @@ public class SpawnHandler {
     }
 
 }
-public enum UnitSpawnType { stupid, antiCamp, threat, obstacle, boss }
+public enum UnitSpawnType {
+    stupid,     //There can be a lot of these without making it impossible. They serve as a tool for the player to move fast.
+    antiCamp,   //They get close to the player in order to prevent camping. They are not a big threat
+    threat,     //Ranged and possea threat. They are top priority to kill.
+    obstacle,   //They prevents the player for jumping right to threats. 
+    boss
+}
 public enum UnitType {
     //Introduced at World 0
     Enemy_tutorial_Towards, Enemy_tutorial_Still, Enemy_tutorial_Flee, Enemy_tutorial_BossSpawner,

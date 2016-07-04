@@ -76,9 +76,9 @@ public class RoomLayoutLoader
         list.Add(new EnemySpawnInfo(-2, -1, UnitSpawnType.threat, GroupType.groupThreat));
         list.Add(new EnemySpawnInfo(-2, 1, UnitSpawnType.threat, GroupType.groupThreat));
 
-        list.Add(new EnemySpawnInfo(2, 3, UnitSpawnType.obstacle, GroupType.groupObstacle));
+        list.Add(new EnemySpawnInfo(2, 3, UnitSpawnType.stupid, GroupType.groupObstacle));
         list.Add(new EnemySpawnInfo(2, -3, UnitSpawnType.obstacle, GroupType.groupObstacle));
-        list.Add(new EnemySpawnInfo(2, 0, UnitSpawnType.obstacle, GroupType.groupObstacle));
+        list.Add(new EnemySpawnInfo(2, 0, UnitSpawnType.stupid, GroupType.groupObstacle));
 
         return new RoomLayout(list, new List<SpawnInfo>() { });
     }
