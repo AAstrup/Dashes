@@ -249,15 +249,16 @@ public class PlayerController : IUnit
     {
         return value >= requirement ? 1f : 0f;
     }
-    
 
-    public void Die()
+
+    public override void Die()
     {
-        _markedProjectiles.ForEach(typ => References.Destroy(typ.Body));
+        //_markedProjectiles.ForEach(typ => References.Destroy(typ.Body));
         /*
             Spilleren taber!
         */
-        base.Die();
+        //base.Die();
+        References.instance.Reload();
     }
 
     public PlayerController()

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEngine.SceneManagement;
 
 public class References : MonoBehaviour
 {
@@ -162,5 +163,10 @@ public class References : MonoBehaviour
     {
         door.transform.localScale = new Vector3(scale.x* 1.6125f,scale.y* 1.65f, 1);
         gmjs.Insert(door.GetComponent<SpriteRenderer>(), index);
+    }
+
+    public void Reload()
+    {
+        SceneManager.LoadScene("test");
     }
 }
