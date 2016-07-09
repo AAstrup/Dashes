@@ -125,7 +125,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 295120771}
-  SpriteLibrary: {fileID: 0}
   MapUnknown: 0
 --- !u!1 &295120771
 GameObject:
@@ -250,7 +249,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 416942, guid: 580d9b58be9889340b322111e4a65e71, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 163480, guid: 580d9b58be9889340b322111e4a65e71, type: 2}
       propertyPath: m_IsActive

@@ -27,6 +27,7 @@ public class RoomHandler {
     }
 
     public void EnterRoom(int layoutPosX, int layoutPosY, MapGenerator mapGenerator, RoomLayoutHandler roomLayoutHandler) {
+        References.instance.EnterRoomTrigger();
         timeLastDoorOpened = Time.time;
         var roomScript = mapGenerator.GetMap()[layoutPosX, layoutPosY];
 

@@ -152,7 +152,6 @@ public class UIHandler
                 temp.transform.SetParent(_rectTransforms["HealthPanel"].RectTransform.transform,false);
                 var temp2 = temp.GetComponent<Image>();
                 Hearts.Add(temp2);
-                Debug.Log(Hearts.Count);
                 temp2.rectTransform.anchoredPosition = new Vector2((i+0.5f)*w3-w/2,0);
                 temp2.rectTransform.sizeDelta = new Vector2(w2,w2);
             }
