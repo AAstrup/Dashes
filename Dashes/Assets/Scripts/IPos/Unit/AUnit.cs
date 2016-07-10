@@ -133,4 +133,8 @@ public abstract class IUnit : Position {
     public virtual void SetStunned(bool v) { Stunned = v; }
 
     public virtual bool GetStunned() { return Stunned; }
+
+	public virtual void RoomStart (){
+	}
+
 }

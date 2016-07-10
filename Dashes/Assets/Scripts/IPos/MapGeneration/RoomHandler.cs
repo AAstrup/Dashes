@@ -62,6 +62,8 @@ public class RoomHandler {
         currentLayout.SetHasSpawned(true);
         UpdateDoors();
 
+		References.instance.UnitHandler.Units.ForEach (typ => typ.RoomStart());
+
         Time.timeScale = 0f;//Pauses the game when the room is loaded
 
     }
