@@ -9,9 +9,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 427790}
   - 212: {fileID: 21296830}
-  - 95: {fileID: 9586610}
   m_Layer: 0
-  m_Name: Enemy_Stupid
+  m_Name: Enemy_Blob2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,28 +23,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 132720}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.991338, y: -9.988311, z: 0}
+  m_LocalPosition: {x: -3.1904569, y: -0.060026556, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!95 &9586610
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 132720}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2a91338b7f9435e479ee0b63a0780b91, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!212 &21296830
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -72,7 +54,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d764b952d57aaef4a95f9201f02fffad, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1595be049d3a7554aa35cebb49298d7b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

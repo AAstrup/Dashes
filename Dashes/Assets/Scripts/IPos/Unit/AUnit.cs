@@ -92,6 +92,7 @@ public abstract class IUnit : Position {
     public virtual void Die()
     {
         References.instance.UnitHandler.Units.Remove(this);
+        References.instance.UnitHandler.DeadUnitsInRoom.Add(this);
         References.instance.DestroyGameObject(GBref);
     }
 

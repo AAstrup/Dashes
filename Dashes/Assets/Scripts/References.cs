@@ -37,6 +37,11 @@ public class References : MonoBehaviour
             mapGenerator.Reset();
     }
 
+    public void EnterRoomTrigger()
+    {
+        UnitHandler.Reset();
+    }
+
     public RoomLayoutHandler RoomLayoutHandler;
     public SpawnHandler SpawnHandler;
     public UIHandler UIHandler;

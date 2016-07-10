@@ -31,10 +31,10 @@ public class WorldContainerLoader {
         worldList.Add(W1);
 
         //World 2 -> Boss Test (temp)
-        var spawnListWm = new List<SpawnTypeContainer>();
-        spawnListWm.Add(new SpawnTypeContainer(new List<UnitType>() { UnitType.Enemy_Boss }));
-        var Wm = new WorldContainer(spawnListWm, "Room_GrassRoomPrefab",1, 2, true, 2, 1);
-        worldList.Add(Wm);
+        var spawnListW2 = new List<SpawnTypeContainer>();
+        spawnListW2.Add(new SpawnTypeContainer(new List<UnitType>() { UnitType.Enemy_Blob }));
+        var W2 = new WorldContainer(spawnListW2, "Room_GrassRoomPrefab",2, 2, false, 2, 1);
+        worldList.Add(W2);
     }
 
     public WorldContainer GetWorld(int startWorld,int startLevel = 1)
