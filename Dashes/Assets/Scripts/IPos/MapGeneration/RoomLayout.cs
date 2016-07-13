@@ -10,9 +10,9 @@ public class RoomLayout  {
 
     public enum RoomLayoutOrientation { NotSet, Vertical, Horizontal, Both }
     List<EnemySpawnInfo> _enemies;
-    List<SpawnInfo> _regularSpawns;
+    List<ItemSpawnInfo> _regularSpawns;
 
-    public RoomLayout(List<EnemySpawnInfo> enemies, List<SpawnInfo> pickups)
+    public RoomLayout(List<EnemySpawnInfo> enemies, List<ItemSpawnInfo> pickups)
     {
         _enemies = enemies;
         _regularSpawns = pickups;
@@ -25,7 +25,7 @@ public class RoomLayout  {
     {
         return _enemies;
     }
-    public List<SpawnInfo> GetRegularSpawns()
+    public List<ItemSpawnInfo> GetRegularSpawns()
     {
         return _regularSpawns;
     }

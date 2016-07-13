@@ -66,7 +66,7 @@ public class RoomHandler {
 		References.instance.UnitHandler.Units.ForEach (typ => typ.RoomStart());
 
         Time.timeScale = 0f;//Pauses the game when the room is loaded
-
+        Debug.Log("Room type "+ currentRoom.GetRoomType());
     }
 
     public void Update()

@@ -14,6 +14,7 @@ public class Enemy_Blob1 : EnemyMelee
         hitParticleMin = 1;
         attackChargeTime = 0.5f;
 
-        GenericConstructor(References.instance.PrefabLibrary.Prefabs["Enemy_Blob1"]);
+        reviveTypeString = "Enemy_Blob1";
+        FinishConstructor();
     }
 }

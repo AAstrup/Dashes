@@ -10,6 +10,7 @@ public class Enemy_tutorial_Still : AINavigation {
         MovementSpeedBase = 0f;
         MovementSpeedCurrent = MovementSpeedBase;
         damage = 0f;
-        GenericConstructor(References.instance.PrefabLibrary.Prefabs["Enemy_tutorial_Still"]);
+        reviveTypeString = "Enemy_tutorial_Still";
+        FinishConstructor();
     }
 }

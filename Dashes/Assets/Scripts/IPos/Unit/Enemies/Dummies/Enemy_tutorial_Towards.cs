@@ -12,7 +12,9 @@ public class Enemy_tutorial_Towards : EnemyMelee {
         hitParticleMin = 20;
         attackChargeTime = 0.5f;
         damage = 0f;
-        GenericConstructor(References.instance.PrefabLibrary.Prefabs["Enemy_tutorial_Towards"]);
+
+        reviveTypeString = "Enemy_tutorial_Towards";
+        FinishConstructor();
     }
 
     public override void Fire(Vector2 pos)

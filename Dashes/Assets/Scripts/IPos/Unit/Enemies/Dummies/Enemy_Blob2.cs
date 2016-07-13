@@ -14,7 +14,8 @@ public class Enemy_Blob2 : EnemyMelee
         hitParticleMin = 1;
         attackChargeTime = 0.5f;
 
-        GenericConstructor(References.instance.PrefabLibrary.Prefabs["Enemy_Blob2"]);
+        reviveTypeString = "Enemy_Blob2";
+        FinishConstructor();
     }
 
     public override void Die()

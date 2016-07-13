@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Editor_RoomLayout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <layoutInfo>
+    <orientation>Vertical</orientation>
+    <roomType>E</roomType>
+  </layoutInfo>
+  <enemieInfos>
+    <EnemySpawnInfo>
+      <_x>4</_x>
+      <_y>2</_y>
+      <_groupType>groupHorde</_groupType>
+    </EnemySpawnInfo>
+    <EnemySpawnInfo>
+      <_x>7</_x>
+      <_y>3</_y>
+      <_groupType>groupHorde</_groupType>
+    </EnemySpawnInfo>
+  </enemieInfos>
+  <pickupInfos />
+</Editor_RoomLayout>

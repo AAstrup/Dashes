@@ -28,6 +28,15 @@ public abstract class IUnit : Position {
     public SpriteRenderer GBSpriteRenderer;
 
     public bool Invulnerable = false;
+    protected string reviveTypeString;
+
+    public virtual void Revive()
+    {
+        HealthCurrent = HealthMax;
+        GenericConstructor(References.instance.PrefabLibrary.Prefabs[reviveTypeString]);
+        References.instance.RoomHandler.UnitSpawned(this);
+        References.instance.UnitHandler.DeadUnitsInRoom.Remove(this);
+    }
 
     public virtual void Update()
     {

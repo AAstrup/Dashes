@@ -31,6 +31,11 @@ public class AINavigation : IUnit {
     public float damage = 1f;
     IUnit lastTarget;
 
+    protected void FinishConstructor()
+    {
+        GenericConstructor(References.instance.PrefabLibrary.Prefabs[reviveTypeString]);
+    }
+
     void SetAngle (Vector3 otherpos) {
         //float currentRot = transform.eulerAngles.z;
         var targetRot = Mathf.Atan2(otherpos.y - Pos.y, otherpos.x - Pos.x) * 180 / Mathf.PI;
@@ -66,7 +71,7 @@ public class AINavigation : IUnit {
 
 
     // Update is called once per frame
-    public virtual bool CanFire (IUnit target) {   
+    public virtual bool CanFire (IUnit target) { 
         if (EngageCondition(target))
         {
             return true;
@@ -137,9 +142,11 @@ public class AINavigation : IUnit {
     protected void Update(IUnit target)
     {
         base.Update();
+        OverlappingFix();
+        if (target == null)
+            return;
         lastTarget = target;
         attackAppliedTimeLeft -= Time.deltaTime;
-        OverlappingFix();
 
         if (state == AIState.Stunned)
         {
@@ -208,5 +215,10 @@ public class AINavigation : IUnit {
             attackAppliedTimeLeft = attackAppliedMinTime;
             target.Damage(damage);
         }
+    }
+
+    public override void Revive()
+    {
+        base.Revive();
     }
 }

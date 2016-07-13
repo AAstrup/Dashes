@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
+using System.IO;
+using System.Linq;
 
 /// <summary>
 /// Creates a list of enemyspaws, and regularspawns.
@@ -14,41 +16,84 @@ public class RoomLayoutLoader
     List<RoomLayout> enemyLoadout = new List<RoomLayout>();
     List<RoomLayout> bossLoadout = new List<RoomLayout>();
 
+    Dictionary<RoomScript.roomType, List<RoomLayout>> roomTypeToDictionary;
+    Editor_Load loader;
+
     public void Init()
     {
         //Possible room loadouts are loaded here. Atm we just add some hardcoded by default
-        startLoadout.Add(GetDefaultRoom());
-        goalLoadout.Add(GetGoalRoom01());
-        rewardLoadout.Add(GetRewardRoom01());
-        enemyLoadout.Add(GetEnemyRoom01());//GetDefaultEnemyRoom01());
-        bossLoadout.Add(GetBossRoom01());
+        loader = new Editor_Load();
+        loader.Init();
+
+        roomTypeToDictionary = new Dictionary<RoomScript.roomType, List<RoomLayout>>();
+        roomTypeToDictionary.Add(RoomScript.roomType.B, bossLoadout);
+        roomTypeToDictionary.Add(RoomScript.roomType.E, enemyLoadout);
+        roomTypeToDictionary.Add(RoomScript.roomType.G, goalLoadout);
+        roomTypeToDictionary.Add(RoomScript.roomType.R, rewardLoadout);
+        roomTypeToDictionary.Add(RoomScript.roomType.S, startLoadout);
+
+        LoadXMLLayouts();
+    }
+
+    private void LoadXMLLayouts()
+    {
+        string[] paths = Directory.GetFiles(loader.folderPath)
+                          .Where(p => p.EndsWith(".xml"))
+                          .ToArray();
+        foreach (var path in paths)
+        {
+            var editor_layout = loader.InGame_Load(path);
+            var layout = ToNormalLayout(editor_layout);
+
+            roomTypeToDictionary[editor_layout.layoutInfo.roomType].Add(layout);
+        }
+    }
+
+    private RoomLayout ToNormalLayout(Editor_RoomLayout editor_layout)
+    {
+        return new RoomLayout(editor_layout.enemieInfos, editor_layout.pickupInfos);
     }
 
     //Should read from file and spawn upon that.
 
     public RoomLayout GetStartLoadOut()
     {
-        return startLoadout[UnityEngine.Random.Range(0, startLoadout.Count)];
+        if (startLoadout.Count > 0)
+            return startLoadout[UnityEngine.Random.Range(0, startLoadout.Count)];
+        else
+            return LoadEmptyLoadout();
     }
 
     public RoomLayout GetGoalLoadOut()
     {
-        return goalLoadout[UnityEngine.Random.Range(0, goalLoadout.Count)];
+        if (goalLoadout.Count > 0)
+            return goalLoadout[UnityEngine.Random.Range(0, goalLoadout.Count)];
+        else
+            return LoadEmptyLoadout();
     }
 
     public RoomLayout GetBossLoadOut()
     {
-        return bossLoadout[UnityEngine.Random.Range(0, goalLoadout.Count)];
+        if (bossLoadout.Count > 0)
+            return bossLoadout[UnityEngine.Random.Range(0, goalLoadout.Count)];
+        else
+            return LoadEmptyLoadout();
     }
 
     public RoomLayout GetRewardLoadOut()
     {
-        return rewardLoadout[UnityEngine.Random.Range(0, rewardLoadout.Count)];
+        if (rewardLoadout.Count > 0)
+            return rewardLoadout[UnityEngine.Random.Range(0, rewardLoadout.Count)];
+        else
+            return LoadEmptyLoadout();
     }
 
     public RoomLayout GetEnemyLoadout()
     {
-        return enemyLoadout[UnityEngine.Random.Range(0, enemyLoadout.Count)];
+        if (enemyLoadout.Count > 0)
+            return enemyLoadout[UnityEngine.Random.Range(0, enemyLoadout.Count)];
+        else
+            return LoadEmptyLoadout();
     }
 
     public RoomLayout LoadLoadout()
@@ -56,49 +101,9 @@ public class RoomLayoutLoader
         return null;
     }
 
-    public RoomLayout GetDefaultRoom()
+    public RoomLayout LoadEmptyLoadout()
     {
-        return new RoomLayout(new List<EnemySpawnInfo>(), new List<SpawnInfo>() { });
+        return new RoomLayout(new List<EnemySpawnInfo>(), new List<ItemSpawnInfo>());
     }
 
-    public RoomLayout GetEnemyRoom01()
-    {
-        var list = new List<EnemySpawnInfo>();
-        
-        list.Add(new EnemySpawnInfo(2, 1, UnitSpawnType.stupid, GroupType.groupHorde));
-        list.Add(new EnemySpawnInfo(2, -1, UnitSpawnType.stupid, GroupType.groupHorde));
-        list.Add(new EnemySpawnInfo(3, 1, UnitSpawnType.stupid, GroupType.groupHorde));
-        list.Add(new EnemySpawnInfo(3, -1, UnitSpawnType.stupid, GroupType.groupHorde));
-
-        list.Add(new EnemySpawnInfo(1, 1, UnitSpawnType.stupid, GroupType.groupAntiCamp));
-        list.Add(new EnemySpawnInfo(1, -1, UnitSpawnType.antiCamp, GroupType.groupAntiCamp));
-
-        list.Add(new EnemySpawnInfo(-2, -1, UnitSpawnType.threat, GroupType.groupThreat));
-        list.Add(new EnemySpawnInfo(-2, 1, UnitSpawnType.threat, GroupType.groupThreat));
-
-        list.Add(new EnemySpawnInfo(2, 3, UnitSpawnType.stupid, GroupType.groupObstacle));
-        list.Add(new EnemySpawnInfo(2, -3, UnitSpawnType.obstacle, GroupType.groupObstacle));
-        list.Add(new EnemySpawnInfo(2, 0, UnitSpawnType.stupid, GroupType.groupObstacle));
-
-        return new RoomLayout(list, new List<SpawnInfo>() { });
-    }
-
-    public RoomLayout GetGoalRoom01()
-    {
-        var goal = new SpawnInfo(0, 0, SpawnInfoType.goal, GroupType.groupStatic);
-        return new RoomLayout(new List<EnemySpawnInfo>() { }, new List<SpawnInfo>() { goal });
-    }
-
-
-    public RoomLayout GetRewardRoom01()
-    {
-        var pot = new SpawnInfo(1, 1, SpawnInfoType.potion, GroupType.groupStatic);
-        return new RoomLayout(new List<EnemySpawnInfo>(), new List<SpawnInfo>() { pot });
-    }
-
-    private RoomLayout GetBossRoom01()
-    {
-        var boss = new EnemySpawnInfo(0, 0, UnitSpawnType.boss, GroupType.groupStatic);
-        return new RoomLayout(new List<EnemySpawnInfo>() { boss }, new List<SpawnInfo>() { });
-    }
 }

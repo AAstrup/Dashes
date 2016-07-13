@@ -19,13 +19,13 @@ public class SpawnHandler {
         possibleRegularSpawns.Add(SpawnInfoType.potion, new List<SpawnType>() { SpawnType.W1HPPotion });
     }
 
-    public void SpawnEnemy(UnitSpawnType spawnType,SpawnInfo spawn, RoomScript room)
+    public void SpawnEnemy(UnitSpawnType spawnType,EnemySpawnInfo spawn, RoomScript room)
     {
         var type = spawnType;
         if (possibleEnemies[type].Count == 0)
             type = UnitSpawnType.stupid;
 
-        CreateEnemy(possibleEnemies[type][Mathf.FloorToInt(Random.Range(0, possibleEnemies[type].Count))],new Vector2(spawn.x(), spawn.y()), room);
+        CreateEnemy(possibleEnemies[type][Mathf.FloorToInt(Random.Range(0, possibleEnemies[type].Count))],new Vector2(spawn.GetX(), spawn.GetY()), room);
     }
 
     private void CreateEnemy(UnitType enemyType, Vector2 pos,RoomScript room)
@@ -48,8 +48,12 @@ public class SpawnHandler {
             enemy = new Enemy_tutorial_Still(player);
         else if (enemyType == UnitType.Enemy_tutorial_Towards)
             enemy = new Enemy_tutorial_Towards(player);
-        else if (enemyType == UnitType.Enemy_Blob)
+        else if (enemyType == UnitType.Enemy_Blob1)
             enemy = new Enemy_Blob2(player);
+        else if (enemyType == UnitType.Enemy_Blob2)
+            enemy = new Enemy_Blob2(player);
+        else if (enemyType == UnitType.Enemy_Reviver)
+            enemy = new Reviver();
         else
             throw new System.Exception("enemyType not supported");
 
@@ -64,13 +68,13 @@ public class SpawnHandler {
         References.instance.RoomHandler.UnitSpawned(enemy);
     }
 
-    public void SpawnPickup(SpawnInfoType spawnType, SpawnInfo spawn)
+    public void SpawnPickup(SpawnInfoType spawnType, ItemSpawnInfo spawn)
     {
         var type = spawnType;
         if (possibleRegularSpawns[type].Count == 0)
             type = SpawnInfoType.potion;
 
-        CreateRegularSpawn(possibleRegularSpawns[type][Mathf.FloorToInt(UnityEngine.Random.Range(0, possibleRegularSpawns[type].Count))], new Vector2(spawn.x(), spawn.y()));
+        CreateRegularSpawn(possibleRegularSpawns[type][Mathf.FloorToInt(UnityEngine.Random.Range(0, possibleRegularSpawns[type].Count))], new Vector2(spawn.GetX(), spawn.GetY()));
     }
 
     private void CreateRegularSpawn(SpawnType spawnType, Vector2 pos)//Spawns an item based on the enum, this is a 1 to 1
@@ -96,9 +100,9 @@ public enum UnitType {
     //Introduced at World 0
     Enemy_tutorial_Towards, Enemy_tutorial_Still, Enemy_tutorial_Flee, Enemy_tutorial_BossSpawner,
     //Introduced at world 1
-    Enemy_Stupid, Enemy_Archer, Enemy_Charger, Enemy_Waller, Enemy_Boss,       
+    Enemy_Stupid, Enemy_Archer, Enemy_Charger, Enemy_Waller, Enemy_Boss,
     //Introduced at world 2
-    Enemy_Blob, Enemy_Reviver     
+    Enemy_Blob1, Enemy_Blob2, Enemy_Reviver     
 }
 
 public enum SpawnInfoType { potion, aspect, goal}

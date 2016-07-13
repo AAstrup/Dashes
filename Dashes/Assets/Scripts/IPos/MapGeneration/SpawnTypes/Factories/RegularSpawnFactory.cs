@@ -17,7 +17,7 @@ public class RegularSpawnFactory : IFactory
         }
     }
 
-    private void Spawn(SpawnInfo info)
+    private void Spawn(ItemSpawnInfo info)
     {
         References.instance.SpawnHandler.SpawnPickup(info.Type(), info);
     }

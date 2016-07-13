@@ -14,6 +14,8 @@ public class Enemy_tutorial_Flee : EnemyRanged
         hitRange = 6;
         engageRange = hitRange;
         fleeRange = 3;
-        GenericConstructor(References.instance.PrefabLibrary.Prefabs["Enemy_tutorial_Flee"]);
+        reviveTypeString = "Enemy_tutorial_Flee";
+        FinishConstructor();
+
     }
 }
