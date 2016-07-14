@@ -6,24 +6,28 @@
   </layoutInfo>
   <enemieInfos>
     <EnemySpawnInfo>
-      <_x>1</_x>
+      <_x>0</_x>
       <_y>0</_y>
-      <_groupType>groupHorde</_groupType>
+      <_groupType>groupStatic</_groupType>
+      <_type>stupid</_type>
     </EnemySpawnInfo>
     <EnemySpawnInfo>
-      <_x>1</_x>
+      <_x>0</_x>
       <_y>6</_y>
-      <_groupType>groupHorde</_groupType>
+      <_groupType>groupStatic</_groupType>
+      <_type>stupid</_type>
     </EnemySpawnInfo>
     <EnemySpawnInfo>
       <_x>11</_x>
       <_y>6</_y>
-      <_groupType>groupHorde</_groupType>
+      <_groupType>groupStatic</_groupType>
+      <_type>stupid</_type>
     </EnemySpawnInfo>
     <EnemySpawnInfo>
       <_x>11</_x>
       <_y>0</_y>
-      <_groupType>groupHorde</_groupType>
+      <_groupType>groupStatic</_groupType>
+      <_type>stupid</_type>
     </EnemySpawnInfo>
   </enemieInfos>
   <pickupInfos />

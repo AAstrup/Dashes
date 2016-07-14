@@ -6,49 +6,35 @@ public class Editor_Input {
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            Editor_References.instance.drawer.unitType = UnitSpawnType.stupid;
-            Debug.Log("UnitSpawnType = stupid");
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            Editor_References.instance.drawer.unitType = UnitSpawnType.antiCamp;
-            Debug.Log("UnitSpawnType = antiCamp");
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            Debug.Log("UnitSpawnType = threat");
-            Editor_References.instance.drawer.unitType = UnitSpawnType.threat;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            Debug.Log("UnitSpawnType = obstacle");
-            Editor_References.instance.drawer.unitType = UnitSpawnType.obstacle;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            Debug.Log("UnitSpawnType = boss");
-            Editor_References.instance.drawer.unitType = UnitSpawnType.boss;
-        }
-        else if (Input.GetKeyDown(KeyCode.S))
+        if (Editor_References.instance.UIHandler.inputField.isFocused)
+            return;
+
+        if (Input.GetKeyDown(KeyCode.S))
         {
             Debug.Log("Saved");
-            Editor_References.instance.saver.Save();
+            Editor_References.instance.saver.Save(Editor_References.instance.UIHandler.inputField.text);
         }
         else if (Input.GetKeyDown(KeyCode.L))
         {
             Debug.Log("Load");
-            Editor_References.instance.loader.Editor_LoadXML();
+            Editor_References.instance.loader.Editor_LoadXML(Editor_References.instance.UIHandler.inputField.text);
         }
-        else if (Input.GetKeyDown(KeyCode.R))
+        else if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             Editor_References.instance.drawer.IncreaseUnitType();
         }
-        else if (Input.GetKeyDown(KeyCode.G))
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Editor_References.instance.drawer.IncreaseItemType();
+        }//
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Editor_References.instance.drawer.IncreaseRoomType();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             Editor_References.instance.drawer.IncreaseGroupType();
-        }
+        }//IncreaseItemType
     }
 
     public void Init()

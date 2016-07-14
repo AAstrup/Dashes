@@ -49,10 +49,12 @@ public class Editor_InformationHandler  {
         foreach (var enemy in layout.enemieInfos)
         {
             enemy.LoadSetup();
+            AddToInterface(enemy);
         }
         foreach (var item in layout.pickupInfos)
         {
             item.LoadSetup();
+            AddToInterface(item);
         }
     }
 
@@ -75,5 +77,32 @@ public class Editor_InformationHandler  {
     {
         var pos = entity.GetPosition(); ;
         entities[Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.y)] = null;
+    }
+
+    internal void AddPickUp(ItemSpawnInfo itemSpawnInfo)
+    {
+        layout.pickupInfos.Add(itemSpawnInfo);
+        AddToInterface(itemSpawnInfo);
+    }
+
+    internal void RemovePickup(Vector2 worldPos)
+    {
+        ItemSpawnInfo toRemove = null;
+        for (int e = 0; e < layout.pickupInfos.Count; e++)
+        {
+            if (layout.pickupInfos[e].GetX() == worldPos.x && layout.pickupInfos[e].GetY() == worldPos.y)
+            {
+                toRemove = layout.pickupInfos[e];
+                break;
+            }
+        }
+        if (toRemove == null)
+        {
+            Debug.Log("No pickup found at that position, might be due to float? Pos: " + worldPos.ToString());
+            return;
+        }
+        layout.pickupInfos.Remove(toRemove);
+        RemoveFromInterface(toRemove);
+        Editor_References.instance.DestroyGMJ(toRemove.GBRef);
     }
 }

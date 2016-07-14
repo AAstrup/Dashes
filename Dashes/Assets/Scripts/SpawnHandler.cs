@@ -64,7 +64,9 @@ public class SpawnHandler {
             References.instance.UIHandler.DebugLog(room.GetChallenge().ToString());
             References.instance.RoomChallengeHandler.ApplyChallenge(enemy, room.GetChallenge());
         }
-        enemy.Pos = pos + References.instance.RoomHandler.GetCurrentRoom().GetWorldPos();
+
+        var roomRef = References.instance.RoomHandler.GetCurrentRoom();
+        enemy.Pos = pos + (roomRef.GetWorldPos() - new Vector2(roomRef.GetRoomWidth() / 2f - roomRef.wallWidth - 1, roomRef.GetRoomHeight() / 2f - roomRef.wallHeight - 1) );
         References.instance.RoomHandler.UnitSpawned(enemy);
     }
 
@@ -80,7 +82,9 @@ public class SpawnHandler {
     private void CreateRegularSpawn(SpawnType spawnType, Vector2 pos)//Spawns an item based on the enum, this is a 1 to 1
     {
         Position item;
-        Vector2 finalPos = pos + References.instance.RoomHandler.GetCurrentRoom().GetWorldPos();
+        var roomRef = References.instance.RoomHandler.GetCurrentRoom();
+        Vector2 finalPos = pos + (roomRef.GetWorldPos() - new Vector2(roomRef.GetRoomWidth() / 2f - roomRef.wallWidth - 1, roomRef.GetRoomHeight() / 2f - roomRef.wallHeight - 1));
+
         var player = References.instance.UnitHandler.playerController;
         if (spawnType == SpawnType.W1HPPotion)
             item = new W1HPPot(finalPos, player);

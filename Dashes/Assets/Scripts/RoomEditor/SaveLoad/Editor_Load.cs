@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 public class Editor_Load
 {
     public string folderPath = Application.dataPath.ToString() + @"/Maps";
-    public void Editor_LoadXML(string name = "Test")
+    public void Editor_LoadXML(string name)
     {
         // Create a new XmlSerializer instance with the type of the test class
         XmlSerializer SerializerObj = new XmlSerializer(typeof(Editor_RoomLayout));

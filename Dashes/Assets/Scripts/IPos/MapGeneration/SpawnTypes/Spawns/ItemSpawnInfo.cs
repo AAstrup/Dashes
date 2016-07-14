@@ -7,7 +7,10 @@ public class ItemSpawnInfo : Editor_IHasPosition
 {
     public float _x;
     public float _y;
+    [SerializeField]
     public GroupType _groupType;
+    [SerializeField]
+    public SpawnInfoType _type;
 
     public ItemSpawnInfo() { }//Used for serializing
     public ItemSpawnInfo(float x, float y, SpawnInfoType type, GroupType groupNr)
@@ -21,8 +24,7 @@ public class ItemSpawnInfo : Editor_IHasPosition
     }
 
     public SpawnInfoType Type() { return _type; }
-    [SerializeField]
-    SpawnInfoType _type;
+
     public GroupType GetGroupType() { return _groupType; }
         
     public float GetX() { return _x; }

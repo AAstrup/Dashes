@@ -4,11 +4,16 @@ using System;
 
 public class Editor_Drawer  {
 
+    enum Drawer_Pencil { UnitDrawer, PickupDrawer };
+    Drawer_Pencil pencil = Drawer_Pencil.UnitDrawer;
+
     public UnitSpawnType unitType = UnitSpawnType.stupid;
     public GroupType groupType = GroupType.groupHorde;
+    public SpawnInfoType itemType = SpawnInfoType.potion;
 
     public void IncreaseUnitType()
     {
+        pencil = Drawer_Pencil.UnitDrawer;
         int m = Enum.GetNames(typeof(UnitSpawnType)).Length;
         int enumInt = (int) (unitType + 1) % m;
         unitType = (UnitSpawnType) enumInt;
@@ -21,6 +26,23 @@ public class Editor_Drawer  {
         int enumInt = (int)(groupType + 1) % m;
         groupType = (GroupType)enumInt;
         Debug.Log("GroupType = " + groupType.ToString());
+    }
+
+    public void IncreaseRoomType()
+    {
+        int m = Enum.GetNames(typeof(SpawnInfoType)).Length;
+        int enumInt = (int)(Editor_References.instance.handler.layout.layoutInfo.roomType + 1) % m;
+        Editor_References.instance.handler.layout.layoutInfo.roomType = (RoomScript.roomType)enumInt;
+        Debug.Log("RoomType = " + Editor_References.instance.handler.layout.layoutInfo.roomType.ToString());
+    }
+
+    public void IncreaseItemType()
+    {
+        pencil = Drawer_Pencil.PickupDrawer;
+        int m = Enum.GetNames(typeof(SpawnInfoType)).Length;
+        int enumInt = (int)(itemType + 1) % m;
+        itemType = (SpawnInfoType)enumInt;
+        Debug.Log("ItemType = " + itemType.ToString());
     }
 
     bool LegitDrawPosition(Vector2 worldPos)
@@ -50,14 +72,20 @@ public class Editor_Drawer  {
             return;
         if (!SpotIsFree(worldPos))
             return;
-        Editor_References.instance.handler.AddEnemy(new EnemySpawnInfo(worldPos.x,worldPos.y, unitType,groupType));
+        if (pencil == Drawer_Pencil.UnitDrawer)
+            Editor_References.instance.handler.AddEnemy(new EnemySpawnInfo(worldPos.x, worldPos.y, unitType, groupType));
+        else if (pencil == Drawer_Pencil.PickupDrawer)
+            Editor_References.instance.handler.AddPickUp(new ItemSpawnInfo(worldPos.x, worldPos.y, itemType, groupType));
     }
     public void Delete(Vector2 mouseworldPos)
     {
         var worldPos = VectorToVectorGrid(mouseworldPos);
         if (SpotIsFree(worldPos))
             return;
-        Editor_References.instance.handler.RemoveEnemy(worldPos);
+        if (pencil == Drawer_Pencil.UnitDrawer)
+            Editor_References.instance.handler.RemoveEnemy(worldPos);
+        else if (pencil == Drawer_Pencil.PickupDrawer)
+            Editor_References.instance.handler.RemovePickup(worldPos);
     }
 
     public void Init()

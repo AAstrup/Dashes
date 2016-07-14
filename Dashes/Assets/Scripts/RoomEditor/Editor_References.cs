@@ -4,6 +4,7 @@ using System.Collections;
 public class Editor_References : MonoBehaviour {
     public static Editor_References instance;//Itself
 
+    public Editor_UIEvents UIHandler;
     public Editor_InformationHandler handler;
     public Editor_Load loader;
     public Editor_Save saver;

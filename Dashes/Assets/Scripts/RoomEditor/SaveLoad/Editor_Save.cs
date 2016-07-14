@@ -7,7 +7,7 @@ using System.IO;
 public class Editor_Save
 {
 
-    public void Save(string name = "Test")
+    public void Save(string name)
     {
         //Should save the info needed to create a RoomLayout
 

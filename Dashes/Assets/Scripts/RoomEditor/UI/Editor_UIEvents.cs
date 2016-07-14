@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System;
 
 public class Editor_UIEvents : MonoBehaviour {
 
+    public InputField inputField;
     public void SelectGroupType(string groupType) {
         Editor_References.instance.drawer.groupType = (GroupType) Enum.Parse(typeof (GroupType), groupType);
     }

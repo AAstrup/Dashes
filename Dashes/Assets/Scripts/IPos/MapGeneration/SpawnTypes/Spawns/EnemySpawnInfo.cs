@@ -8,7 +8,10 @@ public class EnemySpawnInfo : Editor_IHasPosition
 {
     public float _x;
     public float _y;
+    [SerializeField]
     public GroupType _groupType;
+    [SerializeField]
+    public UnitSpawnType _type;
     public EnemySpawnInfo() { }//Used for serializing
     public EnemySpawnInfo(float x, float y, UnitSpawnType type, GroupType groupNr)
     {
@@ -25,8 +28,7 @@ public class EnemySpawnInfo : Editor_IHasPosition
     }
 
     public UnitSpawnType Type() { return _type; }
-    [SerializeField]
-    UnitSpawnType _type;
+
     public GroupType GetGroupType() { return _groupType; }
 
     public float GetX() { return _x; }
