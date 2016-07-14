@@ -20,7 +20,7 @@ public class RoomChallengeHandler {
     {
         //if (challenge == RoomChallenge.None)
         //    return;
-        var unit = (AINavigation) _unit;
+		var unit = (IEnemy) _unit;
         unit.damage = challengeToInfo[challenge].dmgMultiplier * unit.damage;
         unit.cd = (2f - challengeToInfo[challenge].attackSpeedMultiplier) * unit.cd;
         unit.MovementSpeedBase = challengeToInfo[challenge].moveSpeedMultiplier * unit.MovementSpeedBase;

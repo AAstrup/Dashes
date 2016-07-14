@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class AINavigation : IUnit {
+public class AINavigation : IEnemy {
     //Behavior
     public float attackChargeTime = 0.25f;//Time from starting to attack to attacking
     private float attackChargeTimeLeft = -1f;//Must be less than 0 if it     not, fire on spawn
@@ -11,7 +11,6 @@ public class AINavigation : IUnit {
     private float attackAppliedTimeLeft = -1f;//Time left in order to apply damage to player again when hitting
 
     public float moveAttackSpeedPercentage = 0f; //Percent of Movespeed having while attacking, 0 -> 1 (100%)
-    public float cd = 0.5f;//CD between finishing an attack and starting the next
     protected float cdTimeLeft;
     float fireEndTime;
 
@@ -28,7 +27,6 @@ public class AINavigation : IUnit {
     public float hitRange = 1f; //max range for attacking
     public float engageRange = 1f;//Max range for starting attack
     public float fleeRange = 0f; //flee if within range
-    public float damage = 1f;
     IUnit lastTarget;
 
     protected void FinishConstructor()
