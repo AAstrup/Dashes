@@ -9,7 +9,7 @@ public class Enemy_medic : EnemyFlee {
 	List<GameObject> TargetBeams;
 	int TargetNo;
 
-	public Enemy_medic (IUnit player)
+	public Enemy_medic ()
 	{
 		
 		Targets = new List<IUnit> ();

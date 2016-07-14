@@ -54,6 +54,8 @@ public class SpawnHandler {
             enemy = new Enemy_Blob2(player);
         else if (enemyType == UnitType.Enemy_Reviver)
             enemy = new Reviver();
+		else if (enemyType == UnitType.Enemy_medic)
+			enemy = new Enemy_medic();
         else
             throw new System.Exception("enemyType not supported");
 
@@ -106,7 +108,8 @@ public enum UnitType {
     //Introduced at world 1
     Enemy_Stupid, Enemy_Archer, Enemy_Charger, Enemy_Waller, Enemy_Boss,
     //Introduced at world 2
-    Enemy_Blob1, Enemy_Blob2, Enemy_Reviver     
+    Enemy_Blob1, Enemy_Blob2, Enemy_Reviver,
+	Enemy_medic
 }
 
 public enum SpawnInfoType { potion, aspect, goal}
