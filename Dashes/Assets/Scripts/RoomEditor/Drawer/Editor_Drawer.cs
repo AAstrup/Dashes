@@ -8,8 +8,9 @@ public class Editor_Drawer  {
     Drawer_Pencil pencil = Drawer_Pencil.UnitDrawer;
 
     public UnitSpawnType unitType = UnitSpawnType.stupid;
-    public GroupType groupType = GroupType.groupHorde;
     public SpawnInfoType itemType = SpawnInfoType.potion;
+    public GroupType groupType = GroupType.groupHorde;
+    public RoomLayout.RoomLayoutOrientation orienTation = RoomLayout.RoomLayoutOrientation.NotSet;
 
     public void IncreaseUnitType()
     {
@@ -34,6 +35,14 @@ public class Editor_Drawer  {
         int enumInt = (int)(Editor_References.instance.handler.layout.layoutInfo.roomType + 1) % m;
         Editor_References.instance.handler.layout.layoutInfo.roomType = (RoomScript.roomType)enumInt;
         Debug.Log("RoomType = " + Editor_References.instance.handler.layout.layoutInfo.roomType.ToString());
+    }
+
+    public void IncreaseOrientation()
+    {
+        int m = Enum.GetNames(typeof(RoomLayout.RoomLayoutOrientation)).Length;
+        int enumInt = (int)(Editor_References.instance.handler.layout.layoutInfo.orientation + 1) % m;
+        Editor_References.instance.handler.layout.layoutInfo.orientation = (RoomLayout.RoomLayoutOrientation)enumInt;
+        Debug.Log("Orientation = " + Editor_References.instance.handler.layout.layoutInfo.orientation.ToString());
     }
 
     public void IncreaseItemType()

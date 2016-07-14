@@ -34,7 +34,11 @@ public class Editor_Input {
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             Editor_References.instance.drawer.IncreaseGroupType();
-        }//IncreaseItemType
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            Editor_References.instance.drawer.IncreaseOrientation();
+        }
     }
 
     public void Init()
