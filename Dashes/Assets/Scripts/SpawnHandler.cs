@@ -19,13 +19,16 @@ public class SpawnHandler {
         possibleRegularSpawns.Add(SpawnInfoType.potion, new List<SpawnType>() { SpawnType.W1HPPotion });
     }
 
-    public void SpawnEnemy(UnitSpawnType spawnType,EnemySpawnInfo spawn, RoomScript room)
+    public void SpawnEnemy(UnitSpawnType spawnType,EnemySpawnInfo spawn, RoomScript room,bool reversePosition)
     {
         var type = spawnType;
         if (possibleEnemies[type].Count == 0)
             type = UnitSpawnType.stupid;
 
-        CreateEnemy(possibleEnemies[type][Mathf.FloorToInt(Random.Range(0, possibleEnemies[type].Count))],new Vector2(spawn.GetX(), spawn.GetY()), room);
+        int reverseOrientationFix = 1;
+        if (reversePosition)
+            reverseOrientationFix = -1;
+        CreateEnemy(possibleEnemies[type][Mathf.FloorToInt(Random.Range(0, possibleEnemies[type].Count))],new Vector2(spawn.GetX() * reverseOrientationFix, spawn.GetY() * reverseOrientationFix), room);
     }
 
     private void CreateEnemy(UnitType enemyType, Vector2 pos,RoomScript room)
@@ -72,13 +75,16 @@ public class SpawnHandler {
         References.instance.RoomHandler.UnitSpawned(enemy);
     }
 
-    public void SpawnPickup(SpawnInfoType spawnType, ItemSpawnInfo spawn)
+    public void SpawnPickup(SpawnInfoType spawnType, ItemSpawnInfo spawn,bool reversePosition)
     {
         var type = spawnType;
         if (possibleRegularSpawns[type].Count == 0)
             type = SpawnInfoType.potion;
 
-        CreateRegularSpawn(possibleRegularSpawns[type][Mathf.FloorToInt(UnityEngine.Random.Range(0, possibleRegularSpawns[type].Count))], new Vector2(spawn.GetX(), spawn.GetY()));
+        int reverseOrientationFix = 1;
+        if (reversePosition)
+            reverseOrientationFix = -1;
+        CreateRegularSpawn(possibleRegularSpawns[type][Mathf.FloorToInt(UnityEngine.Random.Range(0, possibleRegularSpawns[type].Count))], new Vector2(spawn.GetX() * reverseOrientationFix, spawn.GetY() * reverseOrientationFix));
     }
 
     private void CreateRegularSpawn(SpawnType spawnType, Vector2 pos)//Spawns an item based on the enum, this is a 1 to 1

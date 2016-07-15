@@ -13,44 +13,44 @@ public class RoomLayoutHandler {
         loader.Init();
     }
 
-    public RoomLayout LoadLoadout(RoomScript roomScript)
+    public RoomLayout LoadLoadout(RoomScript roomScript, RoomLayout.RoomLayoutOrientation orientation)
     {
         if (roomScript.GetRoomType() == RoomScript.roomType.E)
-            return LoadEnemyLayout();
+            return LoadEnemyLayout(orientation);
         else if (roomScript.GetRoomType() == RoomScript.roomType.R)
-            return LoadRewardLayout();
+            return LoadRewardLayout(orientation);
         else if (roomScript.GetRoomType() == RoomScript.roomType.G)
-            return LoadGoalLayout();
+            return LoadGoalLayout(orientation);
         else if (roomScript.GetRoomType() == RoomScript.roomType.S)
-            return LoadStartLayout();
+            return LoadStartLayout(orientation);
         else if (roomScript.GetRoomType() == RoomScript.roomType.B)
-            return LoadBossLayout();
+            return LoadBossLayout(orientation);
         else
             throw new Exception("BAD ROOM TYPE");
     }
 
-    private RoomLayout LoadBossLayout()
+    private RoomLayout LoadBossLayout(RoomLayout.RoomLayoutOrientation orientation)
     {
-        return loader.GetBossLoadOut();
+        return loader.GetBossLoadOut(orientation);
     }
 
-    private RoomLayout LoadStartLayout()
+    private RoomLayout LoadStartLayout(RoomLayout.RoomLayoutOrientation orientation)
     {
-        return loader.GetStartLoadOut();
+        return loader.GetStartLoadOut(orientation);
     }
 
-    private RoomLayout LoadGoalLayout()
+    private RoomLayout LoadGoalLayout(RoomLayout.RoomLayoutOrientation orientation)
     {
-        return loader.GetGoalLoadOut();
+        return loader.GetGoalLoadOut(orientation);
     }
 
-    private RoomLayout LoadRewardLayout()
+    private RoomLayout LoadRewardLayout(RoomLayout.RoomLayoutOrientation orientation)
     {
-        return loader.GetRewardLoadOut();
+        return loader.GetRewardLoadOut(orientation);
     }
 
-    public RoomLayout LoadEnemyLayout()
+    public RoomLayout LoadEnemyLayout(RoomLayout.RoomLayoutOrientation orientation)
     {
-        return loader.GetEnemyLoadout();
+        return loader.GetEnemyLoadout(orientation);
     }
 }

@@ -6,7 +6,7 @@ using System;
 public class RoomLayout  {
 
     bool hasSpawned = false;
-    RoomLayoutOrientation roomOrientation = RoomLayoutOrientation.NotSet;
+    public RoomLayoutOrientation roomOrientation = RoomLayoutOrientation.NotSet;
 
     public enum RoomLayoutOrientation { NotSet, Vertical, Horizontal, Both }
     List<EnemySpawnInfo> _enemies;

@@ -23,10 +23,10 @@ public class RoomHandler {
         factories.Add(new EnemyFactory());
         factories.Add(new RegularSpawnFactory());
         aliveEnemies = new List<IUnit>();
-        EnterRoom((int)startRoom._pos.x, (int)startRoom._pos.y,mapGenerator,roomLayoutHandler);
+        EnterRoom((int)startRoom._pos.x, (int)startRoom._pos.y,mapGenerator,roomLayoutHandler, EnterRoomOrientation.Top);
     }
 
-    public void EnterRoom(int layoutPosX, int layoutPosY, MapGenerator mapGenerator, RoomLayoutHandler roomLayoutHandler) {
+    public void EnterRoom(int layoutPosX, int layoutPosY, MapGenerator mapGenerator, RoomLayoutHandler roomLayoutHandler, EnterRoomOrientation orientation) {
         References.instance.EnterRoomTrigger();
         timeLastDoorOpened = Time.time;
         var roomScript = mapGenerator.GetMap()[layoutPosX, layoutPosY];
@@ -42,7 +42,7 @@ public class RoomHandler {
 
         if (rooms[layoutPosX, layoutPosY] == null)
         {
-            currentLayout = roomLayoutHandler.LoadLoadout(roomScript);
+            currentLayout = roomLayoutHandler.LoadLoadout(roomScript, FromEnterRoomOrientationToLayoutOrientation(orientation));
             currentLayout.SetHasSpawned(false);
         }
         else
@@ -56,9 +56,10 @@ public class RoomHandler {
         groupType.RemoveAt(Mathf.FloorToInt(Random.Range(0f, groupType.Count)));
         groupType.Add(GroupType.groupStatic);
 
+        bool reversePosition = EnterRoomReversesPosition(orientation);
         for (int i = 0; i < factories.Count; i++)
         {
-            factories[i].Spawn(currentLayout, groupType, currentRoom);
+            factories[i].Spawn(currentLayout, groupType, currentRoom, reversePosition);
         }
         currentLayout.SetHasSpawned(true);
         UpdateDoors();
@@ -69,6 +70,22 @@ public class RoomHandler {
         Debug.Log("Room type "+ currentRoom.GetRoomType());
     }
 
+    private RoomLayout.RoomLayoutOrientation FromEnterRoomOrientationToLayoutOrientation(EnterRoomOrientation orientation)
+    {
+        if (orientation == EnterRoomOrientation.Top || orientation == EnterRoomOrientation.Bot)
+            return RoomLayout.RoomLayoutOrientation.Vertical;
+        else
+            return RoomLayout.RoomLayoutOrientation.Horizontal;
+    }
+    private bool EnterRoomReversesPosition(EnterRoomOrientation orientation)
+    {
+        if (orientation == EnterRoomOrientation.Left || orientation == EnterRoomOrientation.Top)
+            return true;
+        else
+            return false;
+    }
+
+    public enum EnterRoomOrientation { Top, Bot, Left, Right, };
     public void Update()
     {
         if (!doorsUnlocked)
@@ -80,22 +97,22 @@ public class RoomHandler {
         if (Vector2.Distance(References.instance.UnitHandler.playerIUnit.Pos, currentRoom.GetWorldPos() + new Vector2(0f, currentRoom.GetRoomHeight() / 2f)) < triggerVerDist)
         {//Up
             if(currentRoom.hasTopDoor())
-                EnterRoom(Mathf.RoundToInt(currentRoom._pos.x), Mathf.RoundToInt(currentRoom._pos.y + 1),References.instance.mapGenerator,References.instance.RoomLayoutHandler);
+                EnterRoom(Mathf.RoundToInt(currentRoom._pos.x), Mathf.RoundToInt(currentRoom._pos.y + 1),References.instance.mapGenerator,References.instance.RoomLayoutHandler, EnterRoomOrientation.Top);
         }
         else if (Vector2.Distance(References.instance.UnitHandler.playerIUnit.Pos, currentRoom.GetWorldPos() - new Vector2(0f, currentRoom.GetRoomHeight() / 2f)) < triggerVerDist)
         {//down
             if (currentRoom.hasBottomDoor())
-                EnterRoom(Mathf.RoundToInt(currentRoom._pos.x), Mathf.RoundToInt(currentRoom._pos.y - 1), References.instance.mapGenerator, References.instance.RoomLayoutHandler);
+                EnterRoom(Mathf.RoundToInt(currentRoom._pos.x), Mathf.RoundToInt(currentRoom._pos.y - 1), References.instance.mapGenerator, References.instance.RoomLayoutHandler, EnterRoomOrientation.Bot);
         }
         else if (Vector2.Distance(References.instance.UnitHandler.playerIUnit.Pos, currentRoom.GetWorldPos() - new Vector2(currentRoom.GetRoomWidth() / 2, 0f)) < triggerHorDist)
         {//left
             if (currentRoom.hasLeftDoor())
-                EnterRoom(Mathf.RoundToInt(currentRoom._pos.x - 1), Mathf.RoundToInt(currentRoom._pos.y), References.instance.mapGenerator, References.instance.RoomLayoutHandler);
+                EnterRoom(Mathf.RoundToInt(currentRoom._pos.x - 1), Mathf.RoundToInt(currentRoom._pos.y), References.instance.mapGenerator, References.instance.RoomLayoutHandler, EnterRoomOrientation.Left);
         }
         else if (Vector2.Distance(References.instance.UnitHandler.playerIUnit.Pos, currentRoom.GetWorldPos() + new Vector2(currentRoom.GetRoomWidth() / 2, 0f)) < triggerHorDist)
         {//right
             if (currentRoom.hasRightDoor())
-                EnterRoom(Mathf.RoundToInt(currentRoom._pos.x + 1), Mathf.RoundToInt(currentRoom._pos.y), References.instance.mapGenerator, References.instance.RoomLayoutHandler);
+                EnterRoom(Mathf.RoundToInt(currentRoom._pos.x + 1), Mathf.RoundToInt(currentRoom._pos.y), References.instance.mapGenerator, References.instance.RoomLayoutHandler, EnterRoomOrientation.Right);
         }
     }
 

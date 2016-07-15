@@ -5,7 +5,7 @@ using System;
 
 public class RegularSpawnFactory : IFactory
 {
-    public void Spawn(RoomLayout layout,List<GroupType> groupNrs,RoomScript room)
+    public void Spawn(RoomLayout layout,List<GroupType> groupNrs,RoomScript room, bool reversePosition)
     {
         if (layout.GetHasSpawned())
             return;
@@ -13,12 +13,12 @@ public class RegularSpawnFactory : IFactory
         for (int i = 0; i < layout.GetRegularSpawns().Count; i++)
         {
             if(groupNrs.Contains(layout.GetRegularSpawns()[i].GetGroupType()))
-                Spawn(layout.GetRegularSpawns()[i]);
+                Spawn(layout.GetRegularSpawns()[i], reversePosition);
         }
     }
 
-    private void Spawn(ItemSpawnInfo info)
+    private void Spawn(ItemSpawnInfo info, bool reversePosition)
     {
-        References.instance.SpawnHandler.SpawnPickup(info.Type(), info);
+        References.instance.SpawnHandler.SpawnPickup(info.Type(), info, reversePosition);
     }
 }
