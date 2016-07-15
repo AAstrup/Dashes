@@ -68,7 +68,7 @@ public class SpawnHandler {
         }
 
         var roomRef = References.instance.RoomHandler.GetCurrentRoom();
-        enemy.Pos = new Vector2(pos.x * reversePosition.x,pos.y * reversePosition.y) + (roomRef.GetWorldPos() - new Vector2((roomRef.GetRoomWidth() / 2f - roomRef.wallWidth)* reversePosition.x, (roomRef.GetRoomHeight() / 2f - roomRef.wallHeight) * reversePosition.y) - new Vector2(-1,-1));
+        enemy.Pos = roomRef.GetWorldPos() + new Vector2(pos.x * reversePosition.x,pos.y * reversePosition.y) - new Vector2((roomRef.GetRoomWidth() / 2f - roomRef.wallWidth)* reversePosition.x, (roomRef.GetRoomHeight() / 2f - roomRef.wallHeight) * reversePosition.y) - new Vector2(-1,-1);
         References.instance.RoomHandler.UnitSpawned(enemy);
     }
 
@@ -86,7 +86,7 @@ public class SpawnHandler {
         Position item;
         var roomRef = References.instance.RoomHandler.GetCurrentRoom();
         
-        Vector2 finalPos = new Vector2(pos.x * reversePosition.x, pos.y * reversePosition.y) + (roomRef.GetWorldPos() - new Vector2((roomRef.GetRoomWidth() / 2f - roomRef.wallWidth) * reversePosition.x, (roomRef.GetRoomHeight() / 2f - roomRef.wallHeight) * reversePosition.y) - new Vector2(-1, -1));
+        Vector2 finalPos = roomRef.GetWorldPos() + new Vector2(pos.x * reversePosition.x, pos.y * reversePosition.y) - new Vector2((roomRef.GetRoomWidth() / 2f - roomRef.wallWidth) * reversePosition.x, (roomRef.GetRoomHeight() / 2f - roomRef.wallHeight) * reversePosition.y) - new Vector2(-1, -1);
 
         var player = References.instance.UnitHandler.playerController;
         if (spawnType == SpawnType.W1HPPotion)
