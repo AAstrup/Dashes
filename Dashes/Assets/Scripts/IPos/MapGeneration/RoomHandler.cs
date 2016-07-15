@@ -56,7 +56,7 @@ public class RoomHandler {
         groupType.RemoveAt(Mathf.FloorToInt(Random.Range(0f, groupType.Count)));
         groupType.Add(GroupType.groupStatic);
 
-        bool reversePosition = EnterRoomReversesPosition(orientation);
+        Vector2 reversePosition = EnterRoomReversesPosition(orientation);
         for (int i = 0; i < factories.Count; i++)
         {
             factories[i].Spawn(currentLayout, groupType, currentRoom, reversePosition);
@@ -77,12 +77,15 @@ public class RoomHandler {
         else
             return RoomLayout.RoomLayoutOrientation.Horizontal;
     }
-    private bool EnterRoomReversesPosition(EnterRoomOrientation orientation)
+    private Vector2 EnterRoomReversesPosition(EnterRoomOrientation orientation)
     {
-        if (orientation == EnterRoomOrientation.Left || orientation == EnterRoomOrientation.Top)
-            return true;
-        else
-            return false;
+        int x = 1;
+        int y = 1;
+        if (orientation == EnterRoomOrientation.Right)
+            x = -1;
+        if (orientation == EnterRoomOrientation.Bot)
+            y = -1;
+        return new Vector2(x, y);
     }
 
     public enum EnterRoomOrientation { Top, Bot, Left, Right, };

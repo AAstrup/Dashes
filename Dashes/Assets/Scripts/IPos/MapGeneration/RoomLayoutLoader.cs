@@ -51,7 +51,7 @@ public class RoomLayoutLoader
 
     private RoomLayout ToNormalLayout(Editor_RoomLayout editor_layout)
     {
-        return new RoomLayout(editor_layout.enemieInfos, editor_layout.pickupInfos);
+        return new RoomLayout(editor_layout.enemieInfos, editor_layout.pickupInfos,editor_layout.layoutInfo.orientation);
     }
 
     //Should read from file and spawn upon that.
@@ -103,7 +103,7 @@ public class RoomLayoutLoader
 
     public RoomLayout LoadEmptyLoadout()
     {
-        return new RoomLayout(new List<EnemySpawnInfo>(), new List<ItemSpawnInfo>());
+        return new RoomLayout(new List<EnemySpawnInfo>(), new List<ItemSpawnInfo>(), RoomLayout.RoomLayoutOrientation.Both);
     }
 
     class RoomLayoutContainer{
@@ -118,11 +118,11 @@ public class RoomLayoutLoader
         }
         public void Add(RoomLayout layout)
         {
-            if (layout.roomOrientation == RoomLayout.RoomLayoutOrientation.NotSet)
+            if (layout._orientation == RoomLayout.RoomLayoutOrientation.NotSet)
                 throw new Exception("A room has not set its orientation");
-            if (layout.roomOrientation == RoomLayout.RoomLayoutOrientation.Vertical)
+            if (layout._orientation == RoomLayout.RoomLayoutOrientation.Vertical || layout._orientation == RoomLayout.RoomLayoutOrientation.Both)
                 vertical.Add(layout);
-            else if (layout.roomOrientation == RoomLayout.RoomLayoutOrientation.Horizontal)
+            else if (layout._orientation == RoomLayout.RoomLayoutOrientation.Horizontal || layout._orientation == RoomLayout.RoomLayoutOrientation.Both)
                 horizontal.Add(layout);
             both.Add(layout);
         }
