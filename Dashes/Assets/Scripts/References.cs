@@ -174,4 +174,9 @@ public class References : MonoBehaviour
     {
         SceneManager.LoadScene("test");
     }
+
+    public void ChooseAspect(int nr)
+    {
+        UIHandler.ChooseAspect(nr);
+    }
 }

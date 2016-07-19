@@ -130,11 +130,20 @@ public class RoomLayoutLoader
         internal RoomLayout GetRandomRoom(RoomLayout.RoomLayoutOrientation orientation)
         {
             if(orientation == RoomLayout.RoomLayoutOrientation.Horizontal)
-                return horizontal[UnityEngine.Random.Range(0, horizontal.Count)];
+                return GetRandomFromTwoList(horizontal,both);
             else if (orientation == RoomLayout.RoomLayoutOrientation.Vertical)
-                return vertical[UnityEngine.Random.Range(0, vertical.Count)];
+                return GetRandomFromTwoList(vertical, both);
             else
                 return both[UnityEngine.Random.Range(0, both.Count)];
+        }
+
+        RoomLayout GetRandomFromTwoList(List<RoomLayout> list1, List<RoomLayout> list2)
+        {
+            int index = UnityEngine.Random.Range(0, list1.Count + list2.Count - 1);
+            if (index >= list1.Count)
+                return list2[index - list1.Count];
+            else
+                return list1[index];
         }
     }
 }

@@ -16,7 +16,10 @@ public class UIHandler
 
     private RectTransform _mapPlayer;
 
-    private List<Image> Hearts; 
+    private List<Image> Hearts;
+
+    //Aspect pickup variables.
+    List<Aspect> pickAspects;
 
     public void Init()
     {
@@ -54,6 +57,8 @@ public class UIHandler
 
         ArrangeHearts((int)References.instance.UnitHandler.playerController.HealthMax/2);
         UpdateHearts(References.instance.UnitHandler.playerController.HealthCurrent);
+
+        DisableAspectPicker();
     }
 
     public void AdjustScaleFactor()
@@ -358,4 +363,27 @@ public class UIHandler
         }
     }
 
+    public void PresentNewAspect()
+    {
+        _rectTransforms["LevelupContainer"].RectTransform.gameObject.SetActive(true);
+        pickAspects = new List<Aspect> { new Aspect_Bat(), new Aspect_Bull(), new Aspect_Cheetah() };
+        for (int i = 0; i < pickAspects.Count; i++)
+        {
+            _texts["Pick" + (i + 1) + "Title"].text = pickAspects[i].Title;
+            if(pickAspects[i].Sprite != null)
+                _images["Pick" + (i + 1) + "Image"].sprite = pickAspects[i].Sprite;
+            _texts["Pick" + (i + 1) + "Description"].text = pickAspects[i].Description;
+        }
+    }
+
+    public void ChooseAspect(int nr)
+    {
+        References.instance.AspectHandler.AddAspect(pickAspects[nr - 1]);
+        DisableAspectPicker();
+    }
+
+    private void DisableAspectPicker()
+    {
+        _rectTransforms["LevelupContainer"].RectTransform.gameObject.SetActive(false);
+    }
 }

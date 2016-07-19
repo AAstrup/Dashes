@@ -20,6 +20,7 @@ public class Editor_InformationHandler  {
     {
         layout.enemieInfos.Add(enemy);
         AddToInterface(enemy);
+        AddEnemyValue(enemy);
     }
 
     public void RemoveEnemy(Vector2 worldPos)
@@ -38,23 +39,36 @@ public class Editor_InformationHandler  {
             Debug.Log("No enemy found at that position, might be due to float? Pos: " + worldPos.ToString());
             return;
         }
+        RemoveEnemyValue(toRemove);
         layout.enemieInfos.Remove(toRemove);
         RemoveFromInterface(toRemove);
         Editor_References.instance.DestroyGMJ(toRemove.GBRef);
     }
+    public void AddEnemyValue(EnemySpawnInfo enemy)
+    {
+        Editor_References.instance.UIHandler.groupTypeToBlock[enemy._groupType].Increase(Editor_References.instance.UIHandler.unitTypeCost[enemy._type]);
+    }
+    public void RemoveEnemyValue(EnemySpawnInfo enemy)
+    {
+        Editor_References.instance.UIHandler.groupTypeToBlock[enemy._groupType].Increase(- Editor_References.instance.UIHandler.unitTypeCost[enemy._type]);
+    }
+
 
     public void Load(Editor_RoomLayout loadedObj)
     {
         layout = loadedObj;
+        Editor_References.instance.drawer.SetUpDoorVisuals();
         foreach (var enemy in layout.enemieInfos)
         {
             enemy.LoadSetup();
             AddToInterface(enemy);
+            AddEnemyValue(enemy);
         }
         foreach (var item in layout.pickupInfos)
         {
             item.LoadSetup();
             AddToInterface(item);
+            AddItemValue(item);
         }
     }
 
@@ -65,6 +79,7 @@ public class Editor_InformationHandler  {
             if(entity != null)
                 Editor_References.instance.DestroyGMJ(entity.GetGMJ());
         }
+        Editor_References.instance.UIHandler.Reset();
         Init();
     }
 
@@ -83,6 +98,7 @@ public class Editor_InformationHandler  {
     {
         layout.pickupInfos.Add(itemSpawnInfo);
         AddToInterface(itemSpawnInfo);
+        AddItemValue(itemSpawnInfo);
     }
 
     internal void RemovePickup(Vector2 worldPos)
@@ -101,8 +117,18 @@ public class Editor_InformationHandler  {
             Debug.Log("No pickup found at that position, might be due to float? Pos: " + worldPos.ToString());
             return;
         }
+        RemoveItemValue(toRemove);
         layout.pickupInfos.Remove(toRemove);
         RemoveFromInterface(toRemove);
         Editor_References.instance.DestroyGMJ(toRemove.GBRef);
     }
+    public void AddItemValue(ItemSpawnInfo itemSpawnInfo)
+    {
+        Editor_References.instance.UIHandler.groupTypeToBlock[itemSpawnInfo._groupType].Increase(Editor_References.instance.UIHandler.itemTypeCost[itemSpawnInfo._type]);
+    }
+    public void RemoveItemValue(ItemSpawnInfo itemSpawnInfo)
+    {
+        Editor_References.instance.UIHandler.groupTypeToBlock[itemSpawnInfo._groupType].Increase(- Editor_References.instance.UIHandler.itemTypeCost[itemSpawnInfo._type]);
+    }
+
 }

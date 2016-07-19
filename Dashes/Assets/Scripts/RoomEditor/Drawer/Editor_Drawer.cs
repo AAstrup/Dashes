@@ -43,6 +43,31 @@ public class Editor_Drawer  {
         int enumInt = (int)(Editor_References.instance.handler.layout.layoutInfo.orientation + 1) % m;
         Editor_References.instance.handler.layout.layoutInfo.orientation = (RoomLayout.RoomLayoutOrientation)enumInt;
         Debug.Log("Orientation = " + Editor_References.instance.handler.layout.layoutInfo.orientation.ToString());
+        SetUpDoorVisuals();
+    }
+
+    public void SetUpDoorVisuals()
+    {
+        if(Editor_References.instance.handler.layout.layoutInfo.orientation == RoomLayout.RoomLayoutOrientation.NotSet)
+        {
+            Editor_References.instance.door_H.SetActive(false);
+            Editor_References.instance.door_V.SetActive(false);
+        }
+        else if (Editor_References.instance.handler.layout.layoutInfo.orientation == RoomLayout.RoomLayoutOrientation.Vertical)
+        {
+            Editor_References.instance.door_H.SetActive(false);
+            Editor_References.instance.door_V.SetActive(true);
+        }
+        else if (Editor_References.instance.handler.layout.layoutInfo.orientation == RoomLayout.RoomLayoutOrientation.Horizontal)
+        {
+            Editor_References.instance.door_H.SetActive(true);
+            Editor_References.instance.door_V.SetActive(false);
+        }
+        else if (Editor_References.instance.handler.layout.layoutInfo.orientation == RoomLayout.RoomLayoutOrientation.Both)
+        {
+            Editor_References.instance.door_H.SetActive(true);
+            Editor_References.instance.door_V.SetActive(true);
+        }
     }
 
     public void IncreaseItemType()
