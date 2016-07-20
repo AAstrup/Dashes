@@ -123,6 +123,9 @@ public class References : MonoBehaviour
         //boss.Pos = UnitHandler.playerController.Pos + new Vector2(0, 10);
         //boss.Update();
 
+        //TEST
+        if (Input.GetKeyDown(KeyCode.Space))
+            UIHandler.PresentNewAspect();
     }
 
     public GameObject CreateGameObject(GameObject GB)

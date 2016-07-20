@@ -28,6 +28,7 @@ GameObject:
   - 222: {fileID: 22269616}
   - 114: {fileID: 11439594}
   - 114: {fileID: 11408700}
+  - 114: {fileID: 11491102}
   m_Layer: 5
   m_Name: Pick3Button
   m_TagString: Untagged
@@ -80,6 +81,7 @@ GameObject:
   - 222: {fileID: 22254972}
   - 114: {fileID: 11446866}
   - 114: {fileID: 11436442}
+  - 114: {fileID: 11407800}
   m_Layer: 5
   m_Name: Pick2Button
   m_TagString: Untagged
@@ -269,6 +271,7 @@ GameObject:
   - 222: {fileID: 22274376}
   - 114: {fileID: 11459762}
   - 114: {fileID: 11491272}
+  - 114: {fileID: 11434794}
   m_Layer: 5
   m_Name: Pick1Button
   m_TagString: Untagged
@@ -577,7 +580,7 @@ GameObject:
   m_Layer: 0
   m_Name: UIholder
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -890,6 +893,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11407800
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83288cf8640861b4192edcf78c3f4e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11408572
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -962,7 +976,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11491102}
         m_MethodName: ChooseAspect
         m_Mode: 3
         m_Arguments:
@@ -1357,6 +1371,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 0
   m_FillOrigin: 1
+--- !u!114 &11434794
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 135952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83288cf8640861b4192edcf78c3f4e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11435804
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1423,7 +1448,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11407800}
         m_MethodName: ChooseAspect
         m_Mode: 3
         m_Arguments:
@@ -1616,7 +1641,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.49019608}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1724,7 +1749,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.49019608}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1850,7 +1875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.49019608}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2314,6 +2339,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 1
+--- !u!114 &11491102
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 103774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83288cf8640861b4192edcf78c3f4e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11491272
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2353,7 +2389,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11434794}
         m_MethodName: ChooseAspect
         m_Mode: 3
         m_Arguments:
