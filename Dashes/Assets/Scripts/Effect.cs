@@ -46,7 +46,7 @@ public class Effect
         switch (EffectType)
         {
             case EffectTypes.DamageConstant:
-                unit.Damage(Time.deltaTime*Value/_lifeTtimeTotal);
+				unit.Damage(Time.deltaTime*Value/_lifeTtimeTotal);
                 break;
             case EffectTypes.HealConstant:
                 unit.Heal(Time.deltaTime * Value / _lifeTtimeTotal);
@@ -84,7 +84,7 @@ public class Effect
                 if (!unit.Effects.Exists(typ => typ.EffectType == EffectTypes.Stun)) { unit.SetStunned(false); }
                 break;
             case EffectTypes.DamageDelay:
-                unit.Damage(Value);
+				unit.Damage(Value);
                 break;
             case EffectTypes.HealDelay:
                 unit.Heal(Value);

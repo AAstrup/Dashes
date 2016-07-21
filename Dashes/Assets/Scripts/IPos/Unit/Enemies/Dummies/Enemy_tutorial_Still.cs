@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy_tutorial_Still : AINavigation {
+public class Enemy_tutorial_Still : IEnemy {
 
 	public Enemy_tutorial_Still(IUnit player)
     {
@@ -9,8 +9,8 @@ public class Enemy_tutorial_Still : AINavigation {
         HealthCurrent = 10;
         MovementSpeedBase = 0f;
         MovementSpeedCurrent = MovementSpeedBase;
-        damage = 0f;
+		ActValue = 0f;
         reviveTypeString = "Enemy_tutorial_Still";
-        FinishConstructor();
+        EnemyConstructor();
     }
 }

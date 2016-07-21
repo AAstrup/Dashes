@@ -5,17 +5,17 @@ public class Enemy_tutorial_Flee : EnemyRanged
 {
     public Enemy_tutorial_Flee(IUnit player)
     {
-        attackChargeTime = 0.25f;
-        cd = 0.45f;
-        target = player;
+		PrepareTime = 0.25f;
+		Cooldown = 0.45f;
+		TargetUnit = player;
         HealthMax = 20;
         HealthCurrent = 20;
         MovementSpeedBase = 0.7f;
-        hitRange = 6;
-        engageRange = hitRange;
-        fleeRange = 3;
+		ActHitRange = 6;
+		TargetDistanceMax = 6;
+		TargetDistanceMin = 3;
         reviveTypeString = "Enemy_tutorial_Flee";
-        FinishConstructor();
+        EnemyConstructor();
 
     }
 }

@@ -3,30 +3,35 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Enemy_medic : EnemyFlee {
+public class Enemy_medic : EnemyMelee {
 
 	List<IUnit> Targets;
 	List<GameObject> TargetBeams;
 	int TargetNo;
 
-	public Enemy_medic ()
+	public Enemy_medic (IUnit player)
 	{
+		TargetUnit = player;
 		
 		Targets = new List<IUnit> ();
 		TargetBeams = new List<GameObject> ();
 
-		/*attackChargeTime = 0.0f;
-		cd = 0.0f;
-		target = player;
 		MovementSpeedBase = 1.2f;
-		hitRange = 6;
-		engageRange = hitRange;
-		fleeRange = 5;*/
 
 		HealthMax = 10;
 		HealthCurrent = 10;
 
 		TargetNo = 2;
+
+		Engage = false;
+		TargetDistanceMin = 3f;
+		TargetDistanceMax = 5f;
+		ActWhileFleeing = true;
+
+		ActRange = 1f;
+		hitEffect = ParticleEffectHandler.particleType.effect_slashEffect;
+
+		PrepareTime = 0.5f;
 
 		GenericConstructor(References.instance.PrefabLibrary.Prefabs["Enemy_Archer"]);
 
@@ -40,6 +45,8 @@ public class Enemy_medic : EnemyFlee {
 
 	public override void RoomStart()
 	{
+		base.RoomStart ();
+
 		List<IUnit> temp = new List<IUnit> ();
 
 		References.instance.UnitHandler.Units.ForEach (typ => 

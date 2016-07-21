@@ -8,8 +8,7 @@ public class Aspect_Crab : Aspect
     {
         Player.Marked.ForEach(typ =>
         {
-            if (!typ.Damaged)
-            {
+			if (!typ.Damaged){
                 typ.Damage(References.instance.UnitHandler.playerController.AttackDamage * 0.25f);
             }
         });

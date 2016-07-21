@@ -4,7 +4,7 @@ using System;
 
 public class Reviver : EnemyMelee {
 
-    public Reviver()
+	public Reviver(IUnit player)
     {
         GetTarget();
         HealthMax = 14;
@@ -12,29 +12,29 @@ public class Reviver : EnemyMelee {
         MovementSpeedBase = 1f;
         hitEffect = ParticleEffectHandler.particleType.effect_slashEffect;
         hitParticleMin = 1;
-        attackChargeTime = 0.5f;
+		PrepareTime = 0.5f;
         
         reviveTypeString = "Enemy_Reviver";
-        FinishConstructor();
+        EnemyConstructor();
     }
 
     public override void Update()
     {
-        if (target == null)
+		if (TargetUnit == null)
             GetTarget();
         base.Update();
     }
 
-    public override void Fire(Vector2 pos)
+    public override void Act(Vector2 pos)
     {
-        if (target.HealthCurrent > 0)
+		if (TargetUnit.HealthCurrent > 0)
         {
-            target = null;
+			TargetUnit = null;
             return;
         }
-        if (Vector2.Distance(pos, target.Pos) <= hitRange)//Pos+deltaPos
+		if (Vector2.Distance(pos, TargetUnit.Pos) <= ActHitRange)//Pos+deltaPos
         {
-            target.Revive();
+			TargetUnit.Revive();
         }
         CreateSingleEffect(pos);
     }
@@ -42,6 +42,6 @@ public class Reviver : EnemyMelee {
     private void GetTarget()
     {
         if(References.instance.UnitHandler.DeadUnitsInRoom.Count > 0)
-            target = References.instance.UnitHandler.DeadUnitsInRoom[0];
+			TargetUnit = References.instance.UnitHandler.DeadUnitsInRoom[0];
     }
 }

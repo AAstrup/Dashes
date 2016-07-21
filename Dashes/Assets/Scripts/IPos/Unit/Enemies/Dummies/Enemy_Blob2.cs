@@ -6,16 +6,18 @@ public class Enemy_Blob2 : EnemyMelee
 
 	public Enemy_Blob2(IUnit player)
     {
-        target = player;
+		TargetUnit = player;
         HealthMax = 14;
         HealthCurrent = 14;
         MovementSpeedBase = 1f;
         hitEffect = ParticleEffectHandler.particleType.effect_slashEffect;
         hitParticleMin = 1;
-        attackChargeTime = 0.5f;
+		PrepareTime = 0.5f;
+
+		TargetDistanceMin = 5f;
 
         reviveTypeString = "Enemy_Blob2";
-        FinishConstructor();
+        EnemyConstructor();
     }
 
     public override void Die()
@@ -27,7 +29,7 @@ public class Enemy_Blob2 : EnemyMelee
 
     void SpawnBlob(int dir)
     {
-        var enemy = new Enemy_Blob1(target);
+		var enemy = new Enemy_Blob1(TargetUnit);
         enemy.Pos = Pos + new Vector2(0.25f* dir,0f);
         References.instance.RoomHandler.UnitSpawned(enemy);
     }

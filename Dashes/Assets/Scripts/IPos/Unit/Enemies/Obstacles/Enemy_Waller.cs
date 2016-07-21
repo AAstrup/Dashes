@@ -6,19 +6,21 @@ public class Enemy_Waller : EnemyMelee {
 
 	public Enemy_Waller(IUnit player)
     {
-        target = player;
+		TargetUnit = player;
         HealthMax = 13;
         HealthCurrent = 13;
         MovementSpeedBase = 1.5f;
-        continueFireTimeSeconds = 2f;
-        cd = 1.5f;
+		PrepareTime = 2f;
+		Cooldown = 1.5f;
         hitParticleASecond = 1.5f;
-        engageRange = 6f;
-        attackChargeTime = 0.5f;
+		TargetDistanceMin = 6f;
+		TargetDistanceMax = 6f;
+		Flee = false;
+		ActContinuousTime = 0.5f;
         hitEffect = ParticleEffectHandler.particleType.effect_slashEffect;
         
         reviveTypeString = "Enemy_Waller";
-        FinishConstructor();
+		EnemyConstructor();
     }
 
     Vector2[] firePositions;
@@ -27,15 +29,15 @@ public class Enemy_Waller : EnemyMelee {
     Vector2 firePos3;
     bool hasSetFirePos = false;
 
-    public override void Fire(Vector2 pos)
+    public override void Act(Vector2 pos)
     {
         if (!hasSetFirePos)
             SetFirePos(pos);
         foreach (var p in firePositions)
         {
-            if (Vector2.Distance(p, target.Pos) <= hitRange)//Pos+deltaPos
+			if (Vector2.Distance(p, TargetUnit.Pos) <= ActHitRange)//Pos+deltaPos
             {
-                DamagePlayer(damage, target);
+				DamageTarget(ActValue);
             }
         }
         base.CreateMultipleEffect(firePositions);

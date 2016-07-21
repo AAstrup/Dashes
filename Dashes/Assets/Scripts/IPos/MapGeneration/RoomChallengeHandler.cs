@@ -21,8 +21,8 @@ public class RoomChallengeHandler {
         //if (challenge == RoomChallenge.None)
         //    return;
 		var unit = (IEnemy) _unit;
-        unit.damage = challengeToInfo[challenge].dmgMultiplier * unit.damage;
-        unit.cd = (2f - challengeToInfo[challenge].attackSpeedMultiplier) * unit.cd;
+		unit.ActValue = challengeToInfo[challenge].dmgMultiplier * unit.ActValue;
+		unit.Cooldown = (2f - challengeToInfo[challenge].attackSpeedMultiplier) * unit.Cooldown;
         unit.MovementSpeedBase = challengeToInfo[challenge].moveSpeedMultiplier * unit.MovementSpeedBase;
         unit.HealthMax = challengeToInfo[challenge].hpMultiplier * unit.HealthMax;
         unit.HealthCurrent = unit.HealthMax;

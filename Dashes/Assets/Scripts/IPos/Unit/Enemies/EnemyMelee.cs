@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyMelee : AINavigation {
+public class EnemyMelee : IEnemy {
     
-    public IUnit target;
     protected ParticleEffectHandler.particleType hitEffect = ParticleEffectHandler.particleType.effect_none;
     protected float hitParticleASecond;//particles per second
     protected int hitParticleMin;//minimum particles emitted.
@@ -12,14 +11,14 @@ public class EnemyMelee : AINavigation {
     public override void Update()
     {
         base.Update();
-        Update(target);
+        //Update();
     }
 
-    public override void Fire(Vector2 pos)
+    public override void Act(Vector2 pos)
     {
-        if (Vector2.Distance(pos, target.Pos) <= hitRange)//Pos+deltaPos
+		if (Vector2.Distance(pos, TargetUnit.Pos) <= ActHitRange)
         {
-            DamagePlayer(damage, target);
+			DamageTarget(ActValue);
         }
         CreateSingleEffect(pos);
     }

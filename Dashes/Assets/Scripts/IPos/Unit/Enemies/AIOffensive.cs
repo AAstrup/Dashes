@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+﻿/*using UnityEngine;
 using System.Collections;
 using System;
 
-public class AINavigation : IEnemy {
+public class AIOffensive : IEnemy {
     //Behavior
     public float attackChargeTime = 0.25f;//Time from starting to attack to attacking
     private float attackChargeTimeLeft = -1f;//Must be less than 0 if it     not, fire on spawn
@@ -18,9 +18,6 @@ public class AINavigation : IEnemy {
     protected Vector2 deltaPos;
     protected float currentRot;
 
-    enum AIState { Searching ,Preparing, Attacking, CoolingDown, Stunned }
-    AIState state = AIState.Searching;
-
     //Attributes
     public float radius = 0.5f;
     public float continueFireTimeSeconds = 0f;//If higher than 0, it will continue attacking
@@ -32,24 +29,6 @@ public class AINavigation : IEnemy {
     protected void FinishConstructor()
     {
         GenericConstructor(References.instance.PrefabLibrary.Prefabs[reviveTypeString]);
-    }
-
-    void SetAngle (Vector3 otherpos) {
-        //float currentRot = transform.eulerAngles.z;
-        var targetRot = Mathf.Atan2(otherpos.y - Pos.y, otherpos.x - Pos.x) * 180 / Mathf.PI;
-        currentRot = targetRot;
-        Rot = targetRot;
-    }
-
-    void Move(float ms)
-    {
-        //Vector2 dir = new Vector2(Mathf.Cos(currentRot), Mathf.Sin(currentRot)) * Mathf.Rad2Deg;
-        //transform.Translate(dir.normalized * Time.deltaTime * ms);
-        var currentRotRAD = currentRot * Mathf.Deg2Rad;
-        var vector = new Vector2(Mathf.Cos(currentRotRAD), Mathf.Sin(currentRotRAD)) * ms;
-        if (fleeing)
-            vector *= -1;
-        Pos += vector * Time.deltaTime;
     }
 
     //Condition for starting preparation, by default measured by distance
@@ -195,11 +174,6 @@ public class AINavigation : IEnemy {
 
     public virtual void Fire(Vector2 pos) { }
 
-    public override void Die()
-    {
-        References.instance.RoomHandler.UnitDied(this);
-        base.Die();
-    }
 
     /// <summary>
     /// Used to ensure that the player is not damaged every frame but within a margin.
@@ -220,3 +194,4 @@ public class AINavigation : IEnemy {
         base.Revive();
     }
 }
+*/

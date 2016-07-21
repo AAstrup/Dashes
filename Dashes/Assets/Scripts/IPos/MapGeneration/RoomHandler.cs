@@ -27,9 +27,12 @@ public class RoomHandler {
     }
 
     public void EnterRoom(int layoutPosX, int layoutPosY, MapGenerator mapGenerator, RoomLayoutHandler roomLayoutHandler) {
-        References.instance.EnterRoomTrigger();
+
+		References.instance.EnterRoomTrigger();
         timeLastDoorOpened = Time.time;
         var roomScript = mapGenerator.GetMap()[layoutPosX, layoutPosY];
+
+		//References.instance.UnitHandler.playerController.Pos = roomScript.GetWorldPos()
 
         if (References.instance.MapUnknown)
         {
@@ -38,7 +41,17 @@ public class RoomHandler {
         References.instance.UIHandler.MapUpdate(layoutPosX,layoutPosY);
 
         currentRoom = roomScript;
-        References.instance.colSystem.UpdateRoom(roomScript);
+
+		List<CollisionSystem.TempBlockClass> temp = new List<CollisionSystem.TempBlockClass> () {
+			new CollisionSystem.TempBlockClass () {
+				x = 3,
+				y = 3,
+				Type = CollisionSystem.BlockTypes.Wall,
+				AffectEnemies = true,
+				AffectPlayer = true
+			}
+		};//BARE TIL TESTING
+		References.instance.colSystem.UpdateRoom(roomScript,temp);
 
         if (rooms[layoutPosX, layoutPosY] == null)
         {

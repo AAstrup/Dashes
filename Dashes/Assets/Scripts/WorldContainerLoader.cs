@@ -32,7 +32,7 @@ public class WorldContainerLoader {
 
         //World 2 -> Boss Test (temp)
         var spawnListW2 = new List<SpawnTypeContainer>();
-		spawnListW2.Add(new SpawnTypeContainer(new List<UnitType>() { UnitType.Enemy_Blob2 }, null,new List<UnitType>() {UnitType.Enemy_medic }));
+		spawnListW2.Add(new SpawnTypeContainer(new List<UnitType>() { UnitType.Enemy_Blob2 }, null,new List<UnitType>() {UnitType.Enemy_Doctor },new List<UnitType>(){UnitType.Enemy_Pyro}));
         var W2 = new WorldContainer(spawnListW2, "Room_GrassRoomPrefab",2, 2, false, 2, 1);
         worldList.Add(W2);
     }

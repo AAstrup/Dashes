@@ -141,7 +141,7 @@ public class PlayerController : IUnit
                     {
                         Marked.Add(typ);
                         typ.VisualMarked();
-                        typ.Damage(AttackDamage * ListVal("MarkingDamage"));
+						typ.Damage(AttackDamage * ListVal("MarkingDamage"));
                         typ.Effects.Add(new Effect(typ, Effect.EffectTypes.Stun, 1, 1.25f*(1-typ.tenacity)));
                         UpdateCombo(Marked.Count);
 
