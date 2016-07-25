@@ -9,6 +9,7 @@ public class UIHandler
     private Dictionary<string, Image> _images;
     private Dictionary<string, Text> _texts; 
     private List<ImageColorChangeAction> ImageColorChangeActions;
+    private List<TransformScaleChangeAction> TransformScaleChangeActions; 
     private Canvas MainCanvas;
 
     private List<MapRoom> _mapRooms;
@@ -23,6 +24,7 @@ public class UIHandler
         References.instance.CreateGameObject(References.instance.PrefabLibrary.Prefabs["UIholder"]);
 
         ImageColorChangeActions = new List<ImageColorChangeAction>();
+        TransformScaleChangeActions = new List<TransformScaleChangeAction>();
         _rectTransforms = new Dictionary<string, RT>();
         _images = new Dictionary<string, Image>();
         _texts = new Dictionary<string, Text>();
@@ -99,6 +101,15 @@ public class UIHandler
         _texts["ComboText"].fontSize = (int)(35+10*fillamount);
         var s = 0.6f + 0.25f*fillamount;
         _images["ComboFront"].gameObject.transform.localScale = new Vector3(s,s, 1);
+        _images["ComboFrontFill"].color = new Color(1,1,0,0.66f+Mathf.Floor(fillamount)*0.34f);
+
+        //TransformScaleChangeActions.Add(new TransformScaleChangeAction() { transform = _rectTransforms["ComboBack"].RectTransform.transform,scale = _rectTransforms["ComboBack"].RectTransform.transform.localScale,Speed=1f});
+        //TransformScaleChangeActions.Add(new TransformScaleChangeAction() { transform = _rectTransforms["ComboFront"].RectTransform.transform, scale = _rectTransforms["ComboFront"].RectTransform.transform.localScale, Speed = 1f });
+        //TransformScaleChangeActions.Add(new TransformScaleChangeAction() { transform = _rectTransforms["ComboFrontFill"].RectTransform.transform, scale = _rectTransforms["ComboFrontFill"].RectTransform.transform.localScale, Speed = 1f });
+
+        //_rectTransforms["ComboBack"].RectTransform.transform.localScale *= 1.25f;
+        //_rectTransforms["ComboFront"].RectTransform.transform.localScale *= 1.25f;
+        //_rectTransforms["ComboFrontFill"].RectTransform.transform.localScale *= 1.25f;
     }
 
     public void EnableCombo()
@@ -152,7 +163,7 @@ public class UIHandler
                 temp.transform.SetParent(_rectTransforms["HealthPanel"].RectTransform.transform,false);
                 var temp2 = temp.GetComponent<Image>();
                 Hearts.Add(temp2);
-                Debug.Log(Hearts.Count);
+                //Debug.Log(Hearts.Count);
                 temp2.rectTransform.anchoredPosition = new Vector2((i+0.5f)*w3-w/2,0);
                 temp2.rectTransform.sizeDelta = new Vector2(w2,w2);
             }
@@ -286,6 +297,15 @@ public class UIHandler
                 ImageColorChangeActions.Remove(typ);
             }
         });
+        TransformScaleChangeActions.ForEach(typ =>
+        {
+            typ.transform.localScale += (typ.scale - typ.transform.localScale) * Time.deltaTime * 4;
+            if (Mathf.Abs(typ.transform.localScale.x - typ.scale.x) < 0.05f)
+            {
+                typ.transform.localScale = typ.scale;
+                TransformScaleChangeActions.Remove(typ);
+            }
+        });
     }
 
     private class ImageColorChangeAction
@@ -294,6 +314,14 @@ public class UIHandler
         public Color NewColor;
         public float Speed;
     }
+
+    public class TransformScaleChangeAction
+    {
+        public Transform transform;
+        public Vector3 scale;
+        public float Speed;
+    }
+     
     private class RT
     {
         public RectTransform RectTransform;

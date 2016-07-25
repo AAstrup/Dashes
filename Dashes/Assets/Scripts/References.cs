@@ -52,15 +52,15 @@ public class References : MonoBehaviour
 	{
 	    MapUnknown = true;
 
+        PrefabLibrary = new PrefabLibrary();//Should be loaded in game start
+        PrefabLibrary.Init();
+
         cameraScript = new CameraScript();
         cameraScript.Init(GameObject.Find("Main Camera"));
         RenderSettings.ambientLight = Color.white;
         RenderSettings.ambientIntensity = 1.5f;
 
         mainCamera = GameObject.Find("Main Camera");
-
-        PrefabLibrary = new PrefabLibrary();//Should be loaded in game start
-        PrefabLibrary.Init();
 
         SpriteLibrary = new SpriteLibrary();
         SpriteLibrary.Init();
@@ -148,19 +148,21 @@ public class References : MonoBehaviour
         var prefab = Instantiate(PrefabLibrary.Prefabs[PrefabName], fixedPos + new Vector2(x*16,y*10), Quaternion.identity) as GameObject;
         gmjs._room = prefab;
         if (room.doors.Contains(0))
-            MakeDoor(Instantiate(PrefabLibrary.Prefabs[PrefabName+"HorDoor"], fixedPos + new Vector2(x * 16 - 6.86f, y * 10), Quaternion.identity) as GameObject, new Vector3(1, 1, 1), gmjs, 0);
+            MakeDoor(Instantiate(PrefabLibrary.Prefabs[PrefabName + "HorDoor"], fixedPos + new Vector2(x * 16 - 7f /*6.84*/, y * 10), Quaternion.identity) as GameObject, new Vector3(1, 1, 1), Quaternion.identity, gmjs, 0);
         if (room.doors.Contains(1))
-            MakeDoor(Instantiate(PrefabLibrary.Prefabs[PrefabName+"VerDoor"], fixedPos + new Vector2(x * 16, y * 10 + 4.4f), Quaternion.identity) as GameObject, new Vector3(1, -1, 1), gmjs, 1);
+            MakeDoor(Instantiate(PrefabLibrary.Prefabs[PrefabName + "VerDoor"], fixedPos + new Vector2(x * 16, y * 10 + 4.325f + 0.363f /*4.4f*/), Quaternion.identity) as GameObject, new Vector3(1, -1, 1), Quaternion.Euler(0, 0, -90), gmjs, 1);
         if (room.doors.Contains(2))
-            MakeDoor(Instantiate(PrefabLibrary.Prefabs[PrefabName+"HorDoor"], fixedPos + new Vector2(x * 16 + 6.86f, y * 10), Quaternion.identity) as GameObject, new Vector3(-1, 1, 1), gmjs, 2);
+            MakeDoor(Instantiate(PrefabLibrary.Prefabs[PrefabName + "HorDoor"], fixedPos + new Vector2(x * 16 + 7f /*6.84*/, y * 10), Quaternion.identity) as GameObject, new Vector3(-1, 1, 1),Quaternion.identity, gmjs, 2);
         if (room.doors.Contains(3))
-            MakeDoor(Instantiate(PrefabLibrary.Prefabs[PrefabName+"VerDoor"], fixedPos + new Vector2(x * 16, y * 10 - 4.4f), Quaternion.identity) as GameObject, new Vector3(1, 1, 1), gmjs,3);
+            MakeDoor(Instantiate(PrefabLibrary.Prefabs[PrefabName + "VerDoor"], fixedPos + new Vector2(x * 16, y * 10 - 4.325f - 0.363f /*4.4f*/), Quaternion.identity) as GameObject, new Vector3(1, 1, 1), Quaternion.Euler(0,0,90), gmjs, 3);
         return gmjs;
     }
 
-    void MakeDoor(GameObject door, Vector3 scale, RoomStaticGameObjects gmjs,int index)
+    void MakeDoor(GameObject door, Vector3 scale,Quaternion rot, RoomStaticGameObjects gmjs,int index)
     {
-        door.transform.localScale = new Vector3(scale.x* 1.6125f,scale.y* 1.65f, 1);
+        door.transform.localScale = new Vector3(scale.x*1.0f/** 1.6125f*/,scale.y*1.0f/** 1.65f*/, 1);
+        door.transform.rotation = rot;
         gmjs.Insert(door.GetComponent<SpriteRenderer>(), index);
     }
 }
+//6.312

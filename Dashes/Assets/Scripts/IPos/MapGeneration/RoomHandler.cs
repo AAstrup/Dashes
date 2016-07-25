@@ -49,7 +49,7 @@ public class RoomHandler {
 
         rooms[Mathf.RoundToInt(roomScript._pos.x), Mathf.RoundToInt(roomScript._pos.y)] = currentLayout;
 
-        References.instance.cameraScript.SetPos(currentRoom);
+        References.instance.cameraScript.SetPos(currentRoom,false);
         List<GroupType> groupType = new List<GroupType>() { GroupType.groupAntiCamp, GroupType.groupHorde, GroupType.groupObstacle, GroupType.groupThreat };
         groupType.RemoveAt(Mathf.FloorToInt(Random.Range(0f, groupType.Count)));
         groupType.RemoveAt(Mathf.FloorToInt(Random.Range(0f, groupType.Count)));

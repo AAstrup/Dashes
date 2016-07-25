@@ -20,7 +20,8 @@ public class RoomStaticGameObjects {
         for (int d = 0; d < _doors.Length; d++)
         {
             if (_doors[d] != null)
-                _doors[d].color = new Color(0f, 0f, 0f);
+                _doors[d].sprite = References.instance.SpriteLibrary.Sprites["DoorClosed"];
+            //_doors[d].color = new Color(0f, 0f, 0f);
         }
     }
 
@@ -29,7 +30,8 @@ public class RoomStaticGameObjects {
         for (int d = 0; d < _doors.Length; d++)
         {
             if (_doors[d] != null)
-                _doors[d].color = new Color(1f,1f,1f);
+                //_doors[d].color = new Color(1f,1f,1f);
+                _doors[d].sprite = References.instance.SpriteLibrary.Sprites["HorDoor"];
         }
     }
 

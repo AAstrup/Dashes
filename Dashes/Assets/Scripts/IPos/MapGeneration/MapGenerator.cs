@@ -27,7 +27,7 @@ public class MapGenerator {
         RoomScript startRoom = GetStartRoom();
         var StartPos = startRoom.GetWorldPos();
         References.instance.UnitHandler.playerIUnit.Pos = StartPos;
-        References.instance.cameraScript.SetPos(startRoom);
+        References.instance.cameraScript.SetPos(startRoom,true);
         References.instance.UIHandler.MapCreate(rooms,mapWidth,mapHeight);
     }
 

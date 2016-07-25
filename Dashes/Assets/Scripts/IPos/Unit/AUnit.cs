@@ -14,7 +14,9 @@ public abstract class IUnit : Position {
     private bool Stunned;
     public float Slow;
     public float Boost;
-    public List<Effect> Effects; 
+    public List<Effect> Effects;
+
+    public dir facedir = dir.Down;
 
     public Vector2 startScale;
     public float Rot;
@@ -29,13 +31,43 @@ public abstract class IUnit : Position {
 
     public bool Invulnerable = false;
 
+    public enum dir
+    {
+        None,
+        Down,
+        Up,
+        Left,
+        Right
+    }
+
+    public dir GetDir(float angle)
+    {
+        if (angle <= 45 || angle > 315)
+        {
+            return dir.Right;
+        }
+        if (angle <= 135 && angle > 45)
+        {
+            return dir.Down;
+        }
+        if (angle <= 225 && angle > 135)
+        {
+            return dir.Left;
+        }
+        if (angle <= 315 && angle > 225)
+        {
+            return dir.Up;
+        }
+        return dir.None;
+    }
+
     public virtual void Update()
     {
         Effects.ForEach(typ => typ.Update(this));
         var col = References.instance.colSystem.CollidesWithWall(this);
         CollisionEvent(col);
-        GBref.transform.position = Pos;
-        GBref.transform.rotation = Quaternion.Euler(0, 0, Rot);
+        GBref.transform.position = Pos;//new Vector3(Mathf.Round(Pos.x*16f)/16f,Mathf.Round(Pos.y*16f)/16f,0);
+        //GBref.transform.rotation = Quaternion.Euler(0, 0, Rot);
 
         if(GBref.transform.localScale.x > startScale.x)
         {
@@ -73,9 +105,9 @@ public abstract class IUnit : Position {
         string bloodIndex = Mathf.FloorToInt(Random.Range(1, 5)).ToString();
         References.instance.particleHandler.Emit(ParticleEffectHandler.particleType.effect_bleed, Mathf.CeilToInt(multiplier * 5),Pos);
         var gmj = References.instance.CreateGameObject(References.instance.PrefabLibrary.Prefabs["Detail_Blood"+ bloodIndex]);
-        gmj.transform.position = GBref.transform.position + new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(-0.3f, 0.3f),0);
-        gmj.transform.localScale = new Vector3(Random.Range(0.2f, 0.3f) * multiplier, Random.Range(0.2f, 0.3f) * multiplier, 1f);
-        gmj.transform.rotation = Quaternion.Euler(0,0, Random.Range(0, 360));
+        gmj.transform.position = GBref.transform.position + new Vector3(Mathf.Round(Random.Range(-0.3f, 0.3f)*16f)/16f, Mathf.Round(Random.Range(-0.3f, 0.3f)*16f)/16f,0);
+        //gmj.transform.localScale = new Vector3(Random.Range(0.2f, 0.3f) * multiplier, Random.Range(0.2f, 0.3f) * multiplier, 1f);
+        gmj.transform.rotation = Quaternion.Euler(0,0, Mathf.Round(Random.Range(0, 360)/90f)*90);
         References.instance.DetailHandler.AddDetail(gmj);
     }
 
