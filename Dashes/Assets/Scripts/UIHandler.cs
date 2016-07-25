@@ -7,9 +7,9 @@ public class UIHandler
 
     private Dictionary<string, RT> _rectTransforms;
     private Dictionary<string, Image> _images;
-    private Dictionary<string, Text> _texts; 
+    private Dictionary<string, Text> _texts;
     private List<ImageColorChangeAction> ImageColorChangeActions;
-    private List<TransformScaleChangeAction> TransformScaleChangeActions; 
+    private List<TransformScaleChangeAction> TransformScaleChangeActions;
     private Canvas MainCanvas;
 
     private List<MapRoom> _mapRooms;
@@ -17,7 +17,10 @@ public class UIHandler
 
     private RectTransform _mapPlayer;
 
-    private List<Image> Hearts; 
+    private List<Image> Hearts;
+
+    //Aspect pickup variables.
+    List<Aspect> pickAspects;
 
     public void Init()
     {
@@ -54,16 +57,18 @@ public class UIHandler
 
         Hearts = new List<Image>();
 
-        ArrangeHearts((int)References.instance.UnitHandler.playerController.HealthMax/2);
+        ArrangeHearts((int)References.instance.UnitHandler.playerController.HealthMax / 2);
         UpdateHearts(References.instance.UnitHandler.playerController.HealthCurrent);
+
+        DisableAspectPicker();
     }
 
     public void AdjustScaleFactor()
     {
-        MainCanvas.scaleFactor = Screen.width/931f;
+        MainCanvas.scaleFactor = Screen.width / 931f;
     }
 
-    public void UpdateBar(string name,float v,bool alphaeffect)
+    public void UpdateBar(string name, float v, bool alphaeffect)
     {
         _rectTransforms[name].ChangeSize(v, 1);
 
@@ -80,7 +85,7 @@ public class UIHandler
 
     public void UpdateBloodDamage(float value)
     {
-        _images["BloodBack"].color = new Color(1, 1, 1, (Mathf.Pow(10,1-value)/10)*0.4f);
+        _images["BloodBack"].color = new Color(1, 1, 1, (Mathf.Pow(10, 1 - value) / 10) * 0.4f);
         _images["BloodFront"].color = new Color(1, 1, 1, 0.85f);
         ImageColorChangeActions.Add(new ImageColorChangeAction()
         {
@@ -93,15 +98,15 @@ public class UIHandler
         _images["BloodBack"].color = new Color(1, 1, 1, (Mathf.Pow(10, 1 - value) / 10) * 0.4f);
     }
 
-    public void UpdateCombo(int size,float timeleft,float fillamount)
+    public void UpdateCombo(int size, float timeleft, float fillamount)
     {
         _images["ComboBack"].fillAmount = timeleft;
         _texts["ComboText"].text = size.ToString();
-        
-        _texts["ComboText"].fontSize = (int)(35+10*fillamount);
-        var s = 0.6f + 0.25f*fillamount;
-        _images["ComboFront"].gameObject.transform.localScale = new Vector3(s,s, 1);
-        _images["ComboFrontFill"].color = new Color(1,1,0,0.66f+Mathf.Floor(fillamount)*0.34f);
+
+        _texts["ComboText"].fontSize = (int)(35 + 10 * fillamount);
+        var s = 0.6f + 0.25f * fillamount;
+        _images["ComboFront"].gameObject.transform.localScale = new Vector3(s, s, 1);
+        _images["ComboFrontFill"].color = new Color(1, 1, 0, 0.66f + Mathf.Floor(fillamount) * 0.34f);
 
         //TransformScaleChangeActions.Add(new TransformScaleChangeAction() { transform = _rectTransforms["ComboBack"].RectTransform.transform,scale = _rectTransforms["ComboBack"].RectTransform.transform.localScale,Speed=1f});
         //TransformScaleChangeActions.Add(new TransformScaleChangeAction() { transform = _rectTransforms["ComboFront"].RectTransform.transform, scale = _rectTransforms["ComboFront"].RectTransform.transform.localScale, Speed = 1f });
@@ -137,7 +142,7 @@ public class UIHandler
         _images["BossPanel"].gameObject.SetActive(false);
     }
 
-    public void UpdateLevel(int world,int level)
+    public void UpdateLevel(int world, int level)
     {
         _texts["LevelText"].text = world.ToString() + "-" + level.ToString();
     }
@@ -160,12 +165,14 @@ public class UIHandler
             for (int i = 0; i < no; i++)
             {
                 var temp = References.instance.CreateGameObject(References.instance.PrefabLibrary.Prefabs["Heart"]);
-                temp.transform.SetParent(_rectTransforms["HealthPanel"].RectTransform.transform,false);
+                temp.transform.SetParent(_rectTransforms["HealthPanel"].RectTransform.transform, false);
                 var temp2 = temp.GetComponent<Image>();
                 Hearts.Add(temp2);
+
                 //Debug.Log(Hearts.Count);
-                temp2.rectTransform.anchoredPosition = new Vector2((i+0.5f)*w3-w/2,0);
-                temp2.rectTransform.sizeDelta = new Vector2(w2,w2);
+
+                temp2.rectTransform.anchoredPosition = new Vector2((i + 0.5f) * w3 - w / 2, 0);
+                temp2.rectTransform.sizeDelta = new Vector2(w2, w2);
             }
         }
     }
@@ -176,25 +183,25 @@ public class UIHandler
     }
     public void UpdateHearts(int no)
     {
-        for (int i = 0; i < Mathf.Floor(no/2f); i++)
+        for (int i = 0; i < Mathf.Floor(no / 2f); i++)
         {
             Hearts[i].sprite = References.instance.SpriteLibrary.Sprites["HeartFilled"];
         }
-        if (no%2 != 0)
+        if (no % 2 != 0)
         {
             Hearts[(int)(Mathf.Floor(no / 2f))].sprite = References.instance.SpriteLibrary.Sprites["HeartHalf"];
         }
-        for (int i = (int)(Mathf.Floor(no / 2f)) + no % 2; i < References.instance.UnitHandler.playerController.HealthMax/2; i++)
+        for (int i = (int)(Mathf.Floor(no / 2f)) + no % 2; i < References.instance.UnitHandler.playerController.HealthMax / 2; i++)
         {
             Hearts[i].sprite = References.instance.SpriteLibrary.Sprites["HeartEmpty"];
         }
     }
 
-    public void MapCreateRoom(int w,int h)
+    public void MapCreateRoom(int w, int h)
     {
         GameObject temp = References.instance.CreateGameObject(References.instance.PrefabLibrary.Prefabs["Map_Room"]);
-        temp.transform.SetParent(_rectTransforms["Map"].RectTransform.transform,false);
-        _mapRooms.Add(new MapRoom(temp,temp.GetComponent<RectTransform>(),w,h));
+        temp.transform.SetParent(_rectTransforms["Map"].RectTransform.transform, false);
+        _mapRooms.Add(new MapRoom(temp, temp.GetComponent<RectTransform>(), w, h));
     }
     public void MapEnableRoom(int w, int h)
     {
@@ -203,7 +210,7 @@ public class UIHandler
         {
             temp.GB.SetActive(true);
 
-            MapEnableDoor(w+0.5f,h);
+            MapEnableDoor(w + 0.5f, h);
             MapEnableDoor(w, h + 0.5f);
             MapEnableDoor(w - 0.5f, h);
             MapEnableDoor(w, h - 0.5f);
@@ -226,10 +233,10 @@ public class UIHandler
         }
     }
 
-    public void MapUpdate(int playerw,int playerh)
+    public void MapUpdate(int playerw, int playerh)
     {
-        _mapRooms.ForEach(typ => typ.Update(playerw,playerh));
-        _mapDoors.ForEach(typ => typ.Update(playerw,playerh));
+        _mapRooms.ForEach(typ => typ.Update(playerw, playerh));
+        _mapDoors.ForEach(typ => typ.Update(playerw, playerh));
     }
 
     private class MapRoom
@@ -239,7 +246,7 @@ public class UIHandler
         public int W;
         public int H;
 
-        public MapRoom(GameObject gb,RectTransform rt,int w,int h)
+        public MapRoom(GameObject gb, RectTransform rt, int w, int h)
         {
             GB = gb;
             RT = rt;
@@ -247,9 +254,9 @@ public class UIHandler
             H = h;
         }
 
-        public void Update(int offw,int offh)
+        public void Update(int offw, int offh)
         {
-            RT.anchoredPosition = new Vector2((W-offw) * 20,(H-offh) * 11);
+            RT.anchoredPosition = new Vector2((W - offw) * 20, (H - offh) * 11);
         }
 
         public void Remove()
@@ -274,9 +281,9 @@ public class UIHandler
             H = h;
         }
 
-        public void Update(int offw,int offh)
+        public void Update(int offw, int offh)
         {
-            RT.anchoredPosition = new Vector2((W-offw) * 20,(H-offh) * 11);
+            RT.anchoredPosition = new Vector2((W - offw) * 20, (H - offh) * 11);
         }
 
         public void Remove()
@@ -290,7 +297,7 @@ public class UIHandler
     {
         ImageColorChangeActions.ForEach(typ =>
         {
-            typ.ImageRef.color += (typ.NewColor - typ.ImageRef.color)*Time.deltaTime*4;
+            typ.ImageRef.color += (typ.NewColor - typ.ImageRef.color) * Time.deltaTime * 4;
             if (Mathf.Abs(typ.ImageRef.color.a - typ.NewColor.a) < 0.05f)
             {
                 typ.ImageRef.color = typ.NewColor;
@@ -321,17 +328,17 @@ public class UIHandler
         public Vector3 scale;
         public float Speed;
     }
-     
+
     private class RT
     {
         public RectTransform RectTransform;
         public Vector2 startpos;
         public Vector2 startsize;
 
-        public void ChangeSize(float w,float h)
+        public void ChangeSize(float w, float h)
         {
             RectTransform.sizeDelta = new Vector2(startsize.x * w, startsize.y * h);
-            RectTransform.localPosition = startpos - (startsize - RectTransform.sizeDelta)/2;
+            RectTransform.localPosition = startpos - (startsize - RectTransform.sizeDelta) / 2;
         }
     }
 
@@ -345,16 +352,16 @@ public class UIHandler
         _texts["DebugLog"].text = "";
     }
 
-    public void MapCreate(RoomScript[,] rooms,int width,int height)
+    public void MapCreate(RoomScript[,] rooms, int width, int height)
     {
-        while(_mapRooms.Count > 0)
+        while (_mapRooms.Count > 0)
         {
             _mapRooms[0].Remove();
         }
         while (_mapDoors.Count > 0)
         {
             _mapDoors[0].Remove();
-        } 
+        }
         _mapRooms = new List<MapRoom>();
         _mapDoors = new List<MapDoor>();
         for (int w = 0; w < width; w++)
@@ -366,7 +373,7 @@ public class UIHandler
                     References.instance.UIHandler.MapCreateRoom(w, h);
                     if (rooms[w, h].doors.Contains(1))
                     {
-                        References.instance.UIHandler.MapCreateDoor(w,h+0.5f);
+                        References.instance.UIHandler.MapCreateDoor(w, h + 0.5f);
                     }
                     if (rooms[w, h].doors.Contains(2))
                     {
@@ -387,4 +394,27 @@ public class UIHandler
         }
     }
 
+    public void PresentNewAspect()
+    {
+        _rectTransforms["LevelupContainer"].RectTransform.gameObject.SetActive(true);
+        pickAspects = new List<Aspect> { new Aspect_Bat(), new Aspect_Bull(), new Aspect_Cheetah() };
+        for (int i = 0; i < pickAspects.Count; i++)
+        {
+            _texts["Pick" + (i + 1) + "Title"].text = pickAspects[i].Title;
+            if (pickAspects[i].Sprite != null)
+                _images["Pick" + (i + 1) + "Image"].sprite = pickAspects[i].Sprite;
+            _texts["Pick" + (i + 1) + "Description"].text = pickAspects[i].Description;
+        }
+    }
+
+    public void ChooseAspect(int nr)
+    {
+        References.instance.AspectHandler.AddAspect(pickAspects[nr - 1]);
+        DisableAspectPicker();
+    }
+
+    private void DisableAspectPicker()
+    {
+        _rectTransforms["LevelupContainer"].RectTransform.gameObject.SetActive(false);
+    }
 }
