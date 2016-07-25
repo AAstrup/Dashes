@@ -16,8 +16,9 @@ public class Enemy_Waller : EnemyMelee {
         engageRange = 6f;
         attackChargeTime = 0.5f;
         hitEffect = ParticleEffectHandler.particleType.effect_slashEffect;
-
-        GenericConstructor(References.instance.PrefabLibrary.Prefabs["Enemy_Waller"]);
+        
+        reviveTypeString = "Enemy_Waller";
+        FinishConstructor();
     }
 
     Vector2[] firePositions;

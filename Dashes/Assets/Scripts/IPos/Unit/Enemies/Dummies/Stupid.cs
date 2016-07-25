@@ -12,7 +12,9 @@ public class Stupid : EnemyMelee {
         hitEffect = ParticleEffectHandler.particleType.effect_slashEffect;
         hitParticleMin = 1;
         attackChargeTime = 0.5f;
+        
+        reviveTypeString = "Enemy_Stupid";
+        FinishConstructor();
 
-        GenericConstructor(References.instance.PrefabLibrary.Prefabs["Enemy_Stupid"]);
     }
 }

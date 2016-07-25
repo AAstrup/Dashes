@@ -14,7 +14,8 @@ public class Archer : EnemyRanged {
         hitRange = 6;
         engageRange = hitRange;
         fleeRange = 3;
-        GenericConstructor(References.instance.PrefabLibrary.Prefabs["Enemy_Archer"]);
+        reviveTypeString = "Enemy_Archer";
+        FinishConstructor();
     }
 
     public override void Fire(Vector2 pos)

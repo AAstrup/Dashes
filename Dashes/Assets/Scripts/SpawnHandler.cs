@@ -19,16 +19,16 @@ public class SpawnHandler {
         possibleRegularSpawns.Add(SpawnInfoType.potion, new List<SpawnType>() { SpawnType.W1HPPotion });
     }
 
-    public void SpawnEnemy(UnitSpawnType spawnType,SpawnInfo spawn, RoomScript room)
+    public void SpawnEnemy(UnitSpawnType spawnType,EnemySpawnInfo spawn, RoomScript room,Vector2 reversePosition)
     {
         var type = spawnType;
         if (possibleEnemies[type].Count == 0)
             type = UnitSpawnType.stupid;
 
-        CreateEnemy(possibleEnemies[type][Mathf.FloorToInt(Random.Range(0, possibleEnemies[type].Count))],new Vector2(spawn.x(), spawn.y()), room);
+        CreateEnemy(possibleEnemies[type][Mathf.FloorToInt(Random.Range(0, possibleEnemies[type].Count))],new Vector2(spawn.GetX(), spawn.GetY()), room,reversePosition);
     }
 
-    private void CreateEnemy(UnitType enemyType, Vector2 pos,RoomScript room)
+    private void CreateEnemy(UnitType enemyType, Vector2 pos,RoomScript room,Vector2 reversePosition)
     {
         IUnit enemy;
         var player = References.instance.UnitHandler.playerController;
@@ -48,6 +48,14 @@ public class SpawnHandler {
             enemy = new Enemy_tutorial_Still(player);
         else if (enemyType == UnitType.Enemy_tutorial_Towards)
             enemy = new Enemy_tutorial_Towards(player);
+        else if (enemyType == UnitType.Enemy_Blob1)
+            enemy = new Enemy_Blob2(player);
+        else if (enemyType == UnitType.Enemy_Blob2)
+            enemy = new Enemy_Blob2(player);
+        else if (enemyType == UnitType.Enemy_Reviver)
+            enemy = new Reviver();
+		else if (enemyType == UnitType.Enemy_medic)
+			enemy = new Enemy_medic();
         else
             throw new System.Exception("enemyType not supported");
 
@@ -58,32 +66,28 @@ public class SpawnHandler {
             References.instance.UIHandler.DebugLog(room.GetChallenge().ToString());
             References.instance.RoomChallengeHandler.ApplyChallenge(enemy, room.GetChallenge());
         }
-        enemy.Pos = pos + References.instance.RoomHandler.GetCurrentRoom().GetWorldPos();
+
+        var roomRef = References.instance.RoomHandler.GetCurrentRoom();
+        enemy.Pos = roomRef.GetWorldPos() + new Vector2(pos.x * reversePosition.x,pos.y * reversePosition.y) - new Vector2((roomRef.GetRoomWidth() / 2f - roomRef.wallWidth)* reversePosition.x, (roomRef.GetRoomHeight() / 2f - roomRef.wallHeight) * reversePosition.y) - new Vector2(-1,-1);
         References.instance.RoomHandler.UnitSpawned(enemy);
     }
 
-    private void CreateEnemyFast(UnitType enemyType, Vector2 pos, RoomScript room)
-    {//Func<object> func = delegate { return a; };
-        var player = References.instance.UnitHandler.playerController;
-        Dictionary<UnitType, System.Func<IUnit, IUnit>> typeToCreator = new Dictionary<UnitType, System.Func<IUnit, IUnit>>();
-        System.Func<IUnit, IUnit> func = p => new Stupid(p); //delegate { return new Stupid(player); };
-
-
-    }
-
-    public void SpawnPickup(SpawnInfoType spawnType, SpawnInfo spawn)
+    public void SpawnPickup(SpawnInfoType spawnType, ItemSpawnInfo spawn,Vector2 reversePosition)
     {
         var type = spawnType;
         if (possibleRegularSpawns[type].Count == 0)
             type = SpawnInfoType.potion;
 
-        CreateRegularSpawn(possibleRegularSpawns[type][Mathf.FloorToInt(UnityEngine.Random.Range(0, possibleRegularSpawns[type].Count))], new Vector2(spawn.x(), spawn.y()));
+        CreateRegularSpawn(possibleRegularSpawns[type][Mathf.FloorToInt(UnityEngine.Random.Range(0, possibleRegularSpawns[type].Count))], new Vector2(spawn.GetX(), spawn.GetY() ),reversePosition);
     }
 
-    private void CreateRegularSpawn(SpawnType spawnType, Vector2 pos)//Spawns an item based on the enum, this is a 1 to 1
+    private void CreateRegularSpawn(SpawnType spawnType, Vector2 pos,Vector2 reversePosition)//Spawns an item based on the enum, this is a 1 to 1
     {
         Position item;
-        Vector2 finalPos = pos + References.instance.RoomHandler.GetCurrentRoom().GetWorldPos();
+        var roomRef = References.instance.RoomHandler.GetCurrentRoom();
+        
+        Vector2 finalPos = roomRef.GetWorldPos() + new Vector2(pos.x * reversePosition.x, pos.y * reversePosition.y) - new Vector2((roomRef.GetRoomWidth() / 2f - roomRef.wallWidth) * reversePosition.x, (roomRef.GetRoomHeight() / 2f - roomRef.wallHeight) * reversePosition.y) - new Vector2(-1, -1);
+
         var player = References.instance.UnitHandler.playerController;
         if (spawnType == SpawnType.W1HPPotion)
             item = new W1HPPot(finalPos, player);
@@ -92,12 +96,21 @@ public class SpawnHandler {
     }
 
 }
-public enum UnitSpawnType { stupid, antiCamp, threat, obstacle, boss }
+public enum UnitSpawnType {
+    stupid,     //There can be a lot of these without making it impossible. They serve as a tool for the player to move fast.
+    antiCamp,   //They get close to the player in order to prevent camping. They are not a big threat
+    threat,     //Ranged and possea threat. They are top priority to kill.
+    obstacle,   //They prevents the player for jumping right to threats. 
+    boss
+}
 public enum UnitType {
     //Introduced at World 0
     Enemy_tutorial_Towards, Enemy_tutorial_Still, Enemy_tutorial_Flee, Enemy_tutorial_BossSpawner,
     //Introduced at world 1
-    Enemy_Stupid, Enemy_Archer, Enemy_Charger, Enemy_Waller, Enemy_Boss             
+    Enemy_Stupid, Enemy_Archer, Enemy_Charger, Enemy_Waller, Enemy_Boss,
+    //Introduced at world 2
+    Enemy_Blob1, Enemy_Blob2, Enemy_Reviver,
+	Enemy_medic
 }
 
 public enum SpawnInfoType { potion, aspect, goal}

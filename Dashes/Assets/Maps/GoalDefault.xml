@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Editor_RoomLayout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <layoutInfo>
+    <orientation>Both</orientation>
+    <roomType>G</roomType>
+  </layoutInfo>
+  <enemieInfos />
+  <pickupInfos>
+    <ItemSpawnInfo>
+      <_x>6</_x>
+      <_y>3</_y>
+      <_groupType>groupStatic</_groupType>
+      <_type>goal</_type>
+    </ItemSpawnInfo>
+  </pickupInfos>
+</Editor_RoomLayout>

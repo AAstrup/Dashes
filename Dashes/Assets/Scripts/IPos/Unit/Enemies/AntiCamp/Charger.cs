@@ -17,8 +17,8 @@ public class Charger : EnemyMelee {
         engageRange = 6f;
         attackChargeTime = 0.5f;
         hitEffect = ParticleEffectHandler.particleType.effect_slashEffect;
-
-        GenericConstructor(References.instance.PrefabLibrary.Prefabs["Enemy_Charger"]);
+        reviveTypeString = "Enemy_Charger";
+        FinishConstructor();
     }
     public override void Damage(float amount)
     {

@@ -30,6 +30,15 @@ public abstract class IUnit : Position {
     public SpriteRenderer GBSpriteRenderer;
 
     public bool Invulnerable = false;
+    protected string reviveTypeString;
+
+    public virtual void Revive()
+    {
+        HealthCurrent = HealthMax;
+        GenericConstructor(References.instance.PrefabLibrary.Prefabs[reviveTypeString]);
+        References.instance.RoomHandler.UnitSpawned(this);
+        References.instance.UnitHandler.DeadUnitsInRoom.Remove(this);
+    }
 
     public enum dir
     {
@@ -124,6 +133,7 @@ public abstract class IUnit : Position {
     public virtual void Die()
     {
         References.instance.UnitHandler.Units.Remove(this);
+        References.instance.UnitHandler.DeadUnitsInRoom.Add(this);
         References.instance.DestroyGameObject(GBref);
     }
 
@@ -165,4 +175,8 @@ public abstract class IUnit : Position {
     public virtual void SetStunned(bool v) { Stunned = v; }
 
     public virtual bool GetStunned() { return Stunned; }
+
+	public virtual void RoomStart (){
+	}
+
 }

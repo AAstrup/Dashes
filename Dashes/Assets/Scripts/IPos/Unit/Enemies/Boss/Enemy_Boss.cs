@@ -29,7 +29,8 @@ public class Enemy_Boss : IUnit
         HealthCurrent = 120;
         MovementSpeedBase = 1f;
 
-        GenericConstructor(References.instance.PrefabLibrary.Prefabs["Enemy_Boss"]);
+        reviveTypeString = "Enemy_Boss";
+        GenericConstructor(References.instance.PrefabLibrary.Prefabs[reviveTypeString]);
 
         laserBounces = new List<LaserBounce>();
 

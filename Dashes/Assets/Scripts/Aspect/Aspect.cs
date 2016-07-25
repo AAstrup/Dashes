@@ -11,6 +11,7 @@ public abstract class Aspect
 
     public string Title;
     public string Description;
+    public Sprite Sprite;
 
     public abstract void Activate(float triggervalue);
     public abstract void DeActivate();

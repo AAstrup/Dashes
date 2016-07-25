@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEngine.SceneManagement;
 
 public class References : MonoBehaviour
 {
@@ -34,6 +35,11 @@ public class References : MonoBehaviour
             triggerHandler.Reset();
         if (mapGenerator != null)
             mapGenerator.Reset();
+    }
+
+    public void EnterRoomTrigger()
+    {
+        UnitHandler.Reset();
     }
 
     public RoomLayoutHandler RoomLayoutHandler;
@@ -117,6 +123,9 @@ public class References : MonoBehaviour
         //boss.Pos = UnitHandler.playerController.Pos + new Vector2(0, 10);
         //boss.Update();
 
+        //TEST
+        if (Input.GetKeyDown(KeyCode.Space))
+            UIHandler.PresentNewAspect();
     }
 
     public GameObject CreateGameObject(GameObject GB)
@@ -163,6 +172,16 @@ public class References : MonoBehaviour
         door.transform.localScale = new Vector3(scale.x*1.0f/** 1.6125f*/,scale.y*1.0f/** 1.65f*/, 1);
         door.transform.rotation = rot;
         gmjs.Insert(door.GetComponent<SpriteRenderer>(), index);
+    }
+
+    public void Reload()
+    {
+        SceneManager.LoadScene("test");
+    }
+
+    public void ChooseAspect(int nr)
+    {
+        UIHandler.ChooseAspect(nr);
     }
 }
 //6.312
