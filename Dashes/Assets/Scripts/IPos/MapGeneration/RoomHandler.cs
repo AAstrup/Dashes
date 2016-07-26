@@ -66,7 +66,9 @@ public class RoomHandler {
 
 		References.instance.UnitHandler.Units.ForEach (typ => typ.RoomStart());
 
-        Time.timeScale = 0f;//Pauses the game when the room is loaded
+        //Time.timeScale = 0f;//Pauses the game when the room is loaded
+        References.instance.UnitHandler.Update();
+        References.instance.UnitHandler.UnitPause = true;
         Debug.Log("Room type "+ currentRoom.GetRoomType());
     }
 
@@ -97,22 +99,22 @@ public class RoomHandler {
             return;
         float triggerVerDist = 0.5f + 1.5f;
         float triggerHorDist = 1f + 1.5f;
-        if (Vector2.Distance(References.instance.UnitHandler.playerIUnit.Pos, currentRoom.GetWorldPos() + new Vector2(0f, currentRoom.GetRoomHeight() / 2f)) < triggerVerDist)
+        if (Vector2.Distance(References.instance.PlayerInput.Dir,Vector2.up) < 0.75f && Vector2.Distance(References.instance.UnitHandler.playerIUnit.Pos, currentRoom.GetWorldPos() + new Vector2(0f, currentRoom.GetRoomHeight() / 2f)) < triggerVerDist)
         {//Up
             if(currentRoom.hasTopDoor())
                 EnterRoom(Mathf.RoundToInt(currentRoom._pos.x), Mathf.RoundToInt(currentRoom._pos.y + 1),References.instance.mapGenerator,References.instance.RoomLayoutHandler, EnterRoomOrientation.Top);
         }
-        else if (Vector2.Distance(References.instance.UnitHandler.playerIUnit.Pos, currentRoom.GetWorldPos() - new Vector2(0f, currentRoom.GetRoomHeight() / 2f)) < triggerVerDist)
+        else if (Vector2.Distance(References.instance.PlayerInput.Dir, Vector2.down) < 0.75f && Vector2.Distance(References.instance.UnitHandler.playerIUnit.Pos, currentRoom.GetWorldPos() - new Vector2(0f, currentRoom.GetRoomHeight() / 2f)) < triggerVerDist)
         {//down
             if (currentRoom.hasBottomDoor())
                 EnterRoom(Mathf.RoundToInt(currentRoom._pos.x), Mathf.RoundToInt(currentRoom._pos.y - 1), References.instance.mapGenerator, References.instance.RoomLayoutHandler, EnterRoomOrientation.Bot);
         }
-        else if (Vector2.Distance(References.instance.UnitHandler.playerIUnit.Pos, currentRoom.GetWorldPos() - new Vector2(currentRoom.GetRoomWidth() / 2, 0f)) < triggerHorDist)
+        else if (Vector2.Distance(References.instance.PlayerInput.Dir, Vector2.left) < 0.75f && Vector2.Distance(References.instance.UnitHandler.playerIUnit.Pos, currentRoom.GetWorldPos() - new Vector2(currentRoom.GetRoomWidth() / 2, 0f)) < triggerHorDist)
         {//left
             if (currentRoom.hasLeftDoor())
                 EnterRoom(Mathf.RoundToInt(currentRoom._pos.x - 1), Mathf.RoundToInt(currentRoom._pos.y), References.instance.mapGenerator, References.instance.RoomLayoutHandler, EnterRoomOrientation.Left);
         }
-        else if (Vector2.Distance(References.instance.UnitHandler.playerIUnit.Pos, currentRoom.GetWorldPos() + new Vector2(currentRoom.GetRoomWidth() / 2, 0f)) < triggerHorDist)
+        else if (Vector2.Distance(References.instance.PlayerInput.Dir, Vector2.right) < 0.75f && Vector2.Distance(References.instance.UnitHandler.playerIUnit.Pos, currentRoom.GetWorldPos() + new Vector2(currentRoom.GetRoomWidth() / 2, 0f)) < triggerHorDist)
         {//right
             if (currentRoom.hasRightDoor())
                 EnterRoom(Mathf.RoundToInt(currentRoom._pos.x + 1), Mathf.RoundToInt(currentRoom._pos.y), References.instance.mapGenerator, References.instance.RoomLayoutHandler, EnterRoomOrientation.Right);
