@@ -5,7 +5,6 @@ using System.Collections;
 
 public class PlayerController : IUnit
 {
-    private Vector2 _facedir = Vector2.zero;
     private Vector2 _mousefacing = Vector2.zero;
     private Vector2 _speed = Vector2.zero;
 
@@ -42,6 +41,8 @@ public class PlayerController : IUnit
 
     public bool MarkedUnitsCanAlsoReset = false;
 
+    Animator anim;
+    private string CurrentAni;
 
     public Dictionary<string, List<float>> FloatVars = new Dictionary<string, List<float>>()
     {
@@ -86,6 +87,9 @@ public class PlayerController : IUnit
         {
             _dashingTime = 0f;
         }
+
+        Animate();
+
         base.Update();
     }
 
@@ -202,13 +206,12 @@ public class PlayerController : IUnit
             _mousefacing = (References.instance.PlayerInput.GetMousePosition() - Pos).normalized;
             if (References.instance.PlayerInput.Dir.magnitude >= 1)
             {
-                Rot = GetAngle(Pos + References.instance.PlayerInput.Dir);
-                _facedir = References.instance.PlayerInput.Dir;
+                facedir = GetDir(GetAngle(Pos + References.instance.PlayerInput.Dir));
             }
         }
         else
         {
-            Rot = GetAngle(Pos + _mousefacing);
+            facedir = GetDir(GetAngle(Pos + _mousefacing));
         }
 
         /*GENERIC MOVEMENT*/
@@ -241,8 +244,22 @@ public class PlayerController : IUnit
         else
         {
             _standmovetimetriggerdelay -= Time.deltaTime;
-        }
+        }    
 
+    }
+
+    void Animate()
+    {
+        //if (facedir == dir.down)
+
+        if (_speed == Vector2.zero)
+        {
+            anim.SetBool("Idle",true);
+        }
+        else
+        {
+            anim.SetBool("Idle", false);
+        }
     }
 
     float BigEnough(float value, float requirement)
@@ -270,6 +287,8 @@ public class PlayerController : IUnit
         _markedProjectiles = new List<MarkedProjectile>();
 
         GenericConstructor(References.instance.PrefabLibrary.Prefabs["Player"]);
+
+        anim = GBref.transform.GetComponent<Animator>();
 
         //References.instance.UIHandler.ArrangeHearts((int)HealthMax); Kaldes i UIHandleren i stedet
     }

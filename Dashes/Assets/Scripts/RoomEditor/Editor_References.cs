@@ -11,6 +11,10 @@ public class Editor_References : MonoBehaviour {
     public Editor_Drawer drawer;
     public PrefabLibrary prefabs;
     public Editor_Input input;
+    //Instantiated in unity.
+    public GameObject door_V;
+    public GameObject door_H;
+
 
     void Awake()
     {

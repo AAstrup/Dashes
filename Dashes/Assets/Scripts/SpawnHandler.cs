@@ -19,16 +19,16 @@ public class SpawnHandler {
         possibleRegularSpawns.Add(SpawnInfoType.potion, new List<SpawnType>() { SpawnType.W1HPPotion });
     }
 
-    public void SpawnEnemy(UnitSpawnType spawnType,EnemySpawnInfo spawn, RoomScript room)
+    public void SpawnEnemy(UnitSpawnType spawnType,EnemySpawnInfo spawn, RoomScript room,Vector2 reversePosition)
     {
         var type = spawnType;
         if (possibleEnemies[type].Count == 0)
             type = UnitSpawnType.stupid;
 
-        CreateEnemy(possibleEnemies[type][Mathf.FloorToInt(Random.Range(0, possibleEnemies[type].Count))],new Vector2(spawn.GetX(), spawn.GetY()), room);
+        CreateEnemy(possibleEnemies[type][Mathf.FloorToInt(Random.Range(0, possibleEnemies[type].Count))],new Vector2(spawn.GetX(), spawn.GetY()), room,reversePosition);
     }
 
-    private void CreateEnemy(UnitType enemyType, Vector2 pos,RoomScript room)
+    private void CreateEnemy(UnitType enemyType, Vector2 pos,RoomScript room,Vector2 reversePosition)
     {
         IUnit enemy;
         var player = References.instance.UnitHandler.playerController;
@@ -72,24 +72,25 @@ public class SpawnHandler {
         }
 
         var roomRef = References.instance.RoomHandler.GetCurrentRoom();
-        enemy.Pos = pos + (roomRef.GetWorldPos() - new Vector2(roomRef.GetRoomWidth() / 2f - roomRef.wallWidth - 1, roomRef.GetRoomHeight() / 2f - roomRef.wallHeight - 1) );
+        enemy.Pos = roomRef.GetWorldPos() + new Vector2(pos.x * reversePosition.x,pos.y * reversePosition.y) - new Vector2((roomRef.GetRoomWidth() / 2f - roomRef.wallWidth)* reversePosition.x, (roomRef.GetRoomHeight() / 2f - roomRef.wallHeight) * reversePosition.y) - new Vector2(-1,-1);
         References.instance.RoomHandler.UnitSpawned(enemy);
     }
 
-    public void SpawnPickup(SpawnInfoType spawnType, ItemSpawnInfo spawn)
+    public void SpawnPickup(SpawnInfoType spawnType, ItemSpawnInfo spawn,Vector2 reversePosition)
     {
         var type = spawnType;
         if (possibleRegularSpawns[type].Count == 0)
             type = SpawnInfoType.potion;
 
-        CreateRegularSpawn(possibleRegularSpawns[type][Mathf.FloorToInt(UnityEngine.Random.Range(0, possibleRegularSpawns[type].Count))], new Vector2(spawn.GetX(), spawn.GetY()));
+        CreateRegularSpawn(possibleRegularSpawns[type][Mathf.FloorToInt(UnityEngine.Random.Range(0, possibleRegularSpawns[type].Count))], new Vector2(spawn.GetX(), spawn.GetY() ),reversePosition);
     }
 
-    private void CreateRegularSpawn(SpawnType spawnType, Vector2 pos)//Spawns an item based on the enum, this is a 1 to 1
+    private void CreateRegularSpawn(SpawnType spawnType, Vector2 pos,Vector2 reversePosition)//Spawns an item based on the enum, this is a 1 to 1
     {
         Position item;
         var roomRef = References.instance.RoomHandler.GetCurrentRoom();
-        Vector2 finalPos = pos + (roomRef.GetWorldPos() - new Vector2(roomRef.GetRoomWidth() / 2f - roomRef.wallWidth - 1, roomRef.GetRoomHeight() / 2f - roomRef.wallHeight - 1));
+        
+        Vector2 finalPos = roomRef.GetWorldPos() + new Vector2(pos.x * reversePosition.x, pos.y * reversePosition.y) - new Vector2((roomRef.GetRoomWidth() / 2f - roomRef.wallWidth) * reversePosition.x, (roomRef.GetRoomHeight() / 2f - roomRef.wallHeight) * reversePosition.y) - new Vector2(-1, -1);
 
         var player = References.instance.UnitHandler.playerController;
         if (spawnType == SpawnType.W1HPPotion)

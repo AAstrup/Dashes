@@ -54,7 +54,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 16158357
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 78c5d7b035a494043ab7d2a315fee103, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 016c4cc2f8deb97449aa46e3610ca4bb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

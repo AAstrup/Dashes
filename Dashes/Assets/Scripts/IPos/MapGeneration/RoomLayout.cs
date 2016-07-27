@@ -6,16 +6,17 @@ using System;
 public class RoomLayout  {
 
     bool hasSpawned = false;
-    RoomLayoutOrientation roomOrientation = RoomLayoutOrientation.NotSet;
+    public RoomLayoutOrientation _orientation;
 
     public enum RoomLayoutOrientation { NotSet, Vertical, Horizontal, Both }
     List<EnemySpawnInfo> _enemies;
     List<ItemSpawnInfo> _regularSpawns;
 
-    public RoomLayout(List<EnemySpawnInfo> enemies, List<ItemSpawnInfo> pickups)
+    public RoomLayout(List<EnemySpawnInfo> enemies, List<ItemSpawnInfo> pickups, RoomLayoutOrientation orientation)
     {
         _enemies = enemies;
         _regularSpawns = pickups;
+        _orientation = orientation;
     }
     public bool GetHasSpawned()
     {

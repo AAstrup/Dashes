@@ -9,6 +9,8 @@ public class UnitHandler
     public IUnit playerIUnit;
     public PlayerController playerController;
 
+    public bool UnitPause = false;
+
     public void Init()
     {
         Units = new List<IUnit>();
@@ -28,15 +30,26 @@ public class UnitHandler
 
     public void Update()
     {
-        Units.ForEach(typ => typ.Update());
-        if (Time.timeScale == 0f)
+        if (UnitPause)
+        {
+            if (Input.anyKeyDown)
+            {
+                UnitPause = false;
+            }
+        }
+        else
+        {
+            Units.ForEach(typ => typ.Update());
+        }
+
+        /*if (Time.timeScale == 0f)
         {
             if (Input.anyKeyDown)
             {
                 Time.timeScale = 1f;//Unpause game. Is paused when a new room is loaded.
                 References.instance.UIHandler.DebugLogClear();
             }
-        }
+        }*/
     }
 
     public void Reset()
