@@ -17,7 +17,7 @@ public class CollisionSystem {
 
 	public enum BlockTypes
 	{
-		
+		None,
 		Wall,
 		Hole
 	}
@@ -52,27 +52,38 @@ public class CollisionSystem {
 
 	public void CreateBlock(TempBlockClass Block)
 	{
-		//2==2? Init() : Init();
 		if(Block.AffectEnemies){BlocksEnemy[Block.x,Block.y] = Block.Type;} 
 		if (Block.AffectPlayer){BlocksPlayer [Block.x, Block.y] = Block.Type;}
+		var temp = References.instance.CreateGameObject (References.instance.PrefabLibrary.Prefabs ["MedicTargetBeam"]);
+		temp.transform.position = new Vector3(Block.x,Block.y,0) + new Vector3 (-ArrayIndexCalc().x,
+			- ArrayIndexCalc().y, 0);
 		Debug.Log (Block.Type);
+	}
+
+	public Vector2 ArrayIndexCalc()
+	{
+		return new Vector2 (wallHorizontalPos+1.0f, wallVerticalPos+1.0f) - currentRoom.GetWorldPos ();
 	}
 
     public Collision CollidesWithWall(Position unit) {
         var col = new Collision(currentRoom.wallWidth, unit.Pos.x, unit.Pos.y);
-
-		var x = (int)unit.Pos.x;
-		var y = (int)unit.Pos.y;
-
-		Debug.Log (x);
-
-		if (BlocksEnemy [x - 1, y] != null) {
-			if (BlocksEnemy [x - 1, y] == BlockTypes.Wall) {
-				col.SetHorizontalPos(wallHorizontalPos - unit.radius + currentRoom.GetWorldPos().x);
-			}
-		}
-
 		/*
+		var x = Mathf.RoundToInt(unit.Pos.x + ArrayIndexCalc().x);
+		var y = Mathf.RoundToInt(unit.Pos.y + ArrayIndexCalc().y);
+
+		Debug.Log ("X:" + x + " Y:" + y + "Block:" + BlocksEnemy[x,y].ToString());
+*/
+		/*if (BlocksEnemy [x + 1, y] == BlockTypes.Wall) {
+			Debug.Log (BlocksEnemy [x + 1, y].ToString ());
+			col.SetHorizontalPos(x + 1 - wallHorizontalPos + currentRoom.GetWorldPos ().x - 1);
+		}
+		*/	
+/*		if (BlocksEnemy [x - 1, y] == BlockTypes.Wall) {
+			Debug.Log (BlocksEnemy [x - 1, y].ToString ());
+			col.SetHorizontalPos(x - ArrayIndexCalc().x + 0.5f);
+		}
+*/
+		
 
         //Horizontal collision
         if (unit.Pos.x > (wallHorizontalPos - unit.radius) + currentRoom.GetWorldPos().x)
@@ -85,7 +96,6 @@ public class CollisionSystem {
         else if (unit.Pos.y < (-1 * (wallVerticalPos - unit.radius)) + currentRoom.GetWorldPos().y)
             col.SetVericalPos(-wallVerticalPos + unit.radius + currentRoom.GetWorldPos().y);
 
-		*/
 
         return col;
 

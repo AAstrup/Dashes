@@ -44,6 +44,27 @@ public class RoomHandler {
 
 		List<CollisionSystem.TempBlockClass> temp = new List<CollisionSystem.TempBlockClass> () {
 			new CollisionSystem.TempBlockClass () {
+				x = 0,
+				y = 0,
+				Type = CollisionSystem.BlockTypes.Wall,
+				AffectEnemies = true,
+				AffectPlayer = true
+			},
+			new CollisionSystem.TempBlockClass () {
+				x = 1,
+				y = 1,
+				Type = CollisionSystem.BlockTypes.Wall,
+				AffectEnemies = true,
+				AffectPlayer = true
+			},
+			new CollisionSystem.TempBlockClass () {
+				x = 2,
+				y = 2,
+				Type = CollisionSystem.BlockTypes.Wall,
+				AffectEnemies = true,
+				AffectPlayer = true
+			},
+			new CollisionSystem.TempBlockClass () {
 				x = 3,
 				y = 3,
 				Type = CollisionSystem.BlockTypes.Wall,
